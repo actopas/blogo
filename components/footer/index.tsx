@@ -1,0 +1,47 @@
+/*
+ * @Describle:
+ * @Author: actopas <fishmooger@gmail.com>
+ * @Date: 2024-09-12 14:36:24
+ * @LastEditors: actopas
+ * @LastEditTime: 2024-09-16 22:18:10
+ */
+import { IconBar } from '@/components/icon-bar';
+
+import { getPV, getUV } from '@/features/statistics';
+import { cn } from '@/lib/utils';
+import { formatNum } from '@/utils';
+
+import { BackToTop } from '../back-to-top';
+import { buttonVariants } from '../ui/button';
+
+export const Footer = async () => {
+  const pv = await getPV();
+  const uv = await getUV();
+  return (
+    <footer className="w-full flex flex-col py-8 max-w-screen-xl mx-auto text-muted-foreground">
+      <BackToTop />
+      <div className="text-center text-2xl font-rubikPuddles">Contact Me</div>
+      <IconBar />
+      <div className="w-full text-sm flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-2 ">
+        <span>2021-PRESENT © actopas</span>
+        <span className="hidden md:inline-block">·</span>
+        <span
+          className={cn(
+            buttonVariants({ variant: 'link' }),
+            '!no-underline px-0 text-muted-foreground',
+          )}
+        >
+          PV：{formatNum(pv)}
+        </span>
+        <span
+          className={cn(
+            buttonVariants({ variant: 'link' }),
+            '!no-underline px-0 text-muted-foreground',
+          )}
+        >
+          UV：{formatNum(uv)}
+        </span>
+      </div>
+    </footer>
+  );
+};
