@@ -54,7 +54,7 @@ const config = {
         checksVoidReturn: { attributes: false },
       },
     ],
-    'no-console': 'error',
+    'no-console': 'off',
     '@next/next/no-img-element': 'off',
     'no-restricted-imports': [
       'error',

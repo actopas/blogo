@@ -14,6 +14,7 @@
     "prepare": "husky install",
     "lint:fix": "eslint --fix .",
     "formate": "prettier --write --log-level warn \"./**/*.{js,jsx,ts,tsx}\"",
+    "postinstall": "prisma generate",
     "cz": "git cz",
     "db:gen": "prisma generate",
     "db:dev": "prisma migrate dev",

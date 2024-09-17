@@ -1,11 +1,5 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-13 13:59:58
- */
 import NextBundleAnalyzer from '@next/bundle-analyzer';
+import TerserPlugin from 'terser-webpack-plugin';
 
 import i18nConfig from './next-i18next.config.mjs';
 
@@ -15,13 +9,8 @@ const withBundleAnalyzer = NextBundleAnalyzer({
 
 /** @type {import("next").NextConfig} */
 const config = {
-  // build 阶段禁止 eslint
   eslint: { ignoreDuringBuilds: true },
-  // build 阶段禁止 ts 类型检查
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Next.js 开发模式默认会开启 React Strict Mode，会渲染2次，我们不需要
+  typescript: { ignoreBuildErrors: true },
   reactStrictMode: false,
   i18n: i18nConfig.i18n,
   images: {
@@ -48,5 +37,35 @@ const config = {
       },
     ],
   },
+
+  // 自定义 Webpack 配置
+  webpack(config, { isServer }) {
+    if (!isServer && process.env.NODE_ENV === 'production') {
+      if (!config.optimization) config.optimization = {};
+      config.optimization.minimize = true;
+      config.optimization.minimizer = [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_console: true, // 移除 console.log
+            },
+          },
+        }),
+      ];
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+      };
+    }
+
+    if (!config.resolve) config.resolve = {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
+
+    return config;
+  },
 };
+
 export default withBundleAnalyzer(config);
