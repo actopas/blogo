@@ -1,59 +1,19 @@
 'use server';
 
 import cuid2 from '@paralleldrive/cuid2';
-import imageType, { minimumBytes } from 'image-type';
-import fs from 'node:fs';
-import path from 'node:path';
-import os from 'os';
-import { readChunk } from 'read-chunk';
+import imageType from 'image-type';
+// import { readChunk } from 'read-chunk';
 import sharp from 'sharp';
 
 import { OSS_UPLOAD_DIR } from '@/config';
-
-import { isProduction } from '@/utils/env';
 
 import { ERROR_NO_PERMISSION } from '@/constants';
 import { noPermission } from '@/features/user';
 import { aliOSS } from '@/lib/ali-oss';
 
-const UPLOAD_DIR = 'uploads';
-const PUBLIC_DIR = 'public';
-
-const getFilePath = (input: string) => {
-  return path.join(process.cwd(), PUBLIC_DIR, input);
-};
-
-const saveFile = async (file: File) => {
-  const fileArrayBuffer = await file.arrayBuffer();
-  const fileExtension = path.extname(file.name);
-  const fileNameWithouExtension = file.name.replace(fileExtension, '');
-  const tempDir = os.tmpdir();
-  const baseURL = `${tempDir}/${fileNameWithouExtension}-${cuid2.createId()}${fileExtension}`;
-  const filePath = path.join(baseURL);
-
-  fs.writeFileSync(filePath, Buffer.from(fileArrayBuffer));
-
-  return baseURL;
-};
-
-const deleteFile = async (input: string) => {
-  const filePath = getFilePath(input);
-
-  return new Promise((resolve, reject) => {
-    fs.unlink(filePath, (error) => {
-      if (error) {
-        reject(error.message);
-      }
-      resolve('');
-    });
-  });
-};
-
-const getImageInfo = async (filePath: string) => {
-  const buffer = await readChunk(filePath, { length: minimumBytes });
-
+// 获取文件的图片类型信息
+const getImageInfo = async (buffer: Buffer) => {
   const typeInfo = await imageType(buffer);
-
   return {
     info: typeInfo,
     isImage: Boolean(typeInfo),
@@ -62,90 +22,76 @@ const getImageInfo = async (filePath: string) => {
   };
 };
 
-const compressImage = async (input: string): Promise<string> => {
-  const inputFilePath = getFilePath(input);
-  const { isGif, isImage, isWebp } = await getImageInfo(inputFilePath);
+// 压缩图片并返回压缩后的 Buffer
+const compressImage = async (buffer: Buffer): Promise<Buffer> => {
+  const { isGif, isImage, isWebp } = await getImageInfo(buffer);
 
   if (!isImage || isWebp) {
-    return input;
+    // 不是图片或者已经是 webp 格式则直接返回原 Buffer
+    return buffer;
   }
+
   let animated = false;
   if (isGif) {
     animated = true;
   }
 
-  const fileName = path.basename(inputFilePath);
-  const fileExtension = path.extname(fileName);
-  const fileNameWithouExtension = fileName.replace(fileExtension, '');
+  // 使用 sharp 压缩图片并返回 webp 格式的 Buffer
+  const compressedBuffer = await sharp(buffer, {
+    animated,
+    limitInputPixels: false,
+  })
+    .webp({ lossless: true })
+    .toBuffer();
 
-  const newFileName = `${fileNameWithouExtension}.webp`;
-  const output = `/${UPLOAD_DIR}/${newFileName}`;
-  const outputFilePath = getFilePath(output);
-
-  return new Promise((resolve, reject) => {
-    // 加载图片
-    sharp(inputFilePath, { animated, limitInputPixels: false })
-      .webp({ lossless: true })
-      .toFile(outputFilePath, (error) => {
-        if (error) {
-          // TODO: 记录日志
-          reject(error.message);
-        } else {
-          resolve(output);
-        }
-      });
-  });
+  return compressedBuffer;
 };
 
-const uploadToOSS = async (filePath: string) => {
-  // 获取文件名
-  const fileName = path.basename(filePath);
-  // 读取文件内容
-  const buffer = fs.readFileSync(filePath);
+// 上传文件到阿里云 OSS
+const uploadToOSS = async (buffer: Buffer, fileName: string) => {
+  const fileExtension = fileName.split('.').pop();
+  const fileNameWithoutExtension = fileName.replace(`.${fileExtension}`, '');
+  const uniqueFileName = `${fileNameWithoutExtension}-${cuid2.createId()}.${fileExtension}`;
 
-  // 将文件上传到阿里云 OSS
-  const { name } = await aliOSS.put(`${OSS_UPLOAD_DIR}/${fileName}`, buffer);
-
-  // 生成文件的 OSS 访问 URL
+  // 上传文件到 OSS
+  const { name } = await aliOSS.put(
+    `${OSS_UPLOAD_DIR}/${uniqueFileName}`,
+    buffer,
+  );
   let url = aliOSS.generateObjectUrl(name);
+
   if (url) {
-    url = url.replace(/http:\/\//g, 'https://');
+    url = url.replace(/http:\/\//g, 'https://'); // 确保使用 https
   }
+
   return url;
 };
 
+// 处理文件上传
 export const uploadFile = async (
   formData: FormData,
 ): Promise<{ error?: string; url?: string }> => {
+  // 权限检查
   if (await noPermission()) {
-    // throw ERROR_NO_PERMISSION;
     return { error: ERROR_NO_PERMISSION.message };
   }
-  // Get file from formData
+
+  // 获取上传的文件
   const file = formData.get('file') as File;
-
-  let url = await saveFile(file);
-  const localFileUrl = url;
-  url = await compressImage(url);
-
-  if (isProduction()) {
-    const ossURL = await uploadToOSS(url);
-    // 删除本地的压缩过后的图片文件
-    const result = await deleteFile(url);
-    if (result) {
-      // TODO: 记录日志, 删除文件失败
-    }
-    return { url: ossURL };
+  if (!file) {
+    return { error: 'No file provided.' };
   }
 
-  // 如果是图片且已经被压缩过
-  if (localFileUrl !== url) {
-    // 删除旧的图片文件
-    const result = await deleteFile(localFileUrl);
-    if (result) {
-      // TODO: 记录日志, 删除文件失败
-    }
-  }
+  // 将文件转换为 Buffer 进行处理
+  const fileArrayBuffer = await file.arrayBuffer();
+  let buffer = Buffer.from(fileArrayBuffer);
 
-  return { url };
+  // 压缩图片（如果是图片）
+  buffer = await compressImage(buffer);
+
+  // 上传到 OSS 并获取 URL
+  const ossURL = await uploadToOSS(buffer, file.name);
+
+  // 返回上传结果的 URL
+  return { url: ossURL };
 };
