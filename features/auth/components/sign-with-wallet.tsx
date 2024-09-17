@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:00
- */
 'use client';
 
 import React from 'react';
@@ -18,30 +11,6 @@ import { injected } from 'wagmi/connectors';
 import { Button } from '@/components/ui/button';
 
 import { PATHS } from '@/constants';
-
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:00
- */
-
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:00
- */
-
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:00
- */
 
 export async function getServerSideProps() {
   const csrfToken = await getCsrfToken();
@@ -69,11 +38,10 @@ export const SignWithWallet = () => {
     const signature = await signMessageAsync({
       message: message.prepareMessage(),
     });
-    console.log('signin', message, signature);
     await signIn('credentials', {
       message: JSON.stringify(message),
       signature,
-      redirectTo: PATHS.ADMIN_HOME,
+      callbackUrl: PATHS.ADMIN_HOME,
     });
   }, [address, chain, signMessageAsync]);
 
