@@ -33,6 +33,8 @@ export default {
         custom07: '0.07rem',
         custom05: '0.05rem',
         custom03: '0.03rem',
+        'custom-05': '-0.05rem',
+        'custom-08': '-0.08rem',
       },
       lineHeight: {
         '14': '3.5rem !important',
@@ -98,6 +100,7 @@ export default {
         rubikPuddles: ['RubikPuddles', 'sans-serif'],
         rowdies: ['Rowdies', 'sans-serif'],
         aclonica: ['Aclonica', 'sans-serif'],
+        ibm: ['IBM', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {

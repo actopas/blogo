@@ -153,3 +153,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'IBM';
+  src: url('/fonts/IBMPlexMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
