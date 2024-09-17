@@ -40,7 +40,7 @@ export const HeroSection = () => {
           A Full Stack
         </p>
         <div
-          className="text-2xl tracking-custom03 md:text-5xl md:tracking-custom07 animate-fade-up animate-ease-in-out"
+          className="text-2xl tracking-custom03 md:text-5xl md:tracking-custom07 animate-fade-up animate-ease-in-out font-mono"
           style={{
             animationDelay: `${getDelay()}ms`,
           }}
