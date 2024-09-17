@@ -1,6 +1,7 @@
 import OSS from 'ali-oss';
 
 import {
+  NODE_ENV,
   OSS_ACCESS_KEY_ID,
   OSS_ACCESS_KEY_SECRET,
   OSS_BUCKET,
@@ -17,7 +18,7 @@ export const aliOSS =
     accessKeySecret: OSS_ACCESS_KEY_SECRET ?? '',
     region: OSS_REGION ?? '',
     bucket: OSS_BUCKET ?? '',
-    endpoint: OSS_ENDPOINT,
+    endpoint: OSS_ENDPOINT ?? '',
   });
 
 if (NODE_ENV !== 'production') globalForAliOSS.aliOSS = aliOSS;
