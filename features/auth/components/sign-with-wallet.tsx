@@ -32,7 +32,15 @@ import { PATHS } from '@/constants';
  * @Author: actopas <fishmooger@gmail.com>
  * @Date: 2024-09-12 14:36:25
  * @LastEditors: actopas
- * @LastEditTime: 2024-09-13 20:31:12
+ * @LastEditTime: 2024-09-16 22:16:00
+ */
+
+/*
+ * @Describle:
+ * @Author: actopas <fishmooger@gmail.com>
+ * @Date: 2024-09-12 14:36:25
+ * @LastEditors: actopas
+ * @LastEditTime: 2024-09-16 22:16:00
  */
 
 export async function getServerSideProps() {
@@ -61,6 +69,7 @@ export const SignWithWallet = () => {
     const signature = await signMessageAsync({
       message: message.prepareMessage(),
     });
+    console.log('signin', message, signature);
     await signIn('credentials', {
       message: JSON.stringify(message),
       signature,

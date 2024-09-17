@@ -22,7 +22,7 @@ export const Footer = async () => {
       <BackToTop />
       <div className="text-center text-2xl font-rubikPuddles">Contact Me</div>
       <IconBar />
-      <div className="w-full text-sm flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-2 ">
+      <div className="w-full text-sm flex flex-row items-center justify-center space-x-2">
         <span>2021-PRESENT © actopas</span>
         <span className="hidden md:inline-block">·</span>
         <span
