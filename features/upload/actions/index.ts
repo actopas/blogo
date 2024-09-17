@@ -4,6 +4,7 @@ import cuid2 from '@paralleldrive/cuid2';
 import imageType, { minimumBytes } from 'image-type';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'os';
 import { readChunk } from 'read-chunk';
 import sharp from 'sharp';
 
@@ -26,8 +27,9 @@ const saveFile = async (file: File) => {
   const fileArrayBuffer = await file.arrayBuffer();
   const fileExtension = path.extname(file.name);
   const fileNameWithouExtension = file.name.replace(fileExtension, '');
-  const baseURL = `/${UPLOAD_DIR}/${fileNameWithouExtension}-${cuid2.createId()}${fileExtension}`;
-  const filePath = getFilePath(baseURL);
+  const tempDir = os.tmpdir();
+  const baseURL = `${tempDir}/${fileNameWithouExtension}-${cuid2.createId()}${fileExtension}`;
+  const filePath = path.join(baseURL);
 
   fs.writeFileSync(filePath, Buffer.from(fileArrayBuffer));
 
@@ -60,7 +62,6 @@ const getImageInfo = async (filePath: string) => {
   };
 };
 
-// 如果不是图片，原样返回，是图片返回压缩后的图片路径
 const compressImage = async (input: string): Promise<string> => {
   const inputFilePath = getFilePath(input);
   const { isGif, isImage, isWebp } = await getImageInfo(inputFilePath);
@@ -96,19 +97,18 @@ const compressImage = async (input: string): Promise<string> => {
   });
 };
 
-const uploadToOSS = async (input: string) => {
-  const inputFilePath = getFilePath(input);
-  const fileName = path.basename(inputFilePath);
-  const buffer = fs.readFileSync(inputFilePath);
-  const { name } = await aliOSS.put(
-    `${OSS_UPLOAD_DIR}/${fileName}`,
-    Buffer.from(buffer),
-  );
+const uploadToOSS = async (filePath: string) => {
+  // 获取文件名
+  const fileName = path.basename(filePath);
+  // 读取文件内容
+  const buffer = fs.readFileSync(filePath);
+
+  // 将文件上传到阿里云 OSS
+  const { name } = await aliOSS.put(`${OSS_UPLOAD_DIR}/${fileName}`, buffer);
+
+  // 生成文件的 OSS 访问 URL
   let url = aliOSS.generateObjectUrl(name);
   if (url) {
-    // 阿里云 OSS 上传后返回的链接是默认是http协议的（但实际上它是也支持https），这里手动替换成https
-    // 因为线上环境网站是使用https协议的，网站里面所有的链接/请求都应该走https（最佳实践是这样）
-    // 要不然浏览器搜索栏会有个小感叹号，不太好看
     url = url.replace(/http:\/\//g, 'https://');
   }
   return url;
