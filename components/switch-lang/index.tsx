@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-16 22:14:30
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:08
- */
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
@@ -26,14 +19,6 @@ import {
 import { cn } from '@/lib/utils';
 
 import { IconMingcuteLoadingLine, IconSolarGlobal } from '../icons';
-
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-16 22:14:30
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:16:08
- */
 
 // 定义语言选项
 const langOptions = [
@@ -84,9 +69,7 @@ export function SwitchLang(props: Props) {
       router.push(`/${lang}${currentPath}`); // 使用 router.push 进行导航
       setOpen(false);
     } catch (error) {
-      if (process.env.NODE_ENV === 'development') {
-        // console.error('Language switch failed:', error);
-      }
+      throw new Error('fail');
     }
   };
 

@@ -66,7 +66,6 @@ export const toSlashDateString = (date: number | Date) => {
 };
 
 export const isAdmin = (email: string, id: string) => {
-  console.log(email, 'email', id);
   if ((!email || !ADMIN_EMAILS?.length) && (!id || !WALLET_ADDRESS?.length)) {
     return false;
   }
