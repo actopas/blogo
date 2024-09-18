@@ -19,13 +19,13 @@ import { Sidebar } from './sidebar';
 const Desc = ({ session }: { session: Session | null }) => {
   return isAdmin(session?.user?.email ?? '', session?.user?.id ?? '') ? (
     <div className="flex md:justify-center flex-col items-center space-y-1 mt-1">
-      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground">
+      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground leading-6">
         Admin
       </Badge>
     </div>
   ) : (
     <div className="flex md:justify-center flex-col items-center space-y-1 mt-1">
-      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground">
+      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground leading-6">
         Guest
       </Badge>
     </div>

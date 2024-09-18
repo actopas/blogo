@@ -32,7 +32,7 @@ export const HeroSection = () => {
           {NICKNAME}
         </p>
         <p
-          className="text-2xl md:text-7xl tracking-custom60 animate-fade-up animate-ease-in-out font-nerko md:tracking-custom58"
+          className="text-2xl md:text-7xl tracking-custom60 animate-fade-down animate-ease-in-out font-nerko md:tracking-custom58"
           style={{
             animationDelay: `${getDelay()}ms`,
           }}
@@ -40,7 +40,7 @@ export const HeroSection = () => {
           A Full Stack
         </p>
         <div
-          className="text-2xl tracking-custom-05 md:text-5xl md:tracking-custom-08 animate-fade-up animate-ease-in-out font-ibm"
+          className="text-2xl tracking-custom-05 md:text-5xl md:tracking-custom-08 animate-fade-down animate-ease-in-out font-ibm"
           style={{
             animationDelay: `${getDelay()}ms`,
           }}
@@ -48,7 +48,7 @@ export const HeroSection = () => {
           {'Web<Developer />'}
         </div>
         <p
-          className="text-2xl md:text-6xl tracking-custom43 animate-fade-up animate-ease-in-out font-rubikGlitch"
+          className="text-2xl md:text-6xl tracking-custom43 animate-fade-down animate-ease-in-out font-rubikGlitch"
           style={{
             animationDelay: `${getDelay()}ms`,
           }}
@@ -56,7 +56,7 @@ export const HeroSection = () => {
           Working on:
         </p>
         <div
-          className={cn('animate-fade-up animate-ease-in-out')}
+          className={cn('animate-fade-down animate-ease-in-out')}
           style={{
             animationDelay: `${getDelay()}ms`,
           }}
@@ -66,7 +66,7 @@ export const HeroSection = () => {
         </div>
         <Link href={PATHS.SITE_ABOUT}>
           <p
-            className="text-2xl md:text-5xl tracking-custom07 md:tracking-custom16 animate-fade-up animate-ease-in-out font-aclonica underline cursor-pointer"
+            className="text-2xl md:text-5xl tracking-custom07 md:tracking-custom16 animate-fade-down animate-ease-in-out font-aclonica underline cursor-pointer"
             style={{
               animationDelay: `${getDelay()}ms`,
             }}
