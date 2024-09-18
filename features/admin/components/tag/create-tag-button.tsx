@@ -72,12 +72,12 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
       <DialogTrigger asChild>
         <Button onClick={() => setOpen(true)}>
           <IconSolarAddSquare className="mr-2 text-base" />
-          创建标签
+          Create
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>创建标签</DialogTitle>
+          <DialogTitle>Create</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form autoComplete="off">
@@ -87,9 +87,9 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>名称</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="请输入名称" {...field} />
+                      <Input placeholder="Please enter name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -103,9 +103,9 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
                     <FormLabel>slug</FormLabel>
                     <FormControl>
                       <div className="flex items-center w-full gap-4">
-                        <Input placeholder="请输入slug" {...field} />
+                        <Input placeholder="Please enter slug" {...field} />
                         <Button type="button" onClick={handleFormatSlug}>
-                          格式化
+                          Format
                         </Button>
                       </div>
                     </FormControl>
@@ -118,7 +118,7 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>类型</FormLabel>
+                    <FormLabel>Type</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger
@@ -126,7 +126,7 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
                             'text-muted-foreground': !field.value,
                           })}
                         >
-                          <SelectValue placeholder="请选择标签" />
+                          <SelectValue placeholder="Please choose Tags" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -151,7 +151,7 @@ export const CreateTagButton = ({ refreshAsync }: CreateTagButtonProps) => {
                   {createTagQuery.loading && (
                     <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
                   )}
-                  创建
+                  Create
                 </Button>
               </div>
             </div>

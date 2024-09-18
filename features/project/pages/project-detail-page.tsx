@@ -19,7 +19,7 @@ export const ProjectDetailPage = ({ project }: ProjectDetailProps) => {
           {project.title}
         </h1>
         <div className="text-sm flex flex-row items-center text-muted-foreground mb-4">
-          <span>发布于 {toFromNow(project.createdAt)}</span>
+          <span>Posted {toFromNow(project.createdAt)}</span>
         </div>
       </article>
       <BytemdViewer body={project.body || ''} />

@@ -74,12 +74,12 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
       <DialogTrigger asChild>
         <Button onClick={() => setOpen(true)}>
           <IconSolarAddSquare className="mr-2 text-base" />
-          创建笔记
+          Create note
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>创建笔记</DialogTitle>
+          <DialogTitle>Create note</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form autoComplete="off">
@@ -89,7 +89,7 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
                 name="tags"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>标签</FormLabel>
+                    <FormLabel>Tag</FormLabel>
                     <FormControl>
                       <div className="flex space-x-4 items-center">
                         <div className="flex-1">
@@ -102,7 +102,7 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
                             }
                             multiple
                             clearable
-                            selectPlaceholder="请选择标签"
+                            selectPlaceholder="Please choose Tags"
                             value={field.value}
                             onValueChange={field.onChange}
                           />
@@ -122,7 +122,7 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
                 name="published"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>是否发布</FormLabel>
+                    <FormLabel>Publish</FormLabel>
                     <FormControl>
                       <div>
                         <Switch
@@ -141,7 +141,7 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
                 name="body"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>内容</FormLabel>
+                    <FormLabel>Content</FormLabel>
                     <FormControl>
                       <div id="note-editor">
                         <BytemdEditor
@@ -164,7 +164,7 @@ export const CreateNoteButton = ({ refreshAsync }: CreateNoteButtonProps) => {
                   {createNoteQuery.loading && (
                     <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
                   )}
-                  创建
+                  Create
                 </Button>
               </div>
             </div>

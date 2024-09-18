@@ -9,10 +9,10 @@ export const useUpdateNote = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('笔记已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`笔记更新失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };
@@ -22,10 +22,10 @@ export const useToggleNotePublish = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('笔记发布状态已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`笔记更新失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

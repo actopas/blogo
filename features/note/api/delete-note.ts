@@ -9,10 +9,10 @@ export const useDeleteNote = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('笔记已删除');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`笔记删除失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

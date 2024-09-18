@@ -121,7 +121,7 @@ export const createTag = async (params: CreateTagDTO) => {
 
   if (tags.length) {
     // TODO: 记录日志
-    throw new Error('标签名称或者slug重复');
+    throw new Error('Tag or slug exist');
   }
 
   await prisma.tag.create({
@@ -140,7 +140,7 @@ export const deleteTagByID = async (id: string) => {
   const isExist = await isTagExistByID(id);
 
   if (!isExist) {
-    throw new Error('标签不存在');
+    throw new Error('Tag not exist');
   }
 
   await prisma.tag.delete({
@@ -164,7 +164,7 @@ export const updateTag = async (params: UpdateTagDTO) => {
 
   const isExist = await isTagExistByID(result.data.id);
   if (!isExist) {
-    throw new Error('标签不存在');
+    throw new Error('Tag not exist');
   }
 
   await prisma.tag.update({

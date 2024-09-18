@@ -120,7 +120,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarTextField className="text-sm" />
-          <span>标题</span>
+          <span>Title</span>
         </div>
       ),
       cell: ({ row }) => {
@@ -137,7 +137,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarTag className="text-sm" />
-          <span>标签</span>
+          <span>Tag</span>
         </div>
       ),
       cell: ({ row }) => {
@@ -157,7 +157,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarEyeBold className="text-sm" />
-          <span>发布状态</span>
+          <span>Publish Status</span>
         </div>
       ),
       cell: ({ row }) => {
@@ -180,7 +180,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
           }}
         >
           <IconSolarCalendarMark className="text-sm" />
-          <span className="mx-1">创建时间</span>
+          <span className="mx-1">Create time</span>
           {params.order === 'asc' && params.orderBy == 'createdAt' && (
             <IconSolarSortFromBottomToTopLinear />
           )}
@@ -203,7 +203,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
           }}
         >
           <IconSolarCalendarMark className="text-sm" />
-          <span className="mx-1">更新时间</span>
+          <span className="mx-1">Update time</span>
           {params.order === 'asc' && params.orderBy == 'updatedAt' && (
             <IconSolarSortFromBottomToTopLinear />
           )}
@@ -253,7 +253,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
           action={
             <Button onClick={handleGoToCreate}>
               <IconSolarAddSquare className="mr-2 text-base" />
-              创建项目
+              Create project
             </Button>
           }
         />
@@ -261,7 +261,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
     >
       <div className="grid gap-4 grid-cols-4 px-2 py-4 items-end">
         <Input
-          placeholder="请输入标题"
+          placeholder="Please enter title"
           value={inputParams.title}
           onChange={(v) =>
             updateInputParams({
@@ -283,7 +283,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
           }
           multiple
           clearable
-          selectPlaceholder="请选择标签"
+          selectPlaceholder="Please choose Tags"
           value={inputParams.tags}
           onValueChange={(v) => {
             updateInputParams({
@@ -305,7 +305,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
                 'text-muted-foreground': isUndefined(inputParams.published),
               })}
             >
-              <SelectValue placeholder="请选择发布状态" />
+              <SelectValue placeholder="Please choose status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value={PUBLISHED_ENUM.ALL}>
@@ -323,11 +323,11 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
         <div className="flex items-center space-x-4">
           <Button onClick={handleSearch}>
             <IconSolarMinimalisticMagnifer className="mr-2" />
-            搜索
+            Search
           </Button>
           <Button onClick={handleReset}>
             <IconSolarRestart className="mr-2" />
-            重置
+            Reset
           </Button>
         </div>
       </div>
@@ -342,8 +342,8 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
         noResult={
           <div className="grid place-content-center gap-4 py-16">
             <IllustrationNoContent />
-            <p>暂无内容</p>
-            <Button onClick={handleGoToCreate}>去创建</Button>
+            <p>Empty</p>
+            <Button onClick={handleGoToCreate}>Create</Button>
           </div>
         }
       />

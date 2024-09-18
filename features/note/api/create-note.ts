@@ -9,10 +9,10 @@ export const useCreateNote = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('笔记创建成功');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`笔记创建失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

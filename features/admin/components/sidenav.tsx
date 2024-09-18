@@ -18,18 +18,16 @@ import { Sidebar } from './sidebar';
 
 const Desc = ({ session }: { session: Session | null }) => {
   return isAdmin(session?.user?.email, session?.user?.id) ? (
-    <div className="flex justify-center flex-col items-center space-y-1">
-      <Badge className="bg-background text-foreground">管理员</Badge>
-      <div className="text-xs text-muted-foreground font-medium">
-        拥有所有权限
-      </div>
+    <div className="flex md:justify-center flex-col items-center space-y-1 mt-1">
+      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground">
+        Admin
+      </Badge>
     </div>
   ) : (
-    <div className="flex justify-center flex-col items-center space-y-1">
-      <Badge className="bg-background text-foreground">游客</Badge>
-      <div className="text-xs text-muted-foreground font-medium">
-        只能查看部分数据
-      </div>
+    <div className="flex md:justify-center flex-col items-center space-y-1 mt-1">
+      <Badge className="bg-background text-foreground hover:bg-background hover:text-foreground">
+        Guest
+      </Badge>
     </div>
   );
 };
@@ -37,7 +35,7 @@ const Desc = ({ session }: { session: Session | null }) => {
 export const Sidenav = async () => {
   const session = await auth();
   return (
-    <aside className="w-16 lg:w-[256px] transition-all h-screen flex-col flex items-center justify-between py-12 bg-foreground">
+    <aside className="w-16 lg:w-[256px] transition-all h-screen flex-col flex md:items-center justify-between py-12 bg-foreground">
       <div className="flex-col flex items-center w-full">
         <Avatar className="w-14 h-14 border border-muted-foreground/10">
           <AvatarImage
@@ -51,21 +49,25 @@ export const Sidenav = async () => {
         </h4>
         <Desc session={session} />
 
-        <div className="w-full flex-col flex items-center mt-8 space-y-4">
+        <div className="w-full flex-col items-center flex lg:items-start mt-8 space-y-4">
           <Sidebar />
         </div>
       </div>
-      <div className="mt-5 flex justify-center lg:grid w-full space-y-1">
-        <SignOutButton />
-        <Button
-          asChild
-          className="lg:!w-full text-primary-foreground bg-muted-foreground/10 hover:bg-muted-foreground/20"
-        >
-          <Link href={PATHS.SITE_HOME} target="_blank">
-            <span>去前台首页</span>
-            <IconSolarArrowRightUpLinear />
-          </Link>
-        </Button>
+      <div className="mt-5 flex flex-col items-center justify-center lg:grid w-full space-y-1">
+        <div>
+          <SignOutButton />
+        </div>
+        <div>
+          <Button
+            asChild
+            className="lg:!w-full text-primary-foreground bg-muted-foreground/10 hover:bg-muted-foreground/20"
+          >
+            <Link href={PATHS.SITE_HOME} target="_blank">
+              <span className="hidden lg:inline-block">Back</span>
+              <IconSolarArrowRightUpLinear />
+            </Link>
+          </Button>
+        </div>
       </div>
     </aside>
   );

@@ -9,10 +9,10 @@ export const useUpdateBlog = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('博客已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`博客更新失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };
@@ -22,10 +22,10 @@ export const useToggleBlogPublish = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('博客发布状态已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`博客发布状态更新失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

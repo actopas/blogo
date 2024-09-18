@@ -22,7 +22,7 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
       <div className="h-1/2 grid gap-8 place-content-center ">
         <IllustrationNoContent className="w-[30vh] h-[30vh]" />
         <h3 className="text-2xl font-semibold tracking-tight text-center">
-          NO DATA
+          Empty
         </h3>
       </div>
     );

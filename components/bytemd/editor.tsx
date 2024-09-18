@@ -31,7 +31,7 @@ export const BytemdEditor = ({
       const fd = new FormData();
       fd.append('file', file);
 
-      const toastID = showLoadingToast('上传中');
+      const toastID = showLoadingToast('uploading');
       const { url, error } = await uploadFile(fd);
       hideToast(toastID);
 
@@ -41,7 +41,7 @@ export const BytemdEditor = ({
       }
 
       if (url) {
-        showSuccessToast('上传成功');
+        showSuccessToast('Success');
         return [{ url }];
       }
 
@@ -55,7 +55,7 @@ export const BytemdEditor = ({
     <Editor
       value={body ?? ''}
       plugins={plugins}
-      placeholder="请输入内容..."
+      placeholder="Please enter content..."
       sanitize={sanitize}
       onChange={(v) => setContent(v)}
       uploadImages={handleUploadImages}

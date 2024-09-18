@@ -82,12 +82,12 @@ export const EditTagButton = ({ id, refreshAsync }: EditTagButtonProps) => {
               <IconSolarPen className="text-base" />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>编辑</TooltipContent>
+          <TooltipContent>Edit</TooltipContent>
         </Tooltip>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>编辑标签</DialogTitle>
+          <DialogTitle>Edit tag</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form autoComplete="off">
@@ -114,14 +114,14 @@ export const EditTagButton = ({ id, refreshAsync }: EditTagButtonProps) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>名称</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       {loading ? (
                         <Skeleton className="w-full rounded-lg h-10" />
                       ) : (
                         <Input
                           className="flex-1"
-                          placeholder="请输入标签名称"
+                          placeholder="Please enter name"
                           {...field}
                         />
                       )}
@@ -141,9 +141,12 @@ export const EditTagButton = ({ id, refreshAsync }: EditTagButtonProps) => {
                         <Skeleton className="w-full rounded-lg h-10" />
                       ) : (
                         <div className="flex items-center w-full gap-4">
-                          <Input placeholder="请输入标签slug" {...field} />
+                          <Input
+                            placeholder="Please enter tag slug"
+                            {...field}
+                          />
                           <Button type="button" onClick={handleFormatSlug}>
-                            格式化
+                            Format
                           </Button>
                         </div>
                       )}
@@ -157,7 +160,7 @@ export const EditTagButton = ({ id, refreshAsync }: EditTagButtonProps) => {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>类型</FormLabel>
+                    <FormLabel>Type</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger
@@ -165,7 +168,7 @@ export const EditTagButton = ({ id, refreshAsync }: EditTagButtonProps) => {
                             'text-muted-foreground': !field.value,
                           })}
                         >
-                          <SelectValue placeholder="标签类型" />
+                          <SelectValue placeholder="Tag Type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

@@ -40,8 +40,10 @@ export const DeleteBlogButton = ({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTrigger>
-          <AlertDialogTitle>删除博客</AlertDialogTitle>
-          <AlertDialogDescription>确定要删除该博客吗？</AlertDialogDescription>
+          <AlertDialogTitle>Delete Blog</AlertDialogTitle>
+          <AlertDialogDescription>
+            Sure for delete this blog?
+          </AlertDialogDescription>
         </AlertDialogTrigger>
         <AlertDialogFooter>
           <Button
@@ -49,13 +51,13 @@ export const DeleteBlogButton = ({
             disabled={deleteBlogQuery.loading}
             onClick={() => setOpen(false)}
           >
-            取消
+            Cancel
           </Button>
           <Button onClick={handleDelete} disabled={deleteBlogQuery.loading}>
             {deleteBlogQuery.loading && (
               <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
             )}
-            删除
+            Delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

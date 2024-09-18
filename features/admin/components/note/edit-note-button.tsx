@@ -87,7 +87,7 @@ export const EditNoteButton = ({ id, refreshAsync }: EditNoteButtonProps) => {
                 name="tags"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>标签</FormLabel>
+                    <FormLabel>Tag</FormLabel>
                     <FormControl>
                       <div className="flex space-x-4 items-center">
                         <div className="flex-1">
@@ -100,7 +100,7 @@ export const EditNoteButton = ({ id, refreshAsync }: EditNoteButtonProps) => {
                             }
                             multiple
                             clearable
-                            selectPlaceholder="请选择标签"
+                            selectPlaceholder="Please choose Tags"
                             value={field.value}
                             onValueChange={field.onChange}
                           />
@@ -120,7 +120,7 @@ export const EditNoteButton = ({ id, refreshAsync }: EditNoteButtonProps) => {
                 name="published"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>是否发布</FormLabel>
+                    <FormLabel>Publish</FormLabel>
                     <FormControl>
                       <div>
                         <Switch
@@ -139,7 +139,7 @@ export const EditNoteButton = ({ id, refreshAsync }: EditNoteButtonProps) => {
                 name="body"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>内容</FormLabel>
+                    <FormLabel>Content</FormLabel>
                     <FormControl>
                       <div id="note-editor">
                         <BytemdEditor

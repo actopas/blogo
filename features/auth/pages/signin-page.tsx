@@ -23,9 +23,9 @@ export const SignInPage = () => {
       <Card className="w-[320px] py-4 rounded-3xl sm:w-full sm:max-w-none sm:min-w-[360px] relative animate-fade">
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
-            登录 <NextLink href={PATHS.SITE_HOME}>回首页</NextLink>
+            Login <NextLink href={PATHS.SITE_HOME}>Homepage</NextLink>
           </CardTitle>
-          <CardDescription>选择你喜欢的方式进行登录</CardDescription>
+          <CardDescription>Choose the way you want</CardDescription>
         </CardHeader>
         <CardFooter>
           <div className="w-full grid gap-4">
@@ -35,7 +35,7 @@ export const SignInPage = () => {
               type="button"
               onClick={handleSigninWithGithub}
             >
-              <IconBrandGithub className="mr-2 text-base" /> 使用 Github 登录
+              <IconBrandGithub className="mr-2 text-base" /> Github
             </Button>
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -43,7 +43,7 @@ export const SignInPage = () => {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-background px-2 text-muted-foreground">
-                  或者
+                  Or
                 </span>
               </div>
             </div>

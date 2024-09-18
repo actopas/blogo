@@ -1,13 +1,6 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-08-31 22:09:08
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-11 15:25:44
- */
 import { type ClassValue, clsx } from 'clsx';
 import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/en';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import slugify from 'slugify';
 import { twMerge } from 'tailwind-merge';
@@ -39,7 +32,7 @@ export const copyToClipboard = (text: string) => {
       // 去除首尾空白字符
       .writeText(text?.trim())
       .then(() => {
-        showSuccessToast('已复制到粘贴板');
+        showSuccessToast('Copied');
       })
       .catch((error) => {
         showErrorToast(error as string);
@@ -58,21 +51,22 @@ export const copyToClipboard = (text: string) => {
     textarea.select();
     // 复制
     document.execCommand('copy', true);
-    showSuccessToast('已复制到粘贴板');
+    showSuccessToast('Copy Success');
     // 移除输入框
     document.body.removeChild(textarea);
   }
 };
 
 export const toFromNow = (date: number | Date) => {
-  return dayjs(date).locale('zh-cn').fromNow();
+  return dayjs(date).locale('en').fromNow();
 };
 
 export const toSlashDateString = (date: number | Date) => {
-  return dayjs(date).locale('zh-cn').format('YYYY年M月D日 dddd HH:mm:ss');
+  return dayjs(date).locale('en').format('M/D/YYYY dddd HH:mm:ss');
 };
 
 export const isAdmin = (email: string, id: string) => {
+  console.log(email, 'email', id);
   if ((!email || !ADMIN_EMAILS?.length) && (!id || !WALLET_ADDRESS?.length)) {
     return false;
   }

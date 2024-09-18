@@ -32,17 +32,17 @@ export const SignOutButton = () => {
           )}
         >
           <IconSolarLogout2 className="lg:mr-2 lg:text-2xl" />
-          <span className="hidden lg:inline-block">退出登录</span>
+          <span className="hidden lg:inline-block">Logout</span>
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="max-w-sm">
         <AlertDialogTrigger>
-          <AlertDialogTitle>温馨提示</AlertDialogTitle>
-          <AlertDialogDescription>确定要退出登录吗？</AlertDialogDescription>
+          <AlertDialogTitle>Tips</AlertDialogTitle>
+          <AlertDialogDescription>Sure for Logout?</AlertDialogDescription>
         </AlertDialogTrigger>
         <AlertDialogFooter>
-          <AlertDialogCancel>取消</AlertDialogCancel>
-          <AlertDialogAction onClick={handleLogout}>确定</AlertDialogAction>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleLogout}>Accept</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

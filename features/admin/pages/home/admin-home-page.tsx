@@ -15,7 +15,7 @@ export const AdminHomePage = () => {
       <div className="grid place-content-center mt-[18vh]">
         <IllustrationConstruction className="w-[320px] h-[320px]" />
         <h3 className="text-2xl font-semibold tracking-tight text-center">
-          开发中
+          Developing
         </h3>
       </div>
     </AdminContentLayout>

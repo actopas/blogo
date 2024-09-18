@@ -8,10 +8,10 @@ export const useDeleteTag = () => {
   return useRequest(deleteTagByID, {
     manual: true,
     onSuccess() {
-      showSuccessToast('标签已删除');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`标签删除失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

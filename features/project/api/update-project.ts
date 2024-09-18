@@ -9,10 +9,10 @@ export const useUpdateProject = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('项目已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`项目更新: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };
@@ -22,10 +22,10 @@ export const useToggleProjectPublish = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('项目发布状态已更新');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`项目发布状态更新失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

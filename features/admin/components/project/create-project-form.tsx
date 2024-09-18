@@ -78,7 +78,7 @@ export const CreateProjectForm = () => {
             variant={'outline'}
             className="!w-full"
           >
-            创建
+            Create
           </Button>
         </div>
 
@@ -88,9 +88,9 @@ export const CreateProjectForm = () => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>标题</FormLabel>
+                <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="请输入标题" />
+                  <Input {...field} placeholder="Please enter title" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -104,9 +104,9 @@ export const CreateProjectForm = () => {
                 <FormLabel>slug</FormLabel>
                 <FormControl>
                   <div className="flex items-center w-full gap-4">
-                    <Input {...field} placeholder="请输入slug" />
+                    <Input {...field} placeholder="Please enter slug" />
                     <Button type="button" onClick={handleFormatSlug}>
-                      格式化
+                      Format
                     </Button>
                   </div>
                 </FormControl>
@@ -119,9 +119,9 @@ export const CreateProjectForm = () => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>描述</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="请输入描述" />
+                  <Textarea {...field} placeholder="Please enter description" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -132,12 +132,12 @@ export const CreateProjectForm = () => {
             name="codeUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>源码地址</FormLabel>
+                <FormLabel>Source code address</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     value={field.value ?? ''}
-                    placeholder="请输入源码地址"
+                    placeholder="Please enter source code address"
                   />
                 </FormControl>
                 <FormMessage />
@@ -149,12 +149,12 @@ export const CreateProjectForm = () => {
             name="previewUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>预览地址</FormLabel>
+                <FormLabel>Preview</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     value={field.value ?? ''}
-                    placeholder="请输入预览地址"
+                    placeholder="Please enter preview address"
                   />
                 </FormControl>
                 <FormMessage />
@@ -166,12 +166,12 @@ export const CreateProjectForm = () => {
             name="author"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>作者</FormLabel>
+                <FormLabel>Author</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     value={field.value ?? ''}
-                    placeholder="请输入作者"
+                    placeholder="Please enter Author"
                   />
                 </FormControl>
                 <FormMessage />
@@ -183,12 +183,12 @@ export const CreateProjectForm = () => {
             name="cover"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>封面</FormLabel>
+                <FormLabel>Cover</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
                     value={field.value ?? ''}
-                    placeholder="请输入封面链接"
+                    placeholder="Please enter cover"
                   />
                 </FormControl>
                 <FormMessage />
@@ -200,7 +200,7 @@ export const CreateProjectForm = () => {
                       if (file) {
                         const fd = new FormData();
                         fd.append('file', file);
-                        const toastID = showLoadingToast('上传中');
+                        const toastID = showLoadingToast('uploading');
                         const { url, error } = await uploadFile(fd);
                         hideToast(toastID);
 
@@ -210,13 +210,13 @@ export const CreateProjectForm = () => {
                         }
 
                         if (url) {
-                          showSuccessToast('上传成功');
+                          showSuccessToast('Success');
                         }
 
                         setCover(url ?? '');
                         form.setValue('cover', url ?? '');
                       } else {
-                        showInfoToast('请选择一个文件');
+                        showInfoToast('Choose a file');
                       }
                     } catch (error) {
                       showErrorToast(error as string);
@@ -238,7 +238,7 @@ export const CreateProjectForm = () => {
             name="published"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>是否发布</FormLabel>
+                <FormLabel>Publish</FormLabel>
                 <FormControl>
                   <div>
                     <Switch
@@ -256,7 +256,7 @@ export const CreateProjectForm = () => {
             name="tags"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>标签</FormLabel>
+                <FormLabel>Tag</FormLabel>
                 <FormControl>
                   <div className="grid grid-cols-12 gap-4 items-center">
                     <div className="col-span-10">
@@ -269,7 +269,7 @@ export const CreateProjectForm = () => {
                         }
                         multiple
                         clearable
-                        selectPlaceholder="请选择标签"
+                        selectPlaceholder="Please choose Tags"
                         value={field.value}
                         onValueChange={field.onChange}
                       />
@@ -287,7 +287,7 @@ export const CreateProjectForm = () => {
             name="body"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>内容</FormLabel>
+                <FormLabel>Content</FormLabel>
                 <FormControl>
                   <div id="content-editor">
                     <BytemdEditor

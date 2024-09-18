@@ -102,7 +102,7 @@ export const AdminTagListPage = () => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarTextField className="text-sm" />
-          <span>名称</span>
+          <span>Name</span>
         </div>
       ),
       cell: ({ row }) => {
@@ -119,7 +119,7 @@ export const AdminTagListPage = () => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarTextField className="text-sm" />
-          <span>类型</span>
+          <span>Type</span>
         </div>
       ),
       cell({ row }) {
@@ -149,7 +149,7 @@ export const AdminTagListPage = () => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarBook className="text-sm" />
-          <span>博客</span>
+          <span>Blog</span>
         </div>
       ),
       cell({ row }) {
@@ -161,7 +161,7 @@ export const AdminTagListPage = () => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarCodeSquare className="text-sm" />
-          <span>项目</span>
+          <span>Project</span>
         </div>
       ),
       cell({ row }) {
@@ -173,7 +173,7 @@ export const AdminTagListPage = () => {
       header: () => (
         <div className="flex space-x-1 items-center">
           <IconSolarNotesBold className="text-sm" />
-          <span>笔记</span>
+          <span>Note</span>
         </div>
       ),
       cell({ row }) {
@@ -190,7 +190,7 @@ export const AdminTagListPage = () => {
           }}
         >
           <IconSolarCalendarMark className="text-sm" />
-          <span className="mx-1">创建时间</span>
+          <span className="mx-1">Create time</span>
           {params.order === 'asc' && params.orderBy == 'createdAt' && (
             <IconSolarSortFromBottomToTopLinear />
           )}
@@ -213,7 +213,7 @@ export const AdminTagListPage = () => {
           }}
         >
           <IconSolarCalendarMark className="text-sm" />
-          <span className="mx-1">更新时间</span>
+          <span className="mx-1">Update time</span>
           {params.order === 'asc' && params.orderBy == 'updatedAt' && (
             <IconSolarSortFromBottomToTopLinear />
           )}
@@ -257,7 +257,7 @@ export const AdminTagListPage = () => {
     >
       <div className="grid gap-4 grid-cols-4 px-2 py-4">
         <Input
-          placeholder="请输入名称"
+          placeholder="Please enter name"
           value={inputParams.name}
           onChange={(v) =>
             updateInputParams({
@@ -283,7 +283,7 @@ export const AdminTagListPage = () => {
               'text-muted-foreground': isUndefined(inputParams.type),
             })}
           >
-            <SelectValue placeholder="请选择类型" />
+            <SelectValue placeholder="Please choose type" />
           </SelectTrigger>
           <SelectContent>
             {TAG_TYPES.map((el) => (
@@ -296,11 +296,11 @@ export const AdminTagListPage = () => {
         <div className="flex items-center space-x-4">
           <Button onClick={handleSearch}>
             <IconSolarMinimalisticMagnifer className="mr-2" />
-            搜索
+            Search
           </Button>
           <Button onClick={handleReset}>
             <IconSolarRestart className="mr-2" />
-            重置
+            Reset
           </Button>
         </div>
       </div>
@@ -314,7 +314,7 @@ export const AdminTagListPage = () => {
         noResult={
           <div className="grid place-content-center gap-4 py-16">
             <IllustrationNoContent />
-            <p>暂无内容</p>
+            <p>Empty</p>
             <CreateTagButton refreshAsync={getTagsQuery.refreshAsync} />
           </div>
         }

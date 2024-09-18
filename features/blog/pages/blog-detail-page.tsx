@@ -40,11 +40,11 @@ export const BlogDetailPage = ({ blog, uv = 0 }: BlogDetailProps) => {
         <div className="text-sm flex flex-row items-center text-muted-foreground">
           <div>{blog.author ? blog.author : NICKNAME}</div>
           <span className="mx-2">·</span>
-          <span>发布于 {toFromNow(blog.createdAt)}</span>
+          <span>Posted {toFromNow(blog.createdAt)}</span>
           <span className="mx-2">·</span>
           <div className="flex items-center space-x-1">
             <IconSolarEyeBold />
-            <span>{formatNum(uv)} 人看过</span>
+            <span>{formatNum(uv)} Viewed</span>
           </div>
         </div>
         <BytemdViewer body={blog.body || ''} />

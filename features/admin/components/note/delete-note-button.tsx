@@ -40,8 +40,10 @@ export const DeleteNoteButton = ({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTrigger>
-          <AlertDialogTitle>删除笔记</AlertDialogTitle>
-          <AlertDialogDescription>确定要删除该笔记吗？</AlertDialogDescription>
+          <AlertDialogTitle>Delete note</AlertDialogTitle>
+          <AlertDialogDescription>
+            Sure for delete this note?
+          </AlertDialogDescription>
         </AlertDialogTrigger>
         <AlertDialogFooter>
           <Button
@@ -49,13 +51,13 @@ export const DeleteNoteButton = ({
             disabled={deleteNoteQuery.loading}
             onClick={() => setOpen(false)}
           >
-            取消
+            Cancel
           </Button>
           <Button onClick={handleDeleteNote} disabled={deleteNoteQuery.loading}>
             {deleteNoteQuery.loading && (
               <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
             )}
-            删除
+            Delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

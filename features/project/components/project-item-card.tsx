@@ -17,7 +17,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
     router.push(`${PATHS.SITE_PROJECT}/${project.slug}`);
   };
   const handleEyeIconClick = (event: React.MouseEvent) => {
-    event.preventDefault(); // 阻止 `<a>` 标签的默认行为（可选）
+    event.preventDefault(); // 阻止 `<a>` Tag的默认行为（可选）
     event.stopPropagation(); // 阻止事件冒泡，避免触发 `<Link>` 的点击事件
     window.open(project.previewUrl || '', '_blank');
   };

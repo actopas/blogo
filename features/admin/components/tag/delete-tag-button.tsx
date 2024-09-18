@@ -37,8 +37,8 @@ export const DeleteTagButton = ({ id, refreshAsync }: DeleteTagButtonProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTrigger>
-          <AlertDialogTitle>删除标签</AlertDialogTitle>
-          <AlertDialogDescription>确定要删除该标签吗？</AlertDialogDescription>
+          <AlertDialogTitle>Delete Tag</AlertDialogTitle>
+          <AlertDialogDescription>Sure for delete tag</AlertDialogDescription>
         </AlertDialogTrigger>
         <AlertDialogFooter>
           <Button
@@ -46,13 +46,13 @@ export const DeleteTagButton = ({ id, refreshAsync }: DeleteTagButtonProps) => {
             disabled={deleteTagQuery.loading}
             onClick={() => setOpen(false)}
           >
-            取消
+            Cancel
           </Button>
           <Button onClick={handleDeleteTag} disabled={deleteTagQuery.loading}>
             {deleteTagQuery.loading && (
               <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
             )}
-            删除
+            Delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

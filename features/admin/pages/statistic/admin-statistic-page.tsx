@@ -14,12 +14,12 @@ export const AdminStatisticPage = async () => {
 
   const statistics: StatisticsCardProps[] = [
     {
-      title: 'Blog总数',
+      title: 'Blog count',
       count: blogCount,
       icon: <IconSolarBook className="text-muted-foreground text-2xl" />,
     },
     {
-      title: '标签总数',
+      title: 'Tag count',
       count: tagCount,
       icon: (
         <IconSolarHashtagSquare className="text-muted-foreground text-2xl" />

@@ -92,7 +92,7 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
     >
       <div className="grid gap-4 grid-cols-4 px-2 py-4 items-end">
         <Input
-          placeholder="请输入内容"
+          placeholder="please enter keywords"
           value={inputParams.body}
           onChange={(v) =>
             updateInputParams({
@@ -119,7 +119,7 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
                 'text-muted-foreground': isUndefined(inputParams.published),
               })}
             >
-              <SelectValue placeholder="请选择发布状态" />
+              <SelectValue placeholder="Please choose status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value={PUBLISHED_ENUM.ALL}>
@@ -143,7 +143,7 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
           }
           multiple
           clearable
-          selectPlaceholder="请选择标签"
+          selectPlaceholder="Please choose Tags"
           value={inputParams.tags}
           onValueChange={(v) => {
             updateInputParams({
@@ -154,11 +154,11 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
         <div className="flex items-center space-x-4">
           <Button onClick={handleSearch}>
             <IconSolarMinimalisticMagnifer className="mr-2" />
-            搜索
+            Search
           </Button>
           <Button onClick={handleReset}>
             <IconSolarRestart className="mr-2" />
-            重置
+            Reset
           </Button>
         </div>
       </div>

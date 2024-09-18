@@ -9,10 +9,10 @@ export const useCreateProject = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('项目已创建');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`项目创建失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };

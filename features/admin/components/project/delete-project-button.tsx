@@ -40,8 +40,10 @@ export const DeleteProjectButton = ({
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogTrigger>
-          <AlertDialogTitle>删除项目</AlertDialogTitle>
-          <AlertDialogDescription>确定要删除该项目吗？</AlertDialogDescription>
+          <AlertDialogTitle>Delete project</AlertDialogTitle>
+          <AlertDialogDescription>
+            Sure for delete this project?
+          </AlertDialogDescription>
         </AlertDialogTrigger>
         <AlertDialogFooter>
           <Button
@@ -49,13 +51,13 @@ export const DeleteProjectButton = ({
             disabled={deleteProjectQuery.loading}
             onClick={() => setOpen(false)}
           >
-            取消
+            Cancel
           </Button>
           <Button onClick={handleDelete} disabled={deleteProjectQuery.loading}>
             {deleteProjectQuery.loading && (
               <IconMingcuteLoadingLine className="mr-2 text-base animate-spin" />
             )}
-            删除
+            Delete
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

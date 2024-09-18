@@ -9,10 +9,10 @@ export const useDeleteProject = () => {
     manual: true,
     loadingDelay: 300,
     onSuccess() {
-      showSuccessToast('项目已删除');
+      showSuccessToast('Success');
     },
     onError(error) {
-      showErrorToast(`项目删除失败: ${error.message}`);
+      showErrorToast(`Fail: ${error.message}`);
     },
   });
 };
