@@ -36,6 +36,12 @@ export default {
         'custom-05': '-0.05rem',
         'custom-08': '-0.08rem',
       },
+      margin: {
+        '0.8': '0.2rem',
+      },
+      minHeight: {
+        '3/5': '60vh',
+      },
       lineHeight: {
         '14': '3.5rem !important',
       },

@@ -103,12 +103,12 @@ figure.effect-zoe:hover p.icon-links a:focus {
   color: #252d31;
 }
 
-figure.effect-zoe p.description {
+figure.effect-zoe .description {
   position: absolute;
   bottom: 3em;
   left: 0em;
-  padding: 7em;
   color: #3c4a50;
+  padding: 1em;
   text-transform: none;
   font-size: 90%;
   opacity: 0; /* 初始状态为透明 */
@@ -155,7 +155,7 @@ figure.effect-zoe h2 {
   display: inline-block;
 }
 
-figure.effect-zoe:hover p.description {
+figure.effect-zoe:hover .description {
   opacity: 1;
 }
 

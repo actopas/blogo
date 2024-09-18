@@ -7,7 +7,7 @@ import { useScroll } from 'ahooks';
 import { NICKNAME, PATHS, WEBSITE } from '@/constants';
 import { cn } from '@/lib/utils';
 
-import { IconLogo } from '../icons';
+import { IconLogoDark, IconLogoLight } from '../icons';
 import { NextLink } from '../next-link';
 // import { SwitchLang } from '../switch-lang';
 import { SwitchTheme } from '../switch-theme';
@@ -22,16 +22,19 @@ export const Navbar = () => {
         (scroll?.top ?? 0) > 60 && 'bg-background/50 border-b border-border/50',
       )}
     >
-      <div className="w-full flex items-center h-16 p-4 sm:p-8 md:max-w-screen-md 2xl:max-w-screen-xl">
+      <div className="w-full flex items-center h-16 p-4 sm:p-8 ">
         <NextLink
           href={PATHS.SITE_HOME}
-          className={cn('mr-4 hidden sm:flex')}
+          className={cn('mr-4 pl-0 flex items-center')}
           aria-label={NICKNAME}
         >
-          <IconLogo />
-          <span className="ml-2 font-bungeeShade text-primary text-base">
+          <>
+            <IconLogoDark className="dark:hidden ml-2 mr-1" />
+            <IconLogoLight className="hidden dark:inline-block ml-2 mr-1" />
+          </>
+          <div className="sm:flex hidden items-center ml-2 font-bungeeShade text-primary text-base">
             {WEBSITE}
-          </span>
+          </div>
         </NextLink>
         <div className="h-16 flex-1 hidden sm:flex justify-end items-center gap-6 text-base font-medium mr-8"></div>
         <div className="flex flex-1 sm:flex-none justify-end items-center gap-1">

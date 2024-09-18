@@ -26,7 +26,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html suppressHydrationWarning lang="zh-CN" className="scroll-smooth">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/images/favicon.ico" />
+        <link rel="icon" href="/images/favicon-dark.ico" type="image/x-icon" />
       </head>
       <body className="debug-screens scroll-smooth overflow-x-clip">
         <TooltipProvider>

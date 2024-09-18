@@ -19,7 +19,7 @@ type BlogListProps = {
 export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
   if (!blogs.length) {
     return (
-      <div className="grid gap-8 place-content-center ">
+      <div className="h-1/2 grid gap-8 place-content-center ">
         <IllustrationNoContent className="w-[30vh] h-[30vh]" />
         <h3 className="text-2xl font-semibold tracking-tight text-center">
           NO DATA
@@ -29,7 +29,7 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
   }
 
   return (
-    <div className="min-h-screen w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 ">
+    <div className="w-full min-h-3/5 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 ">
       <ul className="flex flex-col space-y-4">
         {blogs.map((blog, idx) => (
           <li
