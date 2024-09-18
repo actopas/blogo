@@ -9,12 +9,15 @@ import React from 'react';
 
 import { cn } from '@/lib/utils';
 
-export const IconPhTriangle = ({
+export const IconPhHandArrow = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
-    <span {...props} className={cn('icon-[ph--triangle]', className)}></span>
+    <span
+      {...props}
+      className={cn('icon-[ph--hand-arrow-up-duotone]', className)}
+    ></span>
   );
 };
 //fa6-brands--x-twitter

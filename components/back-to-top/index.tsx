@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { IconPhTriangle } from '@/components/icons';
+import { IconPhHandArrow } from '@/components/icons';
 
 export const BackToTop = () => {
   const handleClick = () => {
@@ -11,7 +11,7 @@ export const BackToTop = () => {
 
   return (
     <div className="text-center text-5xl">
-      <IconPhTriangle
+      <IconPhHandArrow
         className="animate-move-up  cursor-pointer"
         onClick={handleClick}
       />

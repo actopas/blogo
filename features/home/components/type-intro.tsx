@@ -10,7 +10,7 @@ export const TypeIntro = () => {
     <div className={`${style} md:leading-14 text-xl md:text-4xl `}>
       <TypeAnimation
         sequence={[
-          800,
+          700,
           () =>
             setStyle('font-josefinSans tracking-custom05 md:tracking-custom25'),
           'JavaScript/TypeScript',
