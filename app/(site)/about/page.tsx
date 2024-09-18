@@ -72,7 +72,7 @@ export default function Page() {
   const getDelay = () => (delay += 200);
 
   return (
-    <div className="w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-24 pt-8">
+    <div className="w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-8 pt-8">
       <PageHeader
         breadcrumbList={[PATHS.SITE_HOME, PATHS.SITE_ABOUT]}
         className="mb-0"
@@ -86,12 +86,10 @@ export default function Page() {
           }}
         >
           <h2>Who I am</h2>
-          <p>
+          <p className="max-w-3xl">
             An independent full-stack developer since 2020, built serval apps
-            from 0 to 1.
-            <br />
-            Focus on feature development, user experience, and creating
-            maintainable, easily iterated solutions.
+            from 0 to 1. Focus on feature development, user experience, and
+            creating maintainable, easily iterated solutions.
             <br />
             Fast, Reliable, Efficient.
           </p>
@@ -311,17 +309,12 @@ export default function Page() {
           }}
         >
           <h3>Others</h3>
-          <p>
+          <p className="max-w-3xl">
             Living a life of creating something is where my passion at. I thrive
-            <br />
             on working on interesting projects and contributing to meaningful
-            <br />
             repositories. If you&apos;re looking for someone to bring your idea
-            to
-            <br />
-            life, feel free to contact me below, and we can schedule a time to
-            <br />
-            chat.
+            to life, feel free to contact me below, and we can schedule a time
+            to chat.
           </p>
         </div>
       </section>

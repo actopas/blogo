@@ -1,11 +1,5 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  request;
-  return NextResponse.next();
-}
+export { auth as middleware } from '@/lib/auth';
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: `/admin/:path*`,
 };

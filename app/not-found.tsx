@@ -14,10 +14,10 @@ export default function Page() {
       <div className="grid gap-8">
         <IllustrationNotFound className="w-[320px] h-[320px]" />
         <h3 className="text-2xl font-semibold tracking-tight text-center">
-          页面未找到
+          Not Found
         </h3>
         <Button asChild>
-          <Link href={PATHS.SITE_HOME}>返回首页</Link>
+          <Link href={PATHS.SITE_HOME}>Back</Link>
         </Button>
       </div>
     </div>

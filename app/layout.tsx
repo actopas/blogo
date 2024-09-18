@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html suppressHydrationWarning lang="zh-CN" className="scroll-smooth">
+    <html suppressHydrationWarning lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/images/favicon-dark.ico" type="image/x-icon" />
       </head>
