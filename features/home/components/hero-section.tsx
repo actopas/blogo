@@ -18,7 +18,7 @@ export const HeroSection = () => {
   const getDelay = () => (delay += 200);
 
   return (
-    <div className="max-w-screen-md 2xl:max-w-7xl gap-5 flex flex-col justify-center min-h-full pl-6 md:px-10 font-mono">
+    <div className="max-w-screen-md 2xl:max-w-7xl gap-5 flex flex-col justify-center min-h-full pl-custom0.7 md:px-10 font-mono">
       <div className="screen-1/2">
         <p
           className="font-bungeeShade text-2xl md:text-5xl animate-fade-up animate-ease-in-out tracking-wider"
@@ -28,7 +28,7 @@ export const HeroSection = () => {
         >
           Hi,there.I&apos;m
         </p>
-        <p className="text-4xl md:text-7xl tracking-widest  font-bungeeShade text-primary ">
+        <p className="text-4xl md:text-7xl tracking-widest  font-bungeeShade text-primary">
           {NICKNAME}
         </p>
         <p
@@ -66,7 +66,7 @@ export const HeroSection = () => {
         </div>
         <Link href={PATHS.SITE_ABOUT}>
           <p
-            className="text-2xl md:text-5xl tracking-custom07 md:tracking-custom16 animate-fade-down animate-ease-in-out font-aclonica underline cursor-pointer"
+            className="text-2xl md:text-5xl tracking-custom07 md:tracking-custom16 animate-fade-down animate-ease-in-out font-aclonica underline cursor-pointer hover:scale-110 transition-transform duration-300 ease-in-out"
             style={{
               animationDelay: `${getDelay()}ms`,
             }}

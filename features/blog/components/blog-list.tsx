@@ -29,20 +29,23 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
   }
 
   return (
-    <div className="w-full min-h-3/5 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 ">
-      <ul className="flex flex-col space-y-4">
+    <div className="flex flex-col items-center w-full min-h-3/5 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 md:pb-12">
+      <div className="w-auto md:w-full leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform flex justify-center md:justify-start">
+        Articles
+      </div>
+      <div className="w-full flex flex-col space-y-4">
         {blogs.map((blog, idx) => (
-          <li
+          <div
             key={blog.id}
-            className="animate-fade-up animate-ease-in-out w-full"
+            className="animate-fade-up animate-ease-in-out w-full pb-4 md:pb-12"
             style={{
               animationDelay: `${(idx + 1) * 200}ms`,
             }}
           >
             <BlogListItem blog={blog} uvMap={uvMap} />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

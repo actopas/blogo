@@ -13,11 +13,11 @@ type ProjectDetailProps = {
 
 export const ProjectDetailPage = ({ project }: ProjectDetailProps) => {
   return (
-    <div className="md:max-w-screen-md 2xl:max-w-6xl md:px-0 md:mx-auto py-12 md:py-24 px-6 grid gap-9">
+    <div className="md:max-w-screen-md 2xl:max-w-6xl md:px-0 md:mx-auto pt-12 md:py-24 px-6 grid gap-9">
+      <h1 className="mb-4 text-2xl md:text-4xl font-extrabold ">
+        {project.title}
+      </h1>
       <article>
-        <h1 className="mb-4 text-2xl md:text-4xl font-extrabold ">
-          {project.title}
-        </h1>
         <div className="text-sm flex flex-row items-center text-muted-foreground mb-4">
           <span>Posted {toFromNow(project.createdAt)}</span>
         </div>

@@ -160,3 +160,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Danfo';
+  src: url('/fonts/Danfo-Regular-VariableFont_ELSH.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

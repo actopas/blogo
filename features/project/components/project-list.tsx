@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-15 16:14:48
- */
 import { IllustrationNoContent } from '@/components/illustrations';
 
 import { ProjectListItem } from './project-list-item';
@@ -21,7 +14,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
       <div className="grid gap-8 place-content-center">
         <IllustrationNoContent className="w-[30vh] h-[30vh]" />
         <h3 className="text-2xl font-semibold tracking-tight text-center">
-          暂无项目
+          Empty
         </h3>
       </div>
     );

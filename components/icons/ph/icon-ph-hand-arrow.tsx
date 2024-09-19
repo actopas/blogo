@@ -16,7 +16,7 @@ export const IconPhHandArrow = ({
   return (
     <span
       {...props}
-      className={cn('icon-[ph--hand-arrow-up-duotone]', className)}
+      className={cn('icon-[ph--hand-arrow-up-thin]', className)}
     ></span>
   );
 };

@@ -44,6 +44,18 @@ export default {
       },
       lineHeight: {
         '14': '3.5rem !important',
+        '32': '8rem !important',
+        '48': '12rem !important',
+        '72': '20rem !important',
+      },
+      padding: {
+        'custom0.7': '0.7rem',
+      },
+      zIndex: {
+        '9': '9',
+      },
+      inset: {
+        'custom14.7': '14.7rem',
       },
       width: {
         '9/10': '90%',
@@ -107,6 +119,7 @@ export default {
         rowdies: ['Rowdies', 'sans-serif'],
         aclonica: ['Aclonica', 'sans-serif'],
         ibm: ['IBM', 'sans-serif'],
+        danfo: ['Danfo', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
@@ -138,17 +151,37 @@ export default {
             opacity: '0',
           },
         },
+        'move-up-down': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-20px)',
+          },
+          '40%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(0)',
+          },
+        },
       },
       clipPath: {
         'custom-arc': 'ellipse(100% 50% at 50% 100%)',
+        'rain-drop': 'ellipse(50% 60% at 50% 40%)',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'move-up-down': 'move-up-down 3s infinite',
+
         // 光标闪烁动画
         'cursor-blink': 'cursor-blink 0.6s step-end infinite alternate',
         'intro-scroll': 'intro-scroll 3s ease infinite',
         'move-up': 'move-up 2s ease infinite alternate',
+      },
+      textShadow: {
+        'light-glow':
+          '0 0 5px rgba(255, 255, 255, 0.5), 0 0 2px rgba(255, 255, 255, 0.7), 0 0 2px rgba(255, 255, 255, 0.9)',
       },
     },
   },
@@ -162,5 +195,6 @@ export default {
     addDynamicIconSelectors(),
     // 动画插件
     require('tailwindcss-animated'),
+    require('tailwindcss-textshadow'),
   ],
 } satisfies Config;

@@ -11,6 +11,7 @@ import { type Project } from '../types';
 type ProjectListProps = {
   projects: Project[];
 };
+
 export const ProjectTimeline = ({ projects }: ProjectListProps) => {
   if (!projects.length) {
     return (
@@ -22,8 +23,12 @@ export const ProjectTimeline = ({ projects }: ProjectListProps) => {
       </div>
     );
   }
+
   return (
-    <div className="w-full min-h-3/5 flex flex-col items-center justify-center ">
+    <div className="w-full min-h-3/5 flex flex-col items-center justify-center">
+      <div className="leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform">
+        Projects
+      </div>
       {projects.map((project, index) => (
         <ProjectListItem
           project={project}

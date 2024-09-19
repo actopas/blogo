@@ -20,10 +20,12 @@ export const Footer = async () => {
   return (
     <footer className="w-full flex flex-col py-8 max-w-screen-xl mx-auto text-muted-foreground">
       <BackToTop />
-      <div className="text-center text-2xl font-rubikPuddles">Contact Me</div>
+      <div className="text-center text-2xl font-rubikPuddles font-semibold">
+        Contact Me
+      </div>
       <IconBar />
       <div className="w-full text-sm flex flex-row items-center justify-center space-x-2">
-        <span>2021-PRESENT © actopas</span>
+        <span>2020 - PRESENT © actopas</span>
         <span className="hidden md:inline-block">·</span>
         <span
           className={cn(
