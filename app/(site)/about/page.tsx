@@ -2,8 +2,10 @@
 
 import {
   IconBrandGithub,
+  IconLogoElectron,
   IconLogoEslint,
   IconLogoEthers,
+  IconLogoExpo,
   IconLogoGitlab,
   IconLogoGoogle,
   IconLogoHardhat,
@@ -13,6 +15,7 @@ import {
   IconLogoServerless,
   IconLogoSourcetree,
   IconLogoSwagger,
+  IconLogoSwift,
   IconLogoTruffle,
   IconLogoTypeorm,
   IconLogoWeb3,
@@ -175,7 +178,7 @@ export default function Page() {
                 <IconSkillWindicssDark className="dark:hidden mx-1 translate-y-0.5" />
                 <IconSkillWindicssLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
               </>{' '}
-              windicss
+              Windi CSS
             </li>
           </ul>
         </div>
@@ -193,7 +196,7 @@ export default function Page() {
                 <IconSkillNestLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
               </>{' '}
               Nest.js + <IconSkillPrisma className="mx-1 translate-y-0.5" />{' '}
-              Prisma + <IconLogoTypeorm className="mx-1 translate-y-0.5" />{' '}
+              Prisma / <IconLogoTypeorm className="mx-1 translate-y-0.5" />{' '}
               TypeORM +
               <>
                 <IconSkillMysqlDark className="dark:hidden mx-1 translate-y-0.5" />
@@ -202,6 +205,38 @@ export default function Page() {
               MySQL / <IconSkillMongodb className="mx-1 translate-y-0.5" />{' '}
               MongoDB + <IconLogoSwagger className="mx-1 translate-y-0.5" />{' '}
               Swagger
+            </li>
+          </ul>
+        </div>
+        <div
+          className="animate-fade-up animate-ease-in-out"
+          style={{
+            animationDelay: `${getDelay()}ms`,
+          }}
+        >
+          <h3>Desktop & Mobile</h3>
+          <ul>
+            <li>
+              <>
+                <IconSkillReactDark className="dark:hidden mx-1 translate-y-0.5" />
+                <IconSkillReactLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
+              </>{' '}
+              React + <IconLogoElectron className="mx-1 translate-y-0.5" />{' '}
+              Electron +{' '}
+              <>
+                <IconSkillTailwindcssDark className="dark:hidden mx-1 translate-y-0.5" />
+                <IconSkillTailwindcssLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
+              </>{' '}
+              Tailwind CSS
+            </li>
+            <li>
+              <IconLogoSwift className="mx-1 translate-y-0.5" /> Swift /{' '}
+              <>
+                <IconSkillReactDark className="dark:hidden mx-1 translate-y-0.5" />
+                <IconSkillReactLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
+              </>{' '}
+              React Native + <IconLogoExpo className="mx-1 translate-y-0.5" />
+              Expo{' '}
             </li>
           </ul>
         </div>
@@ -279,7 +314,7 @@ export default function Page() {
                 <IconSkillVercelDark className="dark:hidden mx-1 translate-y-0.5" />
                 <IconSkillVercelLight className="hidden dark:inline-block mx-1 translate-y-0.5" />
               </>{' '}
-              Vercel +{' '}
+              Vercel /{' '}
               <>
                 <IconSkillNetlifyDark className="dark:hidden mx-1 translate-y-0.5" />
                 <IconSkillNetlifyLight className="hidden dark:inline-block mx-1 translate-y-0.5" />

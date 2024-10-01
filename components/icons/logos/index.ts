@@ -30,3 +30,6 @@ export * from './icon-logo-web3';
 export * from './icon-logo-swagger';
 export * from './icon-logo-nginx';
 export * from './icon-logo-serverless';
+export * from './icon-logo-swift';
+export * from './icon-logo-expo';
+export * from './icon-logo-electron';

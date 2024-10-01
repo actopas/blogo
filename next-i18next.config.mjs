@@ -5,7 +5,6 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-13 14:05:52
  */
-import path from 'path';
 
 const i18nConfig = {
   i18n: {
