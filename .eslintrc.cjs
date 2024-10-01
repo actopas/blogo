@@ -30,7 +30,10 @@ const config = {
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
-
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
     // 修复: 'React' must be in scope when using JSXeslint
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',

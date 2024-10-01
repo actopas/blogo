@@ -1,7 +1,8 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
-import i18nConfig from './next-i18next.config.mjs';
-
+const withNextIntl = createNextIntlPlugin();
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -11,7 +12,6 @@ const config = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   reactStrictMode: false,
-  i18n: i18nConfig.i18n,
   images: {
     remotePatterns: [
       {
@@ -38,4 +38,5 @@ const config = {
   },
 };
 
-export default withBundleAnalyzer(config);
+// 使用 withNextIntl 和 withBundleAnalyzer 包装配置
+export default withNextIntl(withBundleAnalyzer(config));

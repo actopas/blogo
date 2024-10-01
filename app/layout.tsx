@@ -4,7 +4,7 @@ import { type Metadata } from 'next';
 
 import { NextThemeProvider, WagmiProvider } from '@/providers';
 
-import { ReactHotToaster } from '@/components/ui/toast';
+// import { ReactHotToaster } from '@/components/ui/toast';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 import { Console } from '@/components/console';
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             <WagmiProvider>
               {children}
 
-              <ReactHotToaster />
+              {/* <ReactHotToaster /> */}
 
               <Console />
 

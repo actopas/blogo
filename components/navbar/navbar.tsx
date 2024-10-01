@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 import { IconLogoDark, IconLogoLight } from '../icons';
 import { NextLink } from '../next-link';
-// import { SwitchLang } from '../switch-lang';
+import { SwitchLang } from '../switch-lang';
 import { SwitchTheme } from '../switch-theme';
 
 export const Navbar = () => {
@@ -39,7 +39,7 @@ export const Navbar = () => {
         <div className="h-16 flex-1 hidden sm:flex justify-end items-center gap-6 text-base font-medium mr-8"></div>
         <div className="flex flex-1 sm:flex-none justify-end items-center gap-1">
           <SwitchTheme />
-          {/* <SwitchLang /> */}
+          <SwitchLang />
         </div>
       </div>
     </header>

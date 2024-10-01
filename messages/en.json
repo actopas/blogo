@@ -1,0 +1,11 @@
+{
+  "Index": {
+    "title": "欢迎访问我们的网站",
+    "description": "这是一个示例描述"
+  },
+  "Navigation": {
+    "home": "首页",
+    "about": "关于我们",
+    "contact": "联系我们"
+  }
+}

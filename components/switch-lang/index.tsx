@@ -2,8 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-// 从 next/navigation 导入 useRouter
-import { useTranslation } from 'next-i18next';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 import { type VariantProps } from 'class-variance-authority';
@@ -38,38 +37,34 @@ export type Props = VariantProps<typeof buttonVariants>;
 
 export function SwitchLang(props: Props) {
   const [open, setOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false); // 用于检测组件是否挂载
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language;
-  const router = useRouter(); // 使用 next/navigation 中的 useRouter
+  const [isMounted, setIsMounted] = useState(false);
+  const locale = useLocale();
+  const router = useRouter();
+  const t = useTranslations('LanguageSwitcher');
 
-  // useEffect 只在组件挂载时设置 isMounted 为 true
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // 确保 useMemo 在组件渲染时总是被调用
   const icon = useMemo(() => {
-    const currentLangOption = langOptions.find(
-      (lang) => lang.value === currentLang,
-    );
+    const currentLangOption = langOptions.find((lang) => lang.value === locale);
     return currentLangOption ? (
       currentLangOption.icon
     ) : (
       <IconMingcuteLoadingLine className="animate-spin text-base" />
     );
-  }, [currentLang]);
+  }, [locale]);
 
-  // 如果组件未挂载，不渲染内容
   if (!isMounted) return null;
 
   const handleLangSwitch = (lang: string) => {
     try {
-      const currentPath = window.location.pathname; // 使用 window.location 获取路径
-      router.push(`/${lang}${currentPath}`); // 使用 router.push 进行导航
+      const currentPath = window.location.pathname;
+      const newPath = currentPath.replace(`/${locale}`, `/${lang}`);
+      router.push(newPath);
       setOpen(false);
     } catch (error) {
-      throw new Error('fail');
+      console.error('Failed to switch language:', error);
     }
   };
 
@@ -79,7 +74,7 @@ export function SwitchLang(props: Props) {
         <Button
           role="combobox"
           aria-expanded={open}
-          aria-label="切换语言"
+          aria-label={t('switchLanguage')}
           variant="ghost"
           size="icon"
           {...props}
@@ -99,7 +94,7 @@ export function SwitchLang(props: Props) {
                 <div className="flex items-center gap-2">
                   <div
                     className={cn(
-                      currentLang === el.value ? 'opacity-100' : 'opacity-50',
+                      locale === el.value ? 'opacity-100' : 'opacity-50',
                       'flex items-center',
                     )}
                   >
@@ -108,7 +103,7 @@ export function SwitchLang(props: Props) {
                   <div
                     className={cn(
                       'text-sm',
-                      currentLang === el.value ? 'opacity-100' : 'opacity-50',
+                      locale === el.value ? 'opacity-100' : 'opacity-50',
                     )}
                   >
                     {el.label}
