@@ -1,12 +1,18 @@
 'use client';
 
-import { NextIntlClientProvider } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { type ReactNode } from 'react';
 
-export function Providers({ children, messages }) {
-  const router = useRouter();
+import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
+
+export function Providers({
+  children,
+  messages,
+}: {
+  children: ReactNode;
+  messages: AbstractIntlMessages;
+}) {
   return (
-    <NextIntlClientProvider messages={messages} router={router}>
+    <NextIntlClientProvider messages={messages}>
       {children}
     </NextIntlClientProvider>
   );
