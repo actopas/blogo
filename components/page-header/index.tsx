@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
-import { PATHS_MAP, PATH_DESCRIPTION_MAP } from '@/constants';
 import { cn } from '@/lib/utils';
 
 import {
@@ -15,50 +15,47 @@ import {
 } from '../ui/breadcrumb';
 
 type PageHeaderProps = {
-  breadcrumbList?: string[];
+  breadcrumbList?: { path: string; translationKey: string }[];
   className?: string;
   action?: React.ReactNode;
 };
 
-export const PageHeader = ({
+export function PageHeader({
   breadcrumbList,
   className,
   action,
-}: PageHeaderProps) => {
-  if (!breadcrumbList?.length) {
-    return null;
-  }
+}: PageHeaderProps) {
+  const t = useTranslations();
 
-  const linkList = breadcrumbList.slice(0, breadcrumbList.length - 1);
-  const labelLink = breadcrumbList[breadcrumbList.length - 1]!;
+  const linkList = breadcrumbList?.slice(0, breadcrumbList.length - 1);
+  const labelLink = breadcrumbList?.[breadcrumbList.length - 1];
 
   return (
     <div className={cn('relative', className)}>
       <Breadcrumb className={cn('mb-2')}>
         <BreadcrumbList>
-          {linkList.map((el) => (
-            <React.Fragment key={el}>
+          {linkList?.map((el) => (
+            <React.Fragment key={el.path}>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={el}>{PATHS_MAP[el]}</Link>
+                  <Link href={el.path}>{t(el.translationKey)}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
             </React.Fragment>
           ))}
           <BreadcrumbItem>
-            <BreadcrumbPage>{PATHS_MAP[labelLink]}</BreadcrumbPage>
+            <BreadcrumbPage>
+              {labelLink && t(labelLink.translationKey)}
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <h2 className="text-3xl md:text-4xl font-bold mb-2">
-        {PATHS_MAP[labelLink]}
+        {labelLink && t(labelLink.translationKey)}
       </h2>
-      <p className="text-base text-muted-foreground">
-        {PATH_DESCRIPTION_MAP[labelLink]}
-      </p>
 
       <div className="absolute bottom-0 right-0">{action}</div>
     </div>
   );
-};
+}

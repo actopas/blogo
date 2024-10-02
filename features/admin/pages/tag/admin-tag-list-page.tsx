@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { useLocale } from 'next-intl';
+
 import { TagTypeEnum } from '@prisma/client';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useSetState } from 'ahooks';
@@ -54,6 +56,7 @@ import {
 } from '../../components';
 
 export const AdminTagListPage = () => {
+  const locale = useLocale();
   const [params, updateParams] = useSetState<GetTagsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
@@ -200,7 +203,7 @@ export const AdminTagListPage = () => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.createdAt);
+        return toSlashDateString(row.original.createdAt, locale);
       },
     },
     {
@@ -223,7 +226,7 @@ export const AdminTagListPage = () => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.updatedAt);
+        return toSlashDateString(row.original.updatedAt, locale);
       },
     },
     {
@@ -250,7 +253,10 @@ export const AdminTagListPage = () => {
     <AdminContentLayout
       pageHeader={
         <PageHeader
-          breadcrumbList={[PATHS.ADMIN_HOME, PATHS.ADMIN_TAG]}
+          breadcrumbList={[
+            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
+            { path: PATHS.ADMIN_TAG, translationKey: 'Navigation.tag' },
+          ]}
           action={<CreateTagButton refreshAsync={getTagsQuery.refreshAsync} />}
         />
       }

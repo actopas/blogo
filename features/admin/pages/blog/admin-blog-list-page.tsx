@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -62,6 +63,7 @@ import {
 } from '../../components';
 
 export const AdminBlogListPage = ({ session }: WithSession) => {
+  const locale = useLocale();
   const router = useRouter();
   const [params, updateParams] = useSetState<GetBlogsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
@@ -199,7 +201,7 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.createdAt);
+        return toSlashDateString(row.original.createdAt, locale);
       },
     },
     {
@@ -222,7 +224,7 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.updatedAt);
+        return toSlashDateString(row.original.updatedAt, locale);
       },
     },
     {
@@ -258,7 +260,10 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
     <AdminContentLayout
       pageHeader={
         <PageHeader
-          breadcrumbList={[PATHS.ADMIN_HOME, PATHS.ADMIN_BLOG]}
+          breadcrumbList={[
+            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
+            { path: PATHS.ADMIN_BLOG, translationKey: 'Navigation.blog' },
+          ]}
           action={
             <Button onClick={handleGoToCreate}>
               <IconSolarAddSquare className="mr-2 text-base" />

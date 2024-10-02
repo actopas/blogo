@@ -1,11 +1,60 @@
 {
   "Index": {
-    "title": "Welcome to our website",
-    "description": "This is a sample description"
+    "title": "欢迎访问我们的网站",
+    "description": "这是一个示例描述"
   },
   "Navigation": {
-    "home": "Home",
-    "about": "About",
-    "contact": "Contact"
+    "home": "首页",
+    "blog": "博客",
+    "project": "项目",
+    "about": "关于我",
+    "sitemap": "网站地图"
+  },
+  "Common": {
+    "welcome_message": "欢迎来到我们的网站",
+    "description": "这是一个示例描述",
+    "contact_us": "联系我们",
+    "language_switcher": "切换语言"
+  },
+  "About": {
+    "who_i_am": "我是谁",
+    "who_i_am_description": "自2020年以来的独立全栈开发者，从0到1构建了多个应用。专注于功能开发、用户体验和创建可维护、易迭代的解决方案。快速、可靠、高效。",
+    "tech_stack_skills": "技术栈与技能",
+    "research_idea_design": "研究、创意与设计",
+    "frontend": "前端",
+    "backend": "后端",
+    "desktop_mobile": "桌面与移动端",
+    "blockchain": "区块链",
+    "testing_quality": "测试与质量",
+    "version_control": "版本控制",
+    "services_devops": "服务与运维",
+    "others": "其他",
+    "others_description": "创造是我的激情所在。我热衷于参与有趣的项目并为有意义的仓库做出贡献。如果你正在寻找能够将你的想法变为现实的人，欢迎联系我，我们可以安排时间交流。"
+  },
+  "Project": {
+    "title": "项目",
+    "description": "我的项目展示"
+  },
+  "AdminNavigation": {
+    "home": "仪表盘",
+    "statistic": "统计",
+    "blog": "博客管理",
+    "createBlog": "创建博客",
+    "editBlog": "编辑博客",
+    "project": "项目管理",
+    "createProject": "创建项目",
+    "editProject": "编辑项目",
+    "tag": "标签管理",
+    "note": "笔记管理"
+  },
+  "Auth": {
+    "signin": "登录"
+  },
+  "BlogDetail": {
+    "posted": "发布于 {time}",
+    "viewed": "浏览 {count} 次"
+  },
+  "ProjectDetail": {
+    "posted": "发布于 {time}"
   }
 }

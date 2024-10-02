@@ -17,9 +17,12 @@ export const EditBlogPage = () => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            PATHS.ADMIN_HOME,
-            PATHS.ADMIN_BLOG,
-            PATHS.ADMIN_BLOG_EDIT,
+            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
+            { path: PATHS.ADMIN_BLOG, translationKey: 'Navigation.blog' },
+            {
+              path: PATHS.ADMIN_BLOG_EDIT,
+              translationKey: 'Navigation.editBlog',
+            },
           ]}
         />
       }

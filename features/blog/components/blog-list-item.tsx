@@ -7,6 +7,7 @@
  */
 import React from 'react';
 
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -31,6 +32,7 @@ type BlogListItemProps = {
 };
 
 export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
+  const locale = useLocale();
   return (
     <Link
       href={`${PATHS.SITE_BLOG}/${blog.slug}`}
@@ -65,7 +67,7 @@ export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
         <div className="text-sm text-muted-foreground flex items-center space-x-2">
           <span>{blog.author ? blog.author : NICKNAME}</span>
           <span>·</span>
-          <span>{toFromNow(blog.createdAt)}</span>
+          <span>{toFromNow(blog.createdAt, locale)}</span>
           <span>·</span>
           <div className="flex items-center space-x-1">
             <IconSolarEyeBold />

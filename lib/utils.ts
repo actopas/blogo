@@ -1,6 +1,8 @@
 import { type ClassValue, clsx } from 'clsx';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en';
+import 'dayjs/locale/zh-cn';
+// 导入中文语言包
 import relativeTime from 'dayjs/plugin/relativeTime';
 import slugify from 'slugify';
 import { twMerge } from 'tailwind-merge';
@@ -57,12 +59,18 @@ export const copyToClipboard = (text: string) => {
   }
 };
 
-export const toFromNow = (date: number | Date) => {
-  return dayjs(date).locale('en').fromNow();
+export const toFromNow = (date: number | Date, locale = 'en') => {
+  return dayjs(date)
+    .locale(locale === 'zh' ? 'zh-cn' : locale)
+    .fromNow();
 };
 
-export const toSlashDateString = (date: number | Date) => {
-  return dayjs(date).locale('en').format('M/D/YYYY dddd HH:mm:ss');
+export const toSlashDateString = (date: number | Date, locale = 'en') => {
+  const format =
+    locale === 'zh' ? 'YYYY年M月D日 dddd HH:mm:ss' : 'M/D/YYYY dddd HH:mm:ss';
+  return dayjs(date)
+    .locale(locale === 'zh' ? 'zh-cn' : locale)
+    .format(format);
 };
 
 export const isAdmin = (email: string, id: string) => {

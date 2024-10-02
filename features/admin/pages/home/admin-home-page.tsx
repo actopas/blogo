@@ -10,7 +10,13 @@ import { AdminContentLayout } from '../../components';
 export const AdminHomePage = () => {
   return (
     <AdminContentLayout
-      pageHeader={<PageHeader breadcrumbList={[PATHS.ADMIN_HOME]} />}
+      pageHeader={
+        <PageHeader
+          breadcrumbList={[
+            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
+          ]}
+        />
+      }
     >
       <div className="grid place-content-center mt-[18vh]">
         <IllustrationConstruction className="w-[320px] h-[320px]" />

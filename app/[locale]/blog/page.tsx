@@ -18,7 +18,10 @@ export default async function Page() {
   return (
     <div className="min-h-screen w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-24 pt-8">
       <PageHeader
-        breadcrumbList={[PATHS.SITE_HOME, PATHS.SITE_BLOG]}
+        breadcrumbList={[
+          { path: PATHS.SITE_HOME, translationKey: 'Navigation.home' },
+          { path: PATHS.SITE_BLOG, translationKey: 'Navigation.blog' },
+        ]}
         className="mb-9"
       />
 

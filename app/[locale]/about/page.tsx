@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import {
   IconBrandGithub,
   IconLogoElectron,
@@ -69,6 +71,11 @@ import { PATHS } from '@/constants';
 export const revalidate = 60;
 
 export default function Page() {
+  const t = useTranslations('About');
+  const breadcrumbList = [
+    { path: PATHS.SITE_HOME, translationKey: 'Navigation.home' },
+    { path: PATHS.SITE_ABOUT, translationKey: 'Navigation.about' },
+  ];
   let delay = 0;
 
   // 每次调用，增加延时
@@ -76,10 +83,7 @@ export default function Page() {
 
   return (
     <div className="w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-8 pt-8">
-      <PageHeader
-        breadcrumbList={[PATHS.SITE_HOME, PATHS.SITE_ABOUT]}
-        className="mb-0"
-      />
+      <PageHeader breadcrumbList={breadcrumbList} className="mb-0" />
 
       <section className="prose dark:prose-invert prose-zinc  2xl:max-w-6xl">
         <div
@@ -88,14 +92,8 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h2>Who I am</h2>
-          <p className="max-w-3xl">
-            An independent full-stack developer since 2020, built serval apps
-            from 0 to 1. Focus on feature development, user experience, and
-            creating maintainable, easily iterated solutions.
-            <br />
-            Fast, Reliable, Efficient.
-          </p>
+          <h2>{t('who_i_am')}</h2>
+          <p className="max-w-3xl">{t('who_i_am_description')}</p>
         </div>
         <div
           className="animate-fade-up animate-ease-in-out"
@@ -103,7 +101,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h2>Tech Stack & Skills</h2>
+          <h2>{t('tech_stack_skills')}</h2>
         </div>
         <div
           className="animate-fade-up animate-ease-in-out"
@@ -111,7 +109,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Research & Idea & Design</h3>
+          <h3>{t('research_idea_design')}</h3>
           <ul>
             <li>
               <IconLogoGoogle className="mx-1 translate-y-0.5" />
@@ -135,7 +133,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Front-end</h3>
+          <h3>{t('frontend')}</h3>
           <ul>
             <li>
               <IconSkillHTML className="mx-1 translate-y-0.5" /> HTML +{' '}
@@ -188,7 +186,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Back-end</h3>
+          <h3>{t('backend')}</h3>
           <ul>
             <li>
               <>
@@ -214,7 +212,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Desktop & Mobile</h3>
+          <h3>{t('desktop_mobile')}</h3>
           <ul>
             <li>
               <>
@@ -246,7 +244,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Blockchain</h3>
+          <h3>{t('blockchain')}</h3>
           <ul>
             <li>
               <IconSkillSolidity className="mx-1 translate-y-0.5" /> Solidity +{' '}
@@ -263,7 +261,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Testing & Quality</h3>
+          <h3>{t('testing_quality')}</h3>
           <ul>
             <li>
               <IconLogoJest className="mx-1 translate-y-0.5" /> Jest +{' '}
@@ -284,7 +282,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Version Control</h3>
+          <h3>{t('version_control')}</h3>
           <ul>
             <li>
               <IconSkillGit className="mx-1 translate-y-0.5" /> git +{' '}
@@ -300,7 +298,7 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Services & DevOps</h3>
+          <h3>{t('services_devops')}</h3>
           <ul>
             <li>
               <IconLogoServerless className="mx-1 translate-y-0.5" /> Serverless{' '}
@@ -343,14 +341,8 @@ export default function Page() {
             animationDelay: `${getDelay()}ms`,
           }}
         >
-          <h3>Others</h3>
-          <p className="max-w-3xl">
-            Living a life of creating something is where my passion at. I thrive
-            on working on interesting projects and contributing to meaningful
-            repositories. If you&apos;re looking for someone to bring your idea
-            to life, feel free to contact me below, and we can schedule a time
-            to chat.
-          </p>
+          <h3>{t('others')}</h3>
+          <p className="max-w-3xl">{t('others_description')}</p>
         </div>
       </section>
     </div>

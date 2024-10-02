@@ -5,6 +5,8 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-16 01:24:47
  */
+import { useLocale, useTranslations } from 'next-intl';
+
 import { Badge } from '@/components/ui/badge';
 
 import { BytemdViewer } from '@/components/bytemd';
@@ -24,6 +26,9 @@ type BlogDetailProps = {
 };
 
 export const BlogDetailPage = ({ blog, uv = 0 }: BlogDetailProps) => {
+  const locale = useLocale();
+  const t = useTranslations('BlogDetail');
+
   return (
     <div className="md:max-w-screen-md 2xl:max-w-6xl md:px-0 md:mx-auto pt-12 md:pt-24 grid gap-9 px-6">
       <article className="max-w-[678px] mx-auto overflow-hidden w-full break-all">
@@ -40,11 +45,13 @@ export const BlogDetailPage = ({ blog, uv = 0 }: BlogDetailProps) => {
         <div className="text-sm flex flex-row items-center text-muted-foreground">
           <div>{blog.author ? blog.author : NICKNAME}</div>
           <span className="mx-2">·</span>
-          <span>Posted {toFromNow(blog.createdAt)}</span>
+          <span>
+            {t('posted', { time: toFromNow(blog.createdAt, locale) })}
+          </span>
           <span className="mx-2">·</span>
           <div className="flex items-center space-x-1">
             <IconSolarEyeBold />
-            <span>{formatNum(uv)} Viewed</span>
+            <span>{t('viewed', { count: formatNum(uv) })}</span>
           </div>
         </div>
         <BytemdViewer body={blog.body || ''} />

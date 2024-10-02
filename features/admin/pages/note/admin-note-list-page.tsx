@@ -3,6 +3,8 @@
 import React from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
+import { useLocale } from 'next-intl';
+
 import { TagTypeEnum } from '@prisma/client';
 import { useSetState } from 'ahooks';
 import { isUndefined } from 'lodash-es';
@@ -50,6 +52,7 @@ import {
 } from '../../components';
 
 export const AdminNoteListPage = ({ session }: WithSession) => {
+  const locale = useLocale();
   const [params, updateParams] = useSetState<GetNotesDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
@@ -83,7 +86,10 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
     <AdminContentLayout
       pageHeader={
         <PageHeader
-          breadcrumbList={[PATHS.ADMIN_HOME, PATHS.ADMIN_NOTE]}
+          breadcrumbList={[
+            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
+            { path: PATHS.ADMIN_NOTE, translationKey: 'Navigation.note' },
+          ]}
           action={
             <CreateNoteButton refreshAsync={getNotesQuery.refreshAsync} />
           }
@@ -191,10 +197,10 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
                     </div>
                     <div className="flex items-center justify-end text-sm text-muted-foreground">
                       <span className="hidden lg:inline-block">
-                        {toSlashDateString(note.createdAt)}
+                        {toSlashDateString(note.createdAt, locale)}
                       </span>
                       <span className="mx-2 hidden lg:inline-block">·</span>
-                      <span>{toFromNow(note.createdAt)}</span>
+                      <span>{toFromNow(note.createdAt, locale)}</span>
                     </div>
                     <div className="absolute right-2 top-2 space-x-2">
                       <ToggleNotePublishButton

@@ -1,11 +1,60 @@
 {
   "Index": {
-    "title": "欢迎访问我们的网站",
-    "description": "这是一个示例描述"
+    "title": "Welcome to our website",
+    "description": "This is a sample description"
   },
   "Navigation": {
-    "home": "首页",
-    "about": "关于我们",
-    "contact": "联系我们"
+    "home": "Home",
+    "blog": "Blog",
+    "project": "Project",
+    "about": "About Me",
+    "sitemap": "Sitemap"
+  },
+  "Common": {
+    "welcome_message": "Welcome to our website",
+    "description": "This is a sample description",
+    "contact_us": "Contact us",
+    "language_switcher": "Change Language"
+  },
+  "About": {
+    "who_i_am": "Who I am",
+    "who_i_am_description": "An independent full-stack developer since 2020, built serval apps from 0 to 1. Focus on feature development, user experience, and creating maintainable, easily iterated solutions. Fast, Reliable, Efficient.",
+    "tech_stack_skills": "Tech Stack & Skills",
+    "research_idea_design": "Research & Idea & Design",
+    "frontend": "Front-end",
+    "backend": "Back-end",
+    "desktop_mobile": "Desktop & Mobile",
+    "blockchain": "Blockchain",
+    "testing_quality": "Testing & Quality",
+    "version_control": "Version Control",
+    "services_devops": "Services & DevOps",
+    "others": "Others",
+    "others_description": "Living a life of creating something is where my passion at. I thrive on working on interesting projects and contributing to meaningful repositories. If you're looking for someone to bring your idea to life, feel free to contact me below, and we can schedule a time to chat."
+  },
+  "Project": {
+    "title": "Projects",
+    "description": "A showcase of my projects"
+  },
+  "AdminNavigation": {
+    "home": "Dashboard",
+    "statistic": "Statistics",
+    "blog": "Blog Management",
+    "createBlog": "Create Blog",
+    "editBlog": "Edit Blog",
+    "project": "Project Management",
+    "createProject": "Create Project",
+    "editProject": "Edit Project",
+    "tag": "Tag Management",
+    "note": "Note Management"
+  },
+  "Auth": {
+    "signin": "Sign In"
+  },
+  "BlogDetail": {
+    "posted": "Posted {time}",
+    "viewed": "{count} Viewed"
+  },
+  "ProjectDetail": {
+    "posted": "Posted {time}"
   }
 }
