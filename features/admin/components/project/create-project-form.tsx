@@ -51,14 +51,18 @@ export const CreateProjectForm = () => {
   }, [getTagsQuery]);
 
   const createProjectQuery = useCreateProject();
+
   const [cover, setCover] = React.useState('');
   const form = useForm<CreateProjectDTO>({
     resolver: zodResolver(createProjectSchema),
     defaultValues: {
-      title: '',
+      titleEN: '',
+      titleZH: '',
       slug: '',
-      description: '',
-      body: '',
+      descriptionEN: '',
+      descriptionZH: '',
+      bodyEN: '',
+      bodyZH: '',
       published: true,
       cover: '',
       codeUrl: '',
@@ -85,12 +89,28 @@ export const CreateProjectForm = () => {
         <div className="grid gap-4 pb-24 px-1">
           <FormField
             control={form.control}
-            name="title"
+            name="titleEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Title (English)</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Please enter title" />
+                  <Input
+                    {...field}
+                    placeholder="Please enter title in English"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="titleZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>标题 (中文)</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="请输入中文标题" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -116,12 +136,45 @@ export const CreateProjectForm = () => {
           />
           <FormField
             control={form.control}
-            name="description"
+            name="descriptionEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Description (English)</FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="Please enter description" />
+                  <Textarea
+                    {...field}
+                    placeholder="Please enter description in English"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="descriptionZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>描述 (中文)</FormLabel>
+                <FormControl>
+                  <Textarea {...field} placeholder="请输入中文描述" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="author"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Author</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    value={field.value ?? ''}
+                    placeholder="Please enter author"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -155,23 +208,6 @@ export const CreateProjectForm = () => {
                     {...field}
                     value={field.value ?? ''}
                     placeholder="Please enter preview address"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="author"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Author</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    value={field.value ?? ''}
-                    placeholder="Please enter Author"
                   />
                 </FormControl>
                 <FormMessage />
@@ -284,10 +320,28 @@ export const CreateProjectForm = () => {
           />
           <FormField
             control={form.control}
-            name="body"
+            name="bodyEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>Content (English)</FormLabel>
+                <FormControl>
+                  <div id="content-editor">
+                    <BytemdEditor
+                      body={field.value}
+                      setContent={field.onChange}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="bodyZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>内容 (中文)</FormLabel>
                 <FormControl>
                   <div id="content-editor">
                     <BytemdEditor

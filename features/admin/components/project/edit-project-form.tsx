@@ -53,7 +53,7 @@ export const EditProjectForm = () => {
   const { id } = useParams<{ id: string }>();
   const getProjectQuery = useGetProject(id, Boolean(id));
   const project = React.useMemo(() => {
-    return getProjectQuery.data?.project;
+    return getProjectQuery.data?.project as UpdateProjectDTO | undefined;
   }, [getProjectQuery]);
 
   const updateProjectQuery = useUpdateProject();
@@ -63,32 +63,38 @@ export const EditProjectForm = () => {
   const form = useForm<UpdateProjectDTO>({
     resolver: zodResolver(updateProjectSchema),
     defaultValues: {
-      title: project?.title ?? '',
+      titleEN: project?.titleEN ?? '',
+      titleZH: project?.titleZH ?? '',
       id: project?.id ?? '',
       slug: project?.slug ?? '',
-      description: project?.description ?? '',
+      descriptionEN: project?.descriptionEN ?? '',
+      descriptionZH: project?.descriptionZH ?? '',
       published: project?.published ?? false,
       cover: project?.cover ?? '',
       codeUrl: project?.codeUrl ?? '',
       previewUrl: project?.previewUrl ?? '',
       author: project?.author ?? '',
-      tags: project?.tags?.map((el) => el.id) ?? [],
-      body: project?.body ?? '',
+      tags: project?.tags ?? [],
+      bodyEN: project?.bodyEN ?? '',
+      bodyZH: project?.bodyZH ?? '',
     },
   });
 
   React.useEffect(() => {
-    form.setValue('title', project?.title ?? '');
+    form.setValue('titleEN', project?.titleEN ?? '');
+    form.setValue('titleZH', project?.titleZH ?? '');
     form.setValue('id', project?.id ?? '');
     form.setValue('slug', project?.slug ?? '');
-    form.setValue('description', project?.description ?? '');
+    form.setValue('descriptionEN', project?.descriptionEN ?? '');
+    form.setValue('descriptionZH', project?.descriptionZH ?? '');
     form.setValue('cover', project?.cover ?? '');
     form.setValue('codeUrl', project?.codeUrl ?? '');
     form.setValue('previewUrl', project?.previewUrl ?? '');
     form.setValue('author', project?.author ?? '');
     form.setValue('published', project?.published ?? false);
-    form.setValue('tags', project?.tags?.map((el) => el.id) ?? []);
-    form.setValue('body', project?.body ?? '');
+    form.setValue('tags', project?.tags ?? []);
+    form.setValue('bodyEN', project?.bodyEN ?? '');
+    form.setValue('bodyZH', project?.bodyZH ?? '');
   }, [project, form]);
 
   return (
@@ -108,7 +114,7 @@ export const EditProjectForm = () => {
         <div className="grid gap-4 pb-24 px-1">
           <FormField
             control={form.control}
-            name="title"
+            name="titleEN"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Title</FormLabel>
@@ -139,7 +145,7 @@ export const EditProjectForm = () => {
           />
           <FormField
             control={form.control}
-            name="description"
+            name="descriptionEN"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Description</FormLabel>
@@ -307,7 +313,7 @@ export const EditProjectForm = () => {
           />
           <FormField
             control={form.control}
-            name="body"
+            name="bodyEN"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Content</FormLabel>
@@ -318,6 +324,35 @@ export const EditProjectForm = () => {
                       setContent={field.onChange}
                     />
                   </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="bodyZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Content (ZH)</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Please enter English content..."
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="titleZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>标题（中文）</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="请输入中文标题..." />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -334,9 +369,9 @@ export const EditProjectForm = () => {
   }
 
   function handleFormatSlug() {
-    const tmp = form.getValues().slug?.trim();
-    if (tmp) {
-      const formatted = toSlug(tmp);
+    const tmp = form.getValues().slug;
+    if (typeof tmp === 'string' && tmp.trim()) {
+      const formatted = toSlug(tmp.trim());
       form.setValue('slug', formatted);
     }
   }

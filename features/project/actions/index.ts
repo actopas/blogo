@@ -48,16 +48,19 @@ export const getProjects = async (params: GetProjectsDTO) => {
       cond.published = published;
     }
   }
-  if (result.data.title?.trim()) {
+  if (result.data.titleEN?.trim() || result.data.titleZH?.trim()) {
     cond.OR = [
       ...(cond.OR ?? []),
-      ...[
-        {
-          title: {
-            contains: result.data.title?.trim(),
-          },
+      {
+        titleEN: {
+          contains: result.data.titleEN?.trim(),
         },
-      ],
+      },
+      {
+        titleZH: {
+          contains: result.data.titleZH?.trim(),
+        },
+      },
     ];
   }
   if (result.data.slug?.trim()) {
@@ -96,16 +99,27 @@ export const getProjects = async (params: GetProjectsDTO) => {
 
   const total = await prisma.project.count({ where: cond });
   const projects = await prisma.project.findMany({
-    include: {
-      tags: true,
+    where: {
+      OR: [
+        { titleEN: result.data.titleEN },
+        { titleZH: result.data.titleZH },
+        { slug: result.data.slug },
+      ],
     },
-    orderBy: sort,
-    where: cond,
     take: result.data.pageSize,
     skip: getSkip(result.data.pageIndex, result.data.pageSize),
+    include: {
+      tags: true, // 确保包含 tags
+    },
   });
 
-  return { projects, total };
+  return {
+    projects: projects.map((project) => ({
+      ...project,
+      tags: project.tags.map((tag) => ({ id: tag.id, name: tag.name })),
+    })),
+    total: total,
+  };
 };
 
 export const getAllProjects = async () => {
@@ -179,7 +193,11 @@ export const createProject = async (params: CreateProjectDTO) => {
 
   const projects = await prisma.project.findMany({
     where: {
-      OR: [{ title: result.data.title }, { slug: result.data.slug }],
+      OR: [
+        { titleEN: result.data.titleEN },
+        { titleZH: result.data.titleZH },
+        { slug: result.data.slug },
+      ],
     },
   });
 
@@ -190,14 +208,17 @@ export const createProject = async (params: CreateProjectDTO) => {
 
   await prisma.project.create({
     data: {
-      title: result.data.title,
+      titleEN: result.data.titleEN,
+      titleZH: result.data.titleZH,
       slug: result.data.slug,
-      description: result.data.description,
-      body: result.data.body,
+      descriptionEN: result.data.descriptionEN,
+      descriptionZH: result.data.descriptionZH,
+      bodyEN: result.data.bodyEN,
+      bodyZH: result.data.bodyZH,
       published: result.data.published,
-      cover: result.data.cover,
-      codeUrl: result.data.codeUrl,
-      previewUrl: result.data.previewUrl,
+      cover: result.data.cover ?? '',
+      codeUrl: result.data.codeUrl ?? '',
+      previewUrl: result.data.previewUrl ?? '',
       author: result.data.author,
       tags: {
         connect: result.data.tags
@@ -267,13 +288,17 @@ export const updateProject = async (params: UpdateProjectDTO) => {
 
   await prisma.project.update({
     data: {
-      title: result.data.title,
-      description: result.data.description,
+      titleEN: result.data.titleEN,
+      titleZH: result.data.titleZH,
+      descriptionEN: result.data.descriptionEN,
+      descriptionZH: result.data.descriptionZH,
+      bodyEN: result.data.bodyEN,
+      bodyZH: result.data.bodyZH,
       slug: result.data.slug,
       published: result.data.published,
-      cover: result.data.cover,
-      codeUrl: result.data.codeUrl,
-      previewUrl: result.data.previewUrl,
+      cover: result.data.cover ?? '',
+      codeUrl: result.data.codeUrl ?? '',
+      previewUrl: result.data.previewUrl ?? '',
       author: result.data.author,
       tags: {
         connect: needConnect?.length

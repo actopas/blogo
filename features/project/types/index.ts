@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 00:51:35
- */
 import { z } from 'zod';
 
 import { PUBLISHED_ENUM, REGEX } from '@/constants';
@@ -12,21 +5,26 @@ import { PUBLISHED_ENUM, REGEX } from '@/constants';
 import { type getProjects } from '../actions';
 
 export const createProjectSchema = z.object({
-  title: z.string().min(1, { message: '长度不能少于1个字符' }),
+  titleEN: z.string().min(1, { message: 'English title is required' }),
+  titleZH: z.string().min(1, { message: '中文标题不能为空' }),
   slug: z
     .string()
     .regex(REGEX.SLUG, {
       message: '只允许输入数字、小写字母和中横线',
     })
     .min(1, { message: '长度不能少于1个字符' }),
-  description: z.string().min(1, { message: '长度不能少于1个字符' }),
-  codeUrl: z.string().url({ message: '无效的地址' }),
-  previewUrl: z.string().nullable().optional(),
-  cover: z.string().min(1, { message: '长度不能少于1个字符' }),
-  author: z.string().nullable().optional(),
+  descriptionEN: z
+    .string()
+    .min(1, { message: 'English description is required' }),
+  descriptionZH: z.string().min(1, { message: '中文描述不能为空' }),
+  bodyEN: z.string().min(1, { message: 'English content is required' }),
+  bodyZH: z.string().min(1, { message: '中文内容不能为空' }),
+  previewUrl: z.string().optional(),
+  codeUrl: z.string().optional(),
   published: z.boolean().optional(),
+  cover: z.string().nullable().optional(),
+  author: z.string().nullable().optional(),
   tags: z.string().array().optional(),
-  body: z.string().min(1, { message: '长度不能少于1个字符' }),
 });
 
 export const updateProjectSchema = createProjectSchema.partial().extend({
@@ -34,7 +32,8 @@ export const updateProjectSchema = createProjectSchema.partial().extend({
 });
 
 export const getProjectsSchema = z.object({
-  title: z.string().optional(),
+  titleEN: z.string().optional(),
+  titleZH: z.string().optional(),
   slug: z.string().optional(),
   published: z
     .enum([

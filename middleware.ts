@@ -1,13 +1,23 @@
-import createMiddleware from 'next-intl/middleware';
+import createIntlMiddleware from 'next-intl/middleware';
+import { type NextRequest, NextResponse } from 'next/server';
 
-export default createMiddleware({
-  // 支持的语言列表
-  locales: ['en', 'zh'],
-  // 默认语言
+import { locales } from './navigation';
+
+const intlMiddleware = createIntlMiddleware({
+  locales,
   defaultLocale: 'en',
 });
 
+export default function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  if (pathname.startsWith('/auth')) {
+    return NextResponse.next();
+  }
+
+  return intlMiddleware(request);
+}
+
 export const config = {
-  // 匹配所有路径除了以下情况
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 };

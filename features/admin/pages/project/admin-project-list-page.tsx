@@ -78,7 +78,8 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
   const [inputParams, updateInputParams] = useSetState<
     Omit<GetProjectsDTO, 'pageIndex' | 'pageSize'>
   >({
-    title: undefined,
+    titleEN: undefined,
+    titleZH: undefined,
     published: undefined,
     tags: undefined,
   });
@@ -128,8 +129,16 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       cell: ({ row }) => {
         return (
           <Highlight
-            sourceString={row.original.title}
-            searchWords={params.title ? [params.title] : undefined}
+            sourceString={
+              locale === 'en' ? row.original.titleEN : row.original.titleZH
+            }
+            searchWords={
+              params.titleEN || params.titleZH
+                ? [params.titleEN || params.titleZH].filter(
+                    (word): word is string => word !== undefined,
+                  )
+                : undefined
+            }
           />
         );
       },
@@ -143,11 +152,14 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
         </div>
       ),
       cell: ({ row }) => {
+        const tags = row.original.tags;
         return (
           <div className="flex flex-wrap gap-2">
-            {row.original.tags?.length
-              ? row.original.tags.map((tag) => (
-                  <Badge key={tag.id}>{tag.name}</Badge>
+            {Array.isArray(tags) && tags.length > 0
+              ? tags.map((tag) => (
+                  <Badge key={typeof tag === 'string' ? tag : tag.id}>
+                    {typeof tag === 'string' ? tag : tag.name}
+                  </Badge>
                 ))
               : PLACEHODER_TEXT}
           </div>
@@ -267,10 +279,12 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       <div className="grid gap-4 grid-cols-4 px-2 py-4 items-end">
         <Input
           placeholder="Please enter title"
-          value={inputParams.title}
+          value={locale === 'en' ? inputParams.titleEN : inputParams.titleZH}
           onChange={(v) =>
             updateInputParams({
-              title: v.target.value,
+              ...(locale === 'en'
+                ? { titleEN: v.target.value }
+                : { titleZH: v.target.value }),
             })
           }
           onKeyUp={(e) => {
@@ -296,7 +310,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
             });
           }}
         />
-        {isAdmin(session?.user?.email, session?.user?.id) && (
+        {isAdmin(session?.user?.email ?? '', session?.user?.id ?? '') && (
           <Select
             onValueChange={(v: PUBLISHED_ENUM) =>
               updateInputParams({
@@ -357,7 +371,9 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
 
   function handleSearch() {
     updateParams({
-      title: inputParams.title,
+      ...(locale === 'en'
+        ? { titleEN: inputParams.titleEN }
+        : { titleZH: inputParams.titleZH }),
       published: inputParams.published,
       tags: inputParams.tags,
     });
@@ -365,12 +381,14 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
 
   function handleReset() {
     updateInputParams({
-      title: '',
+      titleEN: '',
+      titleZH: '',
       tags: undefined,
       published: undefined,
     });
     updateParams({
-      title: '',
+      titleEN: '',
+      titleZH: '',
       tags: undefined,
       published: undefined,
       pageIndex: DEFAULT_PAGE_INDEX,

@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 import { IconPhEye, IconPhLink } from '@/components/icons';
@@ -11,16 +12,29 @@ import { type Project } from '../types';
 type ProjectListItemProps = {
   project: Project;
 };
+
 export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
   const router = useRouter();
+  const locale = useLocale();
+
+  const title = locale === 'zh' ? project.titleZH : project.titleEN;
+  const description =
+    locale === 'zh' ? project.descriptionZH : project.descriptionEN;
+
   const handleToProject = () => {
-    router.push(`${PATHS.SITE_PROJECT}/${project.slug}`);
+    router.push(`${PATHS.SITE_PROJECT}/${project.id}`); // 使用 id 替代 slug
   };
+
   const handleEyeIconClick = (event: React.MouseEvent) => {
-    event.preventDefault(); // 阻止 `<a>` Tag的默认行为（可选）
-    event.stopPropagation(); // 阻止事件冒泡，避免触发 `<Link>` 的点击事件
+    event.preventDefault();
+    event.stopPropagation();
     window.open(project.previewUrl || '', '_blank');
   };
+
+  const titleWords = title.split(' ');
+  const firstWord = titleWords[0];
+  const restWords = titleWords.slice(1).join(' ');
+
   return (
     <div
       className="box flex flex-col rounded-lg shadow-lg max-w-xl"
@@ -29,14 +43,13 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
       <figure className="effect-zoe">
         <img
           src={project.cover}
-          alt={project.title}
+          alt={title}
           className="mt-4 w-128 h-96 object-cover rounded-lg transition-opacity duration-300"
         />
         <figcaption>
           <div className="flex justify-between w-full">
             <h2>
-              {project.title.split(' ')[0]}{' '}
-              <span>{project.title.split(' ')[1]}</span>
+              {firstWord} <span>{restWords}</span>
             </h2>
             <p className="icon-links">
               <IconPhLink className="w-6 h-6 ml-2" />
@@ -46,7 +59,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
               />
             </p>
           </div>
-          <p className="description">{project.description}</p>
+          <p className="description">{description}</p>
         </figcaption>
       </figure>
     </div>

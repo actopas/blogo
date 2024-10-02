@@ -54,7 +54,12 @@ export const getBlogs = async (params: GetBlogsDTO) => {
       ...(cond.OR ?? []),
       ...[
         {
-          title: {
+          titleEN: {
+            contains: result.data.title?.trim(),
+          },
+        },
+        {
+          titleZH: {
             contains: result.data.title?.trim(),
           },
         },
@@ -109,18 +114,25 @@ export const getBlogs = async (params: GetBlogsDTO) => {
   return { blogs, total };
 };
 
-export const getPublishedBlogs = async () => {
+export const getPublishedBlogs = async (locale: string) => {
   const blogs = await prisma.blog.findMany({
-    orderBy: {
-      createdAt: 'desc',
+    where: {
+      published: true,
     },
     include: {
       tags: true,
     },
-    where: {
-      published: true,
+    orderBy: {
+      createdAt: 'desc',
     },
   });
+
+  const localizedBlogs = blogs.map((blog) => ({
+    ...blog,
+    title: locale === 'zh' ? blog.titleZH : blog.titleEN,
+    description: locale === 'zh' ? blog.descriptionZH : blog.descriptionEN,
+    body: locale === 'zh' ? blog.bodyZH : blog.bodyEN,
+  }));
 
   const count = await prisma.blog.count({
     where: {
@@ -130,12 +142,12 @@ export const getPublishedBlogs = async () => {
 
   const total = count ?? 0;
 
-  const m = await batchGetBlogUV(blogs?.map((el) => el.id));
+  const m = await batchGetBlogUV(blogs.map((el) => el.id));
 
   return {
-    blogs,
+    blogs: localizedBlogs,
     total,
-    uvMap: isUndefined(m) ? undefined : Object.fromEntries(m),
+    uvMap: m ? Object.fromEntries(m) : undefined,
   };
 };
 
@@ -192,7 +204,11 @@ export const createBlog = async (params: CreateBlogDTO) => {
 
   const blogs = await prisma.blog.findMany({
     where: {
-      OR: [{ title: result.data.title }, { slug: result.data.slug }],
+      OR: [
+        { titleEN: result.data.titleEN },
+        { titleZH: result.data.titleZH },
+        { slug: result.data.slug },
+      ],
     },
   });
 
@@ -203,10 +219,13 @@ export const createBlog = async (params: CreateBlogDTO) => {
 
   await prisma.blog.create({
     data: {
-      title: result.data.title,
+      titleEN: result.data.titleEN,
+      titleZH: result.data.titleZH,
       slug: result.data.slug,
-      description: result.data.description,
-      body: result.data.body,
+      descriptionEN: result.data.descriptionEN,
+      descriptionZH: result.data.descriptionZH,
+      bodyEN: result.data.bodyEN,
+      bodyZH: result.data.bodyZH,
       published: result.data.published,
       cover: result.data.cover,
       author: result.data.author,
@@ -278,12 +297,15 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
 
   await prisma.blog.update({
     data: {
-      title: result.data.title,
-      description: result.data.description,
+      titleEN: result.data.titleEN,
+      titleZH: result.data.titleZH,
+      descriptionEN: result.data.descriptionEN,
+      descriptionZH: result.data.descriptionZH,
       slug: result.data.slug,
       cover: result.data.cover,
       author: result.data.author,
-      body: result.data.body,
+      bodyEN: result.data.bodyEN,
+      bodyZH: result.data.bodyZH,
       published: result.data.published,
       tags: {
         connect: needConnect?.length

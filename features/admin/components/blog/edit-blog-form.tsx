@@ -53,7 +53,7 @@ export const EditBlogForm = () => {
   const { id } = useParams<{ id: string }>();
   const getBlogQuery = useGetBlog(id, Boolean(id));
   const blog = React.useMemo(() => {
-    return getBlogQuery.data?.blog;
+    return getBlogQuery.data?.blog as UpdateBlogDTO | undefined;
   }, [getBlogQuery]);
 
   const updateBlogQuery = useUpdateBlog();
@@ -63,27 +63,33 @@ export const EditBlogForm = () => {
   const form = useForm<UpdateBlogDTO>({
     resolver: zodResolver(updateBlogSchema),
     defaultValues: {
-      title: blog?.title ?? '',
+      titleEN: blog?.titleEN ?? '',
+      titleZH: blog?.titleZH ?? '',
       id: blog?.id ?? '',
       slug: blog?.slug ?? '',
-      description: blog?.description ?? '',
-      body: blog?.body ?? '',
+      descriptionEN: blog?.descriptionEN ?? '',
+      descriptionZH: blog?.descriptionZH ?? '',
+      bodyEN: blog?.bodyEN ?? '',
+      bodyZH: blog?.bodyZH ?? '',
       published: blog?.published ?? true,
       cover: blog?.cover ?? '',
       author: blog?.author ?? '',
-      tags: blog?.tags?.map((el) => el.id) ?? [],
+      tags: blog?.tags ?? [], // 直接使用 tags，不需要 map
     },
   });
 
   React.useEffect(() => {
-    form.setValue('title', blog?.title ?? '');
+    form.setValue('titleEN', blog?.titleEN ?? '');
+    form.setValue('titleZH', blog?.titleZH ?? '');
     form.setValue('id', blog?.id ?? '');
     form.setValue('slug', blog?.slug ?? '');
-    form.setValue('description', blog?.description ?? '');
-    form.setValue('body', blog?.body ?? '');
+    form.setValue('descriptionEN', blog?.descriptionEN ?? '');
+    form.setValue('descriptionZH', blog?.descriptionZH ?? '');
+    form.setValue('bodyEN', blog?.bodyEN ?? '');
+    form.setValue('bodyZH', blog?.bodyZH ?? '');
     form.setValue('published', blog?.published ?? true);
     form.setValue('cover', blog?.cover ?? '');
-    form.setValue('tags', blog?.tags?.map((el) => el.id) ?? []);
+    form.setValue('tags', blog?.tags ?? []);
   }, [blog, form]);
 
   return (
@@ -103,12 +109,25 @@ export const EditBlogForm = () => {
         <div className="grid gap-4 pb-24 px-1">
           <FormField
             control={form.control}
-            name="title"
+            name="titleEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Title (English)</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Please enter title" />
+                  <Input {...field} placeholder="Please enter English title" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="titleZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>标题 (中文)</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="请输入中文标题" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,12 +153,28 @@ export const EditBlogForm = () => {
           />
           <FormField
             control={form.control}
-            name="description"
+            name="descriptionEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Description (English)</FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="Please enter description" />
+                  <Textarea
+                    {...field}
+                    placeholder="Please enter English description"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="descriptionZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>描述 (中文)</FormLabel>
+                <FormControl>
+                  <Textarea {...field} placeholder="请输入中文描述" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -268,12 +303,30 @@ export const EditBlogForm = () => {
           />
           <FormField
             control={form.control}
-            name="body"
+            name="bodyEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>Content (English)</FormLabel>
                 <FormControl>
-                  <div id="content-editor">
+                  <div id="content-editor-en">
+                    <BytemdEditor
+                      body={field.value}
+                      setContent={field.onChange}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="bodyZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>内容 (中文)</FormLabel>
+                <FormControl>
+                  <div id="content-editor-zh">
                     <BytemdEditor
                       body={field.value}
                       setContent={field.onChange}

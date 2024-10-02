@@ -11,9 +11,13 @@ import { BlogList, getPublishedBlogs } from '@/features/blog';
 import { HeroSection } from '@/features/home';
 import { ProjectTimeline, getAllProjects } from '@/features/project';
 
-export default async function Page() {
+export default async function Page({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   const { projects } = await getAllProjects();
-  const { blogs, uvMap } = await getPublishedBlogs();
+  const { blogs, uvMap } = await getPublishedBlogs(locale);
   return (
     <div>
       <div className="h-[calc(100vh-64px)] grid place-content-center relative">

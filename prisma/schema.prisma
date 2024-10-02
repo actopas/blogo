@@ -88,31 +88,37 @@ model Tag {
 }
 
 model Blog {
-  title       String  @unique
-  slug        String  @unique
-  description String
-  body        String  @db.Text
-  cover       String?
-  author      String?
-  published   Boolean @default(false)
-  tags        Tag[]
-
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  titleEN       String
+  titleZH       String
+  descriptionEN String
+  descriptionZH String
+  bodyEN        String
+  bodyZH        String
+  cover         String?
+  author        String?
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  tags          Tag[]
 }
 
 model Project {
-  title       String  @unique
-  slug        String  @unique
-  description String
-  body        String? @db.Text
-  codeUrl     String
-  previewUrl  String?
-  cover       String
-  author      String?
-  published   Boolean @default(false)
-  tags        Tag[]
+  // 现有字段
+  titleEN       String
+  titleZH       String
+  descriptionEN String
+  descriptionZH String
+  bodyEN        String
+  bodyZH        String
+  slug          String  @unique
+  codeUrl       String
+  previewUrl    String?
+  cover         String
+  author        String?
+  published     Boolean @default(false)
+  tags          Tag[]
 
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
