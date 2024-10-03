@@ -101,3 +101,21 @@
     width: 100%;
   }
 }
+
+.icon-link {
+  color: #ffffff; /* 默认颜色 */
+  transition: color 0.3s ease;
+}
+
+.icon-link:hover {
+  color: #ffd700; /* 悬停时的颜色，这里使用金色作为示例 */
+}
+
+/* 如果您想要不同的图标有不同的悬停颜色，可以这样设置： */
+.icon-link:hover .icon-ph-link {
+  color: #4a90e2; /* 链接图标悬停颜色 */
+}
+
+.icon-link:hover .icon-ph-eye {
+  color: #50c878; /* 预览图标悬停颜色 */
+}

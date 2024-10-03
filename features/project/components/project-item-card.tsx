@@ -44,7 +44,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
         <img
           src={project.cover}
           alt={title}
-          className="mt-4 w-128 h-96 object-cover rounded-lg transition-opacity duration-300"
+          className="w-128 h-96 object-cover transition-all duration-300"
         />
         <figcaption>
           <div className="flex justify-between w-full">
@@ -52,11 +52,22 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
               {firstWord} <span>{restWords}</span>
             </h2>
             <p className="icon-links">
-              <IconPhLink className="w-6 h-6 ml-2" />
-              <IconPhEye
-                className="w-6 h-6 ml-2"
+              <a
+                className="icon-link"
+                href={`${PATHS.SITE_PROJECT}/${project.slug}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <IconPhLink className="w-6 h-6 ml-2" />
+              </a>
+              <a
+                className="icon-link"
+                href={project.previewUrl || ''}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={handleEyeIconClick}
-              />
+              >
+                <IconPhEye className="w-6 h-6 ml-2" />
+              </a>
             </p>
           </div>
           <p className="description">{description}</p>
