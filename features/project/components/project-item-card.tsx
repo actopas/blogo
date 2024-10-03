@@ -22,7 +22,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
     locale === 'zh' ? project.descriptionZH : project.descriptionEN;
 
   const handleToProject = () => {
-    router.push(`${PATHS.SITE_PROJECT}/${project.id}`); // 使用 id 替代 slug
+    router.push(`${PATHS.SITE_PROJECT}/${project.slug}`);
   };
 
   const handleEyeIconClick = (event: React.MouseEvent) => {
