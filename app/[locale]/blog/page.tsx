@@ -8,7 +8,7 @@
 import { PageHeader } from '@/components/page-header';
 
 import { PATHS } from '@/constants';
-import { BlogList, getPublishedBlogs } from '@/features/blog';
+import { BlogListItem, getPublishedBlogs } from '@/features/blog';
 
 export const revalidate = 60;
 
@@ -17,7 +17,7 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
-  const { blogs, uvMap } = await getPublishedBlogs(locale);
+  const { blogs } = await getPublishedBlogs(locale);
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-24 pt-8">
@@ -28,8 +28,9 @@ export default async function Page({
         ]}
         className="mb-9"
       />
-
-      <BlogList blogs={blogs} uvMap={uvMap} />
+      {blogs.map((blog) => (
+        <BlogListItem key={blog.id} blog={blog} />
+      ))}
     </div>
   );
 }

@@ -33,6 +33,7 @@ type BlogListItemProps = {
 
 export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
   const locale = useLocale();
+
   return (
     <Link
       href={`${PATHS.SITE_BLOG}/${blog.slug}`}
@@ -41,7 +42,7 @@ export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
       <div className="w-full h-48 relative">
         <Image
           src={blog.cover || ''}
-          alt={blog.title}
+          alt={locale === 'en' ? blog.titleEN : blog.titleZH}
           layout="fill"
           objectFit="cover"
         />
@@ -50,18 +51,22 @@ export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
         <Tooltip>
           <TooltipTrigger asChild>
             <h3 className="text-lg md:text-2xl font-semibold line-clamp-1">
-              {blog.title}
+              {locale === 'en' ? blog.titleEN : blog.titleZH}
             </h3>
           </TooltipTrigger>
-          <TooltipContent>{blog.title}</TooltipContent>
+          <TooltipContent>
+            {locale === 'en' ? blog.titleEN : blog.titleZH}
+          </TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>
             <p className="text-sm text-muted-foreground line-clamp-2">
-              {blog.description}
+              {locale === 'en' ? blog.descriptionEN : blog.descriptionZH}
             </p>
           </TooltipTrigger>
-          <TooltipContent>{blog.description}</TooltipContent>
+          <TooltipContent>
+            {locale === 'en' ? blog.descriptionEN : blog.descriptionZH}
+          </TooltipContent>
         </Tooltip>
 
         <div className="text-sm text-muted-foreground flex items-center space-x-2">

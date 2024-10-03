@@ -8,5 +8,5 @@ export * from './api/get-blog';
 export * from './api/create-blog';
 
 export * from './components/blog-list';
-
+export * from './components/blog-list-item';
 export * from './pages/blog-detail-page';

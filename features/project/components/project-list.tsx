@@ -1,6 +1,6 @@
 import { IllustrationNoContent } from '@/components/illustrations';
 
-import { ProjectListItem } from './project-list-item';
+import { ProjectItemCard } from './project-item-card';
 
 import { type Project } from '../types';
 
@@ -30,7 +30,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => {
             animationDelay: `${(idx + 1) * 200}ms`,
           }}
         >
-          <ProjectListItem project={el} />
+          <ProjectItemCard project={el} />
         </li>
       ))}
     </ul>
