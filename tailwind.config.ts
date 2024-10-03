@@ -29,10 +29,12 @@ export default {
         custom25: '0.25rem',
         custom23: '0.23rem',
         custom20: '0.20rem',
+        custom18: '0.18rem',
         custom16: '0.16rem',
         custom07: '0.07rem',
         custom05: '0.05rem',
         custom03: '0.03rem',
+        custom01: '0.01rem',
         'custom-05': '-0.05rem',
         'custom-08': '-0.08rem',
       },
@@ -120,6 +122,7 @@ export default {
         aclonica: ['Aclonica', 'sans-serif'],
         ibm: ['IBM', 'sans-serif'],
         danfo: ['Danfo', 'sans-serif'],
+        fingerPaint: ['FingerPaint', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {

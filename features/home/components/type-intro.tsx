@@ -22,6 +22,11 @@ export const TypeIntro = () => {
           2000,
           '',
           () =>
+            setStyle('font-fingerPaint tracking-custom01 md:tracking-custom18'),
+          'Swift/Expo/Electron',
+          2000,
+          '',
+          () =>
             setStyle('font-rubikVinyl tracking-custom20 md:tracking-custom54'),
           'Node.js/Nest.js',
           2000,

@@ -5,191 +5,98 @@
   text-align: center;
 }
 
-/* Common style */
 .box figure {
   position: relative;
-  float: left;
   overflow: hidden;
   max-height: 360px;
   text-align: center;
   cursor: pointer;
-  border-radius: var(--radius);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.box figure img {
-  position: relative;
-  display: block;
-  min-height: 100%;
-  max-width: 100%;
-  opacity: 1;
+.box figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
-.box figure figcaption {
-  padding: 2em;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.box figure figcaption::before,
-.box figure figcaption::after {
-  pointer-events: none;
-}
-
-.box figure figcaption,
-.box figure figcaption > a {
+.box figure .image-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
-/* Anchor will cover the whole item by default */
-.box figure figcaption > a {
-  z-index: 1000;
-  text-indent: 200%;
-  white-space: nowrap;
-  font-size: 0;
-  opacity: 0;
+.box figure img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.box figure div {
-  word-spacing: -0.15em;
-  font-weight: 300;
+.box figure:hover img {
+  transform: scale(1.05);
 }
 
-.box figure h2 span {
-  font-weight: 800;
-}
-
-.box figure h2,
-.box figure p {
-  margin: 0;
-}
-
-.box figure p {
-  letter-spacing: 1px;
-  font-size: 68.5%;
-}
-
-figure.effect-zoe figcaption {
-  top: auto;
-  bottom: 0;
-  padding: 1em;
-  height: 3.75em;
-  background: #fff;
-  color: #3c4a50;
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-  -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
-}
-
-figure.effect-zoe h2 {
-  float: left;
-}
-
-figure.effect-zoe p.icon-links a {
-  float: right;
-  color: #3c4a50;
-  font-size: 1.4em;
-}
-
-figure.effect-zoe:hover p.icon-links a:hover,
-figure.effect-zoe:hover p.icon-links a:focus {
-  color: #252d31;
-}
-
-figure.effect-zoe .description {
+.box figure figcaption {
   position: absolute;
-  bottom: 3em;
-  left: 0em;
-  color: #3c4a50;
-  padding: 1em;
-  text-transform: none;
-  font-size: 90%;
-  opacity: 0; /* 初始状态为透明 */
-  transition:
-    opacity 0.35s ease-in-out,
-    transform 0.35s ease-in-out;
-  -webkit-backface-visibility: hidden;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 290px;
-  border-radius: 0.75em 0.75em 0 0;
-  will-change: opacity, transform;
+  padding: 1.5em;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
 }
 
-figure.effect-zoe h2,
-figure.effect-zoe p.icon-links a {
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-  -webkit-transform: translate3d(0, 200%, 0);
-  transform: translate3d(0, 200%, 0);
+.box figure:hover figcaption {
+  transform: translateY(0);
 }
 
-figure.effect-zoe p.icon-links a span::before {
-  display: inline-block;
-  padding: 8px 10px;
-  font-family: 'feathericons';
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.box figure h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
 }
 
-.icon-eye::before {
+.box figure .icon-links {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.icon-paper-clip::before {
+.box figure .icon-links a {
+  color: #fff;
+  margin-left: 1em;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
-.icon-heart::before {
-}
-
-figure.effect-zoe h2 {
-  display: inline-block;
-}
-
-figure.effect-zoe:hover .description {
+.box figure .icon-links a:hover {
   opacity: 1;
 }
 
-figure.effect-zoe:hover figcaption,
-figure.effect-zoe:hover h2,
-figure.effect-zoe:hover p.icon-links a {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+.box figure .description {
+  font-size: 0.9em;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
-figure.effect-zoe:hover h2 {
-  -webkit-transition-delay: 0.05s;
-  transition-delay: 0.05s;
-}
-
-figure.effect-zoe:hover p.icon-links a:nth-child(3) {
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s;
-}
-
-figure.effect-zoe:hover p.icon-links a:nth-child(2) {
-  -webkit-transition-delay: 0.15s;
-  transition-delay: 0.15s;
-}
-
-figure.effect-zoe:hover p.icon-links a:first-child {
-  -webkit-transition-delay: 0.2s;
-  transition-delay: 0.2s;
+.box figure:hover .description {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media screen and (max-width: 50em) {
   .box figure {
-    display: inline-block;
-    float: none;
     margin: 10px auto;
     width: 100%;
   }
