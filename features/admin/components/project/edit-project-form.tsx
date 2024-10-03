@@ -127,6 +127,19 @@ export const EditProjectForm = () => {
           />
           <FormField
             control={form.control}
+            name="titleZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>标题（中文）</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="请输入中文标题..." />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="slug"
             render={({ field }) => (
               <FormItem>
@@ -336,23 +349,12 @@ export const EditProjectForm = () => {
               <FormItem>
                 <FormLabel>Content (ZH)</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Please enter English content..."
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="titleZH"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>标题（中文）</FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder="请输入中文标题..." />
+                  <div id="content-editor">
+                    <BytemdEditor
+                      body={field.value}
+                      setContent={field.onChange}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

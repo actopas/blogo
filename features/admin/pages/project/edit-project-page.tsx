@@ -10,9 +10,9 @@ export const EditProjectPage = () => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            PATHS.ADMIN_HOME,
-            PATHS.ADMIN_PROJECT,
-            PATHS.ADMIN_PROJECT_EDIT,
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_PROJECT, translationKey: 'Project' },
+            { path: PATHS.ADMIN_PROJECT_EDIT, translationKey: 'Edit' },
           ]}
         />
       }
