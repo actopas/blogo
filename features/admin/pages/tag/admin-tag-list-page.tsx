@@ -57,6 +57,7 @@ import {
 
 export const AdminTagListPage = () => {
   const locale = useLocale();
+  console.log('locale', locale);
   const [params, updateParams] = useSetState<GetTagsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
@@ -254,8 +255,8 @@ export const AdminTagListPage = () => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
-            { path: PATHS.ADMIN_TAG, translationKey: 'Navigation.tag' },
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_TAG, translationKey: 'Tag' },
           ]}
           action={<CreateTagButton refreshAsync={getTagsQuery.refreshAsync} />}
         />

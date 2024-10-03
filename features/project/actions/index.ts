@@ -25,7 +25,7 @@ export const isProjectExistByID = async (id: string): Promise<boolean> => {
 
 export const getProjects = async (params: GetProjectsDTO) => {
   const result = await getProjectsSchema.safeParseAsync(params);
-
+  console.log(result, 'result');
   if (!result.success) {
     const error = result.error.format()._errors?.join(';');
     // TODO: 记录日志
@@ -99,17 +99,12 @@ export const getProjects = async (params: GetProjectsDTO) => {
 
   const total = await prisma.project.count({ where: cond });
   const projects = await prisma.project.findMany({
-    where: {
-      OR: [
-        { titleEN: result.data.titleEN },
-        { titleZH: result.data.titleZH },
-        { slug: result.data.slug },
-      ],
-    },
+    where: cond,
+    orderBy: sort,
     take: result.data.pageSize,
     skip: getSkip(result.data.pageIndex, result.data.pageSize),
     include: {
-      tags: true, // 确保包含 tags
+      tags: true,
     },
   });
 

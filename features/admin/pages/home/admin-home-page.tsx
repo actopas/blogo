@@ -12,9 +12,7 @@ export const AdminHomePage = () => {
     <AdminContentLayout
       pageHeader={
         <PageHeader
-          breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
-          ]}
+          breadcrumbList={[{ path: PATHS.ADMIN_HOME, translationKey: 'Home' }]}
         />
       }
     >

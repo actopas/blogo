@@ -87,8 +87,8 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
-            { path: PATHS.ADMIN_NOTE, translationKey: 'Navigation.note' },
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_NOTE, translationKey: 'Note' },
           ]}
           action={
             <CreateNoteButton refreshAsync={getNotesQuery.refreshAsync} />

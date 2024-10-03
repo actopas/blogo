@@ -64,7 +64,7 @@ export const Sidebar = () => {
       key={el.link}
       href={el.link}
       className={cn(
-        'flex transition-colors items-center lg:pl-4 lg:pr-14 lg:py-2 rounded-lg lg:space-x-4 lg:hover:bg-muted-foreground/20 w-full',
+        'flex transition-colors items-center lg:pl-4 lg:pr-14 lg:py-2 rounded-lg lg:space-x-4 lg:hover:bg-muted-foreground/20 w-full justify-center lg:justify-start',
       )}
     >
       <Button

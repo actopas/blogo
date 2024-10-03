@@ -10,8 +10,8 @@ export const CreateBlogPage = () => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
-            { path: PATHS.ADMIN_BLOG, translationKey: 'Navigation.blog' },
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_BLOG, translationKey: 'Blog' },
             {
               path: PATHS.ADMIN_BLOG_CREATE,
               translationKey: 'Navigation.createBlog',

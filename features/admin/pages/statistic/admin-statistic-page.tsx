@@ -31,7 +31,10 @@ export const AdminStatisticPage = async () => {
     <AdminContentLayout
       pageHeader={
         <PageHeader
-          breadcrumbList={[PATHS.ADMIN_HOME, PATHS.ADMIN_STATISTIC]}
+          breadcrumbList={[
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_STATISTIC, translationKey: 'Statistic' },
+          ]}
         />
       }
     >

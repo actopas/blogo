@@ -89,7 +89,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
     () => getProjectsQuery.data?.projects ?? [],
     [getProjectsQuery],
   );
-
+  console.log('Projects data:', data);
   const getTagsQuery = useGetAllTags(TagTypeEnum.PROJECT);
   const tags = React.useMemo(() => {
     return getTagsQuery.data?.tags ?? [];
@@ -264,8 +264,11 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       pageHeader={
         <PageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Navigation.home' },
-            { path: PATHS.ADMIN_PROJECT, translationKey: 'Navigation.project' },
+            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            {
+              path: PATHS.ADMIN_PROJECT,
+              translationKey: 'Project',
+            },
           ]}
           action={
             <Button onClick={handleGoToCreate}>
