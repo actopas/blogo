@@ -6,6 +6,9 @@
  * @LastEditTime: 2024-09-15 23:20:14
  */
 import { IllustrationNoContent } from '@/components/illustrations';
+import { ViewMoreLink } from '@/components/view-more';
+
+import { PATHS } from '@/constants';
 
 import { BlogListItem } from './blog-list-item';
 
@@ -46,6 +49,7 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
           </div>
         ))}
       </div>
+      <ViewMoreLink href={PATHS.SITE_BLOG} />
     </div>
   );
 };

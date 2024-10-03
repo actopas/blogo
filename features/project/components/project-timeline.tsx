@@ -3,6 +3,9 @@
 import React from 'react';
 
 import { IllustrationNoContent } from '@/components/illustrations';
+import { ViewMoreLink } from '@/components/view-more';
+
+import { PATHS } from '@/constants';
 
 import { ProjectListItem } from './project-list-item';
 
@@ -37,6 +40,12 @@ export const ProjectTimeline = ({ projects }: ProjectListProps) => {
           key={index}
         />
       ))}
+      <div className=" flex justify-end">
+        <ViewMoreLink
+          className="md:relative md:left-40 static"
+          href={PATHS.SITE_PROJECT}
+        />
+      </div>
     </div>
   );
 };
