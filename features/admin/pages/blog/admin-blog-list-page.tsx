@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -27,6 +26,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { Highlight } from '@/components/highlight';
 import {
   IconSolarAddSquare,
@@ -41,7 +41,6 @@ import {
   IconSolarTextField,
 } from '@/components/icons';
 import { IllustrationNoContent } from '@/components/illustrations';
-import { PageHeader } from '@/components/page-header';
 
 import {
   DEFAULT_PAGE_INDEX,
@@ -63,7 +62,6 @@ import {
 } from '../../components';
 
 export const AdminBlogListPage = ({ session }: WithSession) => {
-  const locale = useLocale();
   const router = useRouter();
   const [params, updateParams] = useSetState<GetBlogsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
@@ -125,7 +123,7 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
       cell: ({ row }) => {
         return (
           <Highlight
-            sourceString={row.original.title}
+            sourceString={row.original.titleEN}
             searchWords={params.title ? [params.title] : undefined}
           />
         );
@@ -201,7 +199,7 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.createdAt, locale);
+        return toSlashDateString(row.original.createdAt, 'en');
       },
     },
     {
@@ -224,7 +222,7 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.updatedAt, locale);
+        return toSlashDateString(row.original.updatedAt, 'en');
       },
     },
     {
@@ -259,10 +257,10 @@ export const AdminBlogListPage = ({ session }: WithSession) => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_BLOG, translationKey: 'Blog' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_BLOG, label: 'Blog' },
           ]}
           action={
             <Button onClick={handleGoToCreate}>

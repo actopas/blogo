@@ -3,8 +3,6 @@
 import React from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-import { useLocale } from 'next-intl';
-
 import { TagTypeEnum } from '@prisma/client';
 import { useSetState } from 'ahooks';
 import { isUndefined } from 'lodash-es';
@@ -24,12 +22,12 @@ import {
 } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { BytemdViewer } from '@/components/bytemd';
 import {
   IconSolarMinimalisticMagnifer,
   IconSolarRestart,
 } from '@/components/icons';
-import { PageHeader } from '@/components/page-header';
 import { Pagination, PaginationInfo } from '@/components/pagination';
 
 import {
@@ -52,7 +50,6 @@ import {
 } from '../../components';
 
 export const AdminNoteListPage = ({ session }: WithSession) => {
-  const locale = useLocale();
   const [params, updateParams] = useSetState<GetNotesDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
@@ -85,10 +82,10 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_NOTE, translationKey: 'Note' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_NOTE, label: 'Note' },
           ]}
           action={
             <CreateNoteButton refreshAsync={getNotesQuery.refreshAsync} />
@@ -197,10 +194,10 @@ export const AdminNoteListPage = ({ session }: WithSession) => {
                     </div>
                     <div className="flex items-center justify-end text-sm text-muted-foreground">
                       <span className="hidden lg:inline-block">
-                        {toSlashDateString(note.createdAt, locale)}
+                        {toSlashDateString(note.createdAt, 'en')}
                       </span>
                       <span className="mx-2 hidden lg:inline-block">·</span>
-                      <span>{toFromNow(note.createdAt, locale)}</span>
+                      <span>{toFromNow(note.createdAt, 'en')}</span>
                     </div>
                     <div className="absolute right-2 top-2 space-x-2">
                       <ToggleNotePublishButton

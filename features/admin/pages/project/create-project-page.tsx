@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/page-header';
+import { AdminPageHeader } from '@/components/admin-page-header';
 
 import { PATHS } from '@/constants';
 
@@ -8,11 +8,11 @@ export const CreateProjectPage = () => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_PROJECT, translationKey: 'Project' },
-            { path: PATHS.ADMIN_PROJECT_CREATE, translationKey: 'Create' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_PROJECT, label: 'Project' },
+            { path: PATHS.ADMIN_PROJECT_CREATE, label: 'Create' },
           ]}
         />
       }

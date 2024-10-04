@@ -5,7 +5,7 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-16 00:50:10
  */
-import { PageHeader } from '@/components/page-header';
+import { AdminPageHeader } from '@/components/admin-page-header';
 
 import { PATHS } from '@/constants';
 
@@ -15,13 +15,13 @@ export const EditBlogPage = () => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_BLOG, translationKey: 'Blog' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_BLOG, label: 'Blog' },
             {
               path: PATHS.ADMIN_BLOG_EDIT,
-              translationKey: 'Edit Blog',
+              label: 'Edit Blog',
             },
           ]}
         />

@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -27,6 +26,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { Highlight } from '@/components/highlight';
 import {
   IconSolarAddSquare,
@@ -41,7 +41,6 @@ import {
   IconSolarTextField,
 } from '@/components/icons';
 import { IllustrationNoContent } from '@/components/illustrations';
-import { PageHeader } from '@/components/page-header';
 
 import {
   DEFAULT_PAGE_INDEX,
@@ -66,7 +65,6 @@ import {
 } from '../../components';
 
 export const AdminProjectListPage = ({ session }: WithSession) => {
-  const locale = useLocale();
   const router = useRouter();
   const [params, updateParams] = useSetState<GetProjectsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
@@ -129,9 +127,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       cell: ({ row }) => {
         return (
           <Highlight
-            sourceString={
-              locale === 'en' ? row.original.titleEN : row.original.titleZH
-            }
+            sourceString={row.original.titleEN}
             searchWords={
               params.titleEN || params.titleZH
                 ? [params.titleEN || params.titleZH].filter(
@@ -204,7 +200,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.createdAt, locale);
+        return toSlashDateString(row.original.createdAt, 'en');
       },
     },
     {
@@ -227,7 +223,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.updatedAt, locale);
+        return toSlashDateString(row.original.updatedAt, 'en');
       },
     },
     {
@@ -262,12 +258,12 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
             {
               path: PATHS.ADMIN_PROJECT,
-              translationKey: 'Project',
+              label: 'Project',
             },
           ]}
           action={
@@ -282,12 +278,10 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
       <div className="grid gap-4 grid-cols-4 px-2 py-4 items-end">
         <Input
           placeholder="Please enter title"
-          value={locale === 'en' ? inputParams.titleEN : inputParams.titleZH}
+          value={inputParams.titleEN}
           onChange={(v) =>
             updateInputParams({
-              ...(locale === 'en'
-                ? { titleEN: v.target.value }
-                : { titleZH: v.target.value }),
+              ...{ titleEN: v.target.value },
             })
           }
           onKeyUp={(e) => {
@@ -374,9 +368,7 @@ export const AdminProjectListPage = ({ session }: WithSession) => {
 
   function handleSearch() {
     updateParams({
-      ...(locale === 'en'
-        ? { titleEN: inputParams.titleEN }
-        : { titleZH: inputParams.titleZH }),
+      ...{ titleEN: inputParams.titleEN },
       published: inputParams.published,
       tags: inputParams.tags,
     });

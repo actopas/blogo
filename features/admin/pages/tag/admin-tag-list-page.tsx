@@ -2,8 +2,6 @@
 
 import React from 'react';
 
-import { useLocale } from 'next-intl';
-
 import { TagTypeEnum } from '@prisma/client';
 import { type ColumnDef } from '@tanstack/react-table';
 import { useSetState } from 'ahooks';
@@ -22,6 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { Highlight } from '@/components/highlight';
 import {
   IconSolarBook,
@@ -35,7 +34,6 @@ import {
   IconSolarTextField,
 } from '@/components/icons';
 import { IllustrationNoContent } from '@/components/illustrations';
-import { PageHeader } from '@/components/page-header';
 
 import {
   DEFAULT_PAGE_INDEX,
@@ -56,8 +54,6 @@ import {
 } from '../../components';
 
 export const AdminTagListPage = () => {
-  const locale = useLocale();
-  console.log('locale', locale);
   const [params, updateParams] = useSetState<GetTagsDTO>({
     pageIndex: DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
@@ -204,7 +200,7 @@ export const AdminTagListPage = () => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.createdAt, locale);
+        return toSlashDateString(row.original.createdAt, 'en');
       },
     },
     {
@@ -227,7 +223,7 @@ export const AdminTagListPage = () => {
         </Button>
       ),
       cell({ row }) {
-        return toSlashDateString(row.original.updatedAt, locale);
+        return toSlashDateString(row.original.updatedAt, 'en');
       },
     },
     {
@@ -253,10 +249,10 @@ export const AdminTagListPage = () => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_TAG, translationKey: 'Tag' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_TAG, label: 'Tag' },
           ]}
           action={<CreateTagButton refreshAsync={getTagsQuery.refreshAsync} />}
         />

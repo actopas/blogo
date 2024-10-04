@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { IllustrationConstruction } from '@/components/illustrations';
-import { PageHeader } from '@/components/page-header';
 
 import { PATHS } from '@/constants';
 
@@ -11,8 +11,8 @@ export const AdminHomePage = () => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
-          breadcrumbList={[{ path: PATHS.ADMIN_HOME, translationKey: 'Home' }]}
+        <AdminPageHeader
+          breadcrumbList={[{ path: PATHS.ADMIN_HOME, label: 'Home' }]}
         />
       }
     >

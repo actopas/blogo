@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { AdminPageHeader } from '@/components/admin-page-header';
 import { IconSolarBook, IconSolarHashtagSquare } from '@/components/icons';
-import { PageHeader } from '@/components/page-header';
 
 import { PATHS } from '@/constants';
 
@@ -30,10 +30,10 @@ export const AdminStatisticPage = async () => {
   return (
     <AdminContentLayout
       pageHeader={
-        <PageHeader
+        <AdminPageHeader
           breadcrumbList={[
-            { path: PATHS.ADMIN_HOME, translationKey: 'Home' },
-            { path: PATHS.ADMIN_STATISTIC, translationKey: 'Statistic' },
+            { path: PATHS.ADMIN_HOME, label: 'Home' },
+            { path: PATHS.ADMIN_STATISTIC, label: 'Statistic' },
           ]}
         />
       }
