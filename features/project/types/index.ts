@@ -25,6 +25,7 @@ export const createProjectSchema = z.object({
   cover: z.string().nullable().optional(),
   author: z.string().nullable().optional(),
   tags: z.string().array().optional(),
+  pin: z.boolean().optional(),
 });
 
 export const updateProjectSchema = createProjectSchema.partial().extend({

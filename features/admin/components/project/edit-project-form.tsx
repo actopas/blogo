@@ -35,12 +35,14 @@ import { BytemdEditor } from '@/components/bytemd';
 import { PATHS } from '@/constants';
 import { CreateTagButton } from '@/features/admin';
 import {
+  type Project,
   type UpdateProjectDTO,
   updateProjectSchema,
   useGetProject,
   useUpdateProject,
 } from '@/features/project';
 import { useGetAllTags } from '@/features/tag';
+import { type Tag } from '@/features/tag';
 import { uploadFile } from '@/features/upload';
 import { toSlug } from '@/lib/utils';
 
@@ -48,16 +50,17 @@ export const EditProjectForm = () => {
   const getTagsQuery = useGetAllTags(TagTypeEnum.PROJECT);
   const tags = React.useMemo(() => {
     return getTagsQuery.data?.tags ?? [];
-  }, [getTagsQuery]);
+  }, [getTagsQuery.data]);
 
   const { id } = useParams<{ id: string }>();
   const getProjectQuery = useGetProject(id, Boolean(id));
   const project = React.useMemo(() => {
-    return getProjectQuery.data?.project as UpdateProjectDTO | undefined;
+    return getProjectQuery.data?.project as
+      | (Project & { tags: Tag[] })
+      | undefined;
   }, [getProjectQuery]);
 
   const updateProjectQuery = useUpdateProject();
-
   const router = useRouter();
   const [cover, setCover] = React.useState(project?.cover);
   const form = useForm<UpdateProjectDTO>({
@@ -74,12 +77,12 @@ export const EditProjectForm = () => {
       codeUrl: project?.codeUrl ?? '',
       previewUrl: project?.previewUrl ?? '',
       author: project?.author ?? '',
-      tags: project?.tags ?? [],
+      tags: project?.tags?.map((tag) => tag.id) ?? [],
       bodyEN: project?.bodyEN ?? '',
       bodyZH: project?.bodyZH ?? '',
+      pin: project?.pin ?? false,
     },
   });
-
   React.useEffect(() => {
     form.setValue('titleEN', project?.titleEN ?? '');
     form.setValue('titleZH', project?.titleZH ?? '');
@@ -92,9 +95,10 @@ export const EditProjectForm = () => {
     form.setValue('previewUrl', project?.previewUrl ?? '');
     form.setValue('author', project?.author ?? '');
     form.setValue('published', project?.published ?? false);
-    form.setValue('tags', project?.tags ?? []);
+    form.setValue('tags', project?.tags?.map((tag) => tag.id) ?? []);
     form.setValue('bodyEN', project?.bodyEN ?? '');
     form.setValue('bodyZH', project?.bodyZH ?? '');
+    form.setValue('pin', project?.pin ?? false);
   }, [project, form]);
 
   return (
@@ -295,6 +299,24 @@ export const EditProjectForm = () => {
           />
           <FormField
             control={form.control}
+            name="pin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Pin</FormLabel>
+                <FormControl>
+                  <div>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="tags"
             render={({ field }) => (
               <FormItem>
@@ -312,7 +334,7 @@ export const EditProjectForm = () => {
                         multiple
                         clearable
                         selectPlaceholder="Please choose Tags"
-                        value={field.value}
+                        value={field.value ?? []}
                         onValueChange={field.onChange}
                       />
                     </div>

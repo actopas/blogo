@@ -229,6 +229,7 @@ export const createBlog = async (params: CreateBlogDTO) => {
       published: result.data.published,
       cover: result.data.cover,
       author: result.data.author,
+      pin: result.data.pin,
       tags: {
         connect: result.data.tags
           ? result.data.tags.map((tagID) => ({ id: tagID }))
@@ -307,6 +308,7 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
       bodyEN: result.data.bodyEN,
       bodyZH: result.data.bodyZH,
       published: result.data.published,
+      pin: result.data.pin,
       tags: {
         connect: needConnect?.length
           ? needConnect.map((tagID) => ({ id: tagID }))
@@ -320,4 +322,34 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
       id: result.data.id,
     },
   });
+};
+
+export const getPinnedBlogs = async (locale: string) => {
+  const blogs = await prisma.blog.findMany({
+    where: {
+      published: true,
+      pin: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      tags: true,
+    },
+    take: 5, // 限制返回的数量
+  });
+
+  const localizedBlogs = blogs.map((blog) => ({
+    ...blog,
+    title: locale === 'zh' ? blog.titleZH : blog.titleEN,
+    description: locale === 'zh' ? blog.descriptionZH : blog.descriptionEN,
+    body: locale === 'zh' ? blog.bodyZH : blog.bodyEN,
+  }));
+
+  const m = await batchGetBlogUV(blogs.map((el) => el.id));
+
+  return {
+    blogs: localizedBlogs,
+    uvMap: m ? Object.fromEntries(m) : undefined,
+  };
 };

@@ -117,8 +117,12 @@ export const getProjects = async (params: GetProjectsDTO) => {
   };
 };
 
-export const getAllProjects = async () => {
-  const total = await prisma.project.count({});
+export const getPublishedProjects = async (locale: string) => {
+  const total = await prisma.project.count({
+    where: {
+      published: true,
+    },
+  });
   const projects = await prisma.project.findMany({
     orderBy: {
       createdAt: 'desc',
@@ -131,7 +135,15 @@ export const getAllProjects = async () => {
     },
   });
 
-  return { projects, total };
+  return {
+    projects: projects.map((project) => ({
+      ...project,
+      title: locale === 'zh' ? project.titleZH : project.titleEN,
+      description:
+        locale === 'zh' ? project.descriptionZH : project.descriptionEN,
+    })),
+    total,
+  };
 };
 
 export const getProjectByID = async (id: string) => {
@@ -215,6 +227,7 @@ export const createProject = async (params: CreateProjectDTO) => {
       codeUrl: result.data.codeUrl ?? '',
       previewUrl: result.data.previewUrl ?? '',
       author: result.data.author,
+      pin: result.data.pin,
       tags: {
         connect: result.data.tags
           ? result.data.tags.map((tagID) => ({ id: tagID }))
@@ -295,6 +308,7 @@ export const updateProject = async (params: UpdateProjectDTO) => {
       codeUrl: result.data.codeUrl ?? '',
       previewUrl: result.data.previewUrl ?? '',
       author: result.data.author,
+      pin: result.data.pin,
       tags: {
         connect: needConnect?.length
           ? needConnect.map((tagID) => ({ id: tagID }))
@@ -308,4 +322,29 @@ export const updateProject = async (params: UpdateProjectDTO) => {
       id: result.data.id,
     },
   });
+};
+
+export const getPinnedProjects = async (locale: string) => {
+  const projects = await prisma.project.findMany({
+    where: {
+      published: true,
+      pin: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      tags: true,
+    },
+    take: 5, // 限制返回的数量
+  });
+
+  return {
+    projects: projects.map((project) => ({
+      ...project,
+      title: locale === 'zh' ? project.titleZH : project.titleEN,
+      description:
+        locale === 'zh' ? project.descriptionZH : project.descriptionEN,
+    })),
+  };
 };

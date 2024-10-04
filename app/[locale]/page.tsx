@@ -7,17 +7,17 @@
  */
 import { ScrollIndicator } from '@/components/scroll-indicator';
 
-import { BlogList, getPublishedBlogs } from '@/features/blog';
+import { BlogList, getPinnedBlogs } from '@/features/blog';
 import { HeroSection } from '@/features/home';
-import { ProjectTimeline, getAllProjects } from '@/features/project';
+import { ProjectTimeline, getPinnedProjects } from '@/features/project';
 
 export default async function Page({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const { projects } = await getAllProjects();
-  const { blogs, uvMap } = await getPublishedBlogs(locale);
+  const { projects } = await getPinnedProjects(locale);
+  const { blogs, uvMap } = await getPinnedBlogs(locale);
   return (
     <div>
       <div className="h-[calc(100vh-64px)] grid place-content-center relative">

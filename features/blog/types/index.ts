@@ -23,6 +23,7 @@ export const createBlogSchema = z.object({
   cover: z.string().nullable().optional(),
   author: z.string().nullable().optional(),
   tags: z.string().array().optional(),
+  pin: z.boolean().optional(),
 });
 
 export const updateBlogSchema = createBlogSchema.partial().extend({

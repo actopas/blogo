@@ -35,12 +35,14 @@ import { BytemdEditor } from '@/components/bytemd';
 import { PATHS } from '@/constants';
 import { CreateTagButton } from '@/features/admin';
 import {
+  type Blog,
   type UpdateBlogDTO,
   updateBlogSchema,
   useGetBlog,
   useUpdateBlog,
 } from '@/features/blog';
 import { useGetAllTags } from '@/features/tag';
+import { type Tag } from '@/features/tag';
 import { uploadFile } from '@/features/upload';
 import { toSlug } from '@/lib/utils';
 
@@ -53,7 +55,7 @@ export const EditBlogForm = () => {
   const { id } = useParams<{ id: string }>();
   const getBlogQuery = useGetBlog(id, Boolean(id));
   const blog = React.useMemo(() => {
-    return getBlogQuery.data?.blog as UpdateBlogDTO | undefined;
+    return getBlogQuery.data?.blog as (Blog & { tags: Tag[] }) | undefined;
   }, [getBlogQuery]);
 
   const updateBlogQuery = useUpdateBlog();
@@ -74,22 +76,29 @@ export const EditBlogForm = () => {
       published: blog?.published ?? true,
       cover: blog?.cover ?? '',
       author: blog?.author ?? '',
-      tags: blog?.tags ?? [], // 直接使用 tags，不需要 map
+      tags: blog?.tags?.map((tag) => tag.id) ?? [],
+      pin: blog?.pin ?? false,
     },
   });
 
   React.useEffect(() => {
-    form.setValue('titleEN', blog?.titleEN ?? '');
-    form.setValue('titleZH', blog?.titleZH ?? '');
-    form.setValue('id', blog?.id ?? '');
-    form.setValue('slug', blog?.slug ?? '');
-    form.setValue('descriptionEN', blog?.descriptionEN ?? '');
-    form.setValue('descriptionZH', blog?.descriptionZH ?? '');
-    form.setValue('bodyEN', blog?.bodyEN ?? '');
-    form.setValue('bodyZH', blog?.bodyZH ?? '');
-    form.setValue('published', blog?.published ?? true);
-    form.setValue('cover', blog?.cover ?? '');
-    form.setValue('tags', blog?.tags ?? []);
+    if (blog) {
+      form.setValue('titleEN', blog?.titleEN ?? '');
+      form.setValue('titleZH', blog?.titleZH ?? '');
+      form.setValue('id', blog?.id ?? '');
+      form.setValue('slug', blog?.slug ?? '');
+      form.setValue('descriptionEN', blog?.descriptionEN ?? '');
+      form.setValue('descriptionZH', blog?.descriptionZH ?? '');
+      form.setValue('bodyEN', blog?.bodyEN ?? '');
+      form.setValue('bodyZH', blog?.bodyZH ?? '');
+      form.setValue('published', blog?.published ?? true);
+      form.setValue('cover', blog?.cover ?? '');
+      form.setValue(
+        'tags',
+        blog.tags.map((tag) => tag.id),
+      );
+      form.setValue('pin', blog?.pin ?? false);
+    }
   }, [blog, form]);
 
   return (
@@ -258,6 +267,24 @@ export const EditBlogForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Publish</FormLabel>
+                <FormControl>
+                  <div>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="pin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Pin</FormLabel>
                 <FormControl>
                   <div>
                     <Switch

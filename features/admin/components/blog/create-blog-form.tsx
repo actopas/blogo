@@ -67,6 +67,7 @@ export const CreateBlogForm = () => {
       cover: '',
       author: '',
       tags: [],
+      pin: false,
     },
   });
 
@@ -239,6 +240,24 @@ export const CreateBlogForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Publish</FormLabel>
+                <FormControl>
+                  <div>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="pin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Pin</FormLabel>
                 <FormControl>
                   <div>
                     <Switch
