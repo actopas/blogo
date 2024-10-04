@@ -5,6 +5,8 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-14 00:07:18
  */
+import { unstable_setRequestLocale } from 'next-intl/server';
+
 import { PageHeader } from '@/components/page-header';
 
 import { PATHS } from '@/constants';
@@ -17,6 +19,8 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
+  unstable_setRequestLocale(locale);
+
   const { blogs } = await getPublishedBlogs(locale);
 
   return (

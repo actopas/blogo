@@ -5,6 +5,8 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-16 22:17:49
  */
+import { unstable_setRequestLocale } from 'next-intl/server';
+
 import { ScrollIndicator } from '@/components/scroll-indicator';
 
 import { BlogList, getPinnedBlogs } from '@/features/blog';
@@ -16,6 +18,8 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
+  unstable_setRequestLocale(locale);
+
   const { projects } = await getPinnedProjects(locale);
   const { blogs, uvMap } = await getPinnedBlogs(locale);
   return (
