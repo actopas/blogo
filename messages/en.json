@@ -16,6 +16,9 @@
     "contact_us": "Contact us",
     "language_switcher": "Change Language"
   },
+  "LanguageSwitcher": {
+    "switch_language": "Switch Language"
+  },
   "About": {
     "who_i_am": "Who I am",
     "who_i_am_description": "An independent full-stack developer since 2020, built serval apps from 0 to 1. Focus on feature development, user experience, and creating maintainable, easily iterated solutions. Fast, Reliable, Efficient.",

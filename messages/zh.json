@@ -16,6 +16,9 @@
     "contact_us": "联系我们",
     "language_switcher": "切换语言"
   },
+  "LanguageSwitcher": {
+    "switch_language": "切换语言"
+  },
   "About": {
     "who_i_am": "我是谁",
     "who_i_am_description": "自2020年以来的独立全栈开发者，从0到1构建了多个应用。专注于功能开发、用户体验和创建可维护、易迭代的解决方案。快速、可靠、高效。",

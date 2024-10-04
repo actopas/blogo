@@ -74,7 +74,7 @@ export function SwitchLang(props: Props) {
         <Button
           role="combobox"
           aria-expanded={open}
-          aria-label={t('switchLanguage')}
+          aria-label={t('switch_language')}
           variant="ghost"
           size="icon"
           {...props}
