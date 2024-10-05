@@ -336,7 +336,7 @@ export const getPinnedProjects = async (locale: string) => {
     include: {
       tags: true,
     },
-    take: 5, // 限制返回的数量
+    // take: 5
   });
 
   return {
