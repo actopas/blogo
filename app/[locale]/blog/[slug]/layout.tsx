@@ -10,7 +10,7 @@ import { getPlublishedBlogBySlug } from '@/features/blog';
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }): Promise<Metadata> {
   const { blog } = await getPlublishedBlogBySlug(params.slug);
 
@@ -18,9 +18,13 @@ export async function generateMetadata({
     return {};
   }
 
+  const title = params.locale === 'zh' ? blog.titleZH : blog.titleEN;
+  const description =
+    params.locale === 'zh' ? blog.descriptionZH : blog.descriptionEN;
+
   return {
-    title: `${blog.title} - ${WEBSITE}`,
-    description: blog.description,
+    title: `${title} - ${WEBSITE}`,
+    description: description,
     keywords: blog.tags.map((el) => el.name).join(','),
   };
 }
