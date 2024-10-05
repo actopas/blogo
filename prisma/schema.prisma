@@ -109,10 +109,10 @@ model Project {
   // 现有字段
   titleEN       String
   titleZH       String
-  descriptionEN String
-  descriptionZH String
-  bodyEN        String
-  bodyZH        String
+  descriptionEN String  @db.Text
+  descriptionZH String  @db.Text
+  bodyEN        String  @db.Text
+  bodyZH        String  @db.Text
   slug          String  @unique
   codeUrl       String
   previewUrl    String?
