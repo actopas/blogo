@@ -165,9 +165,22 @@ export const EditProjectForm = () => {
             name="descriptionEN"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Description (EN)</FormLabel>
                 <FormControl>
                   <Textarea {...field} placeholder="Please enter description" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="descriptionZH"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description (ZH)</FormLabel>
+                <FormControl>
+                  <Textarea {...field} placeholder="请输入中文描述" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
