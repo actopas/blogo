@@ -64,7 +64,7 @@ export function SwitchLang(props: Props) {
       router.push(newPath);
       setOpen(false);
     } catch (error) {
-      console.error('Failed to switch language:', error);
+      throw new Error('Failed to switch language');
     }
   };
 
