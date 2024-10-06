@@ -326,7 +326,6 @@ export const updateProject = async (params: UpdateProjectDTO) => {
 
 // 将 getPinnedProjects 函数包装在 cache 中
 export const getPinnedProjects = cache(async (locale: string) => {
-  'use server';
   const projects = await prisma.project.findMany({
     where: {
       published: true,

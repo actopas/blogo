@@ -327,8 +327,6 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
 
 // 将 getPinnedBlogs 函数包装在 cache 中
 export const getPinnedBlogs = cache(async (locale: string) => {
-  'use server';
-
   const blogs = await prisma.blog.findMany({
     where: {
       published: true,
