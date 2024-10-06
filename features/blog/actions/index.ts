@@ -1,4 +1,4 @@
-import { cache } from 'react';
+'use server';
 
 import { type Prisma } from '@prisma/client';
 import { isUndefined } from 'lodash-es';
@@ -115,7 +115,6 @@ export const getBlogs = async (params: GetBlogsDTO) => {
 };
 
 export const getPublishedBlogs = async (locale: string) => {
-  'use server';
   const blogs = await prisma.blog.findMany({
     where: {
       published: true,
@@ -325,8 +324,7 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
   });
 };
 
-// 将 getPinnedBlogs 函数包装在 cache 中
-export const getPinnedBlogs = cache(async (locale: string) => {
+export const getPinnedBlogs = async (locale: string) => {
   const blogs = await prisma.blog.findMany({
     where: {
       published: true,
@@ -367,4 +365,4 @@ export const getPinnedBlogs = cache(async (locale: string) => {
     blogs: localizedBlogs,
     uvMap: m ? Object.fromEntries(m) : undefined,
   };
-});
+};

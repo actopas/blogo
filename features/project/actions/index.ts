@@ -1,4 +1,4 @@
-import { cache } from 'react';
+'use server';
 
 import { type Prisma } from '@prisma/client';
 import { isUndefined } from 'lodash-es';
@@ -324,8 +324,7 @@ export const updateProject = async (params: UpdateProjectDTO) => {
   });
 };
 
-// 将 getPinnedProjects 函数包装在 cache 中
-export const getPinnedProjects = cache(async (locale: string) => {
+export const getPinnedProjects = async (locale: string) => {
   const projects = await prisma.project.findMany({
     where: {
       published: true,
@@ -361,4 +360,4 @@ export const getPinnedProjects = cache(async (locale: string) => {
         locale === 'zh' ? project.descriptionZH : project.descriptionEN,
     })),
   };
-});
+};
