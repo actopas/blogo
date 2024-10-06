@@ -7,6 +7,14 @@ const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data: https://*.aliyuncs.com http://*.aliyuncs.com https://placehold.co http://placehold.co;
+  font-src 'self';
+`;
+
 /** @type {import("next").NextConfig} */
 const config = {
   eslint: { ignoreDuringBuilds: true },
@@ -35,6 +43,20 @@ const config = {
         hostname: 'localhost',
       },
     ],
+  },
+  productionBrowserSourceMaps: process.env.NODE_ENV === 'development', // 启用源代码映射
+  headers: () => {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
+          },
+        ],
+      },
+    ];
   },
 };
 
