@@ -44,7 +44,7 @@ const config = {
       },
     ],
   },
-  productionBrowserSourceMaps: true, // 启用源代码映射
+  productionBrowserSourceMaps: process.env.NODE_ENV === 'development', // 启用源代码映射
   headers: () => {
     return [
       {
