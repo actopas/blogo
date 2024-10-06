@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-15 21:30:11
- */
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -20,14 +13,6 @@ import {
   IconSolarMoonStars,
   IconSolarSun,
 } from '../icons';
-
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-12 14:36:25
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-15 21:30:11
- */
 
 export type Props = VariantProps<typeof buttonVariants>;
 
@@ -59,8 +44,7 @@ export function SwitchTheme(props: Props) {
 
   return (
     <Button
-      role="combobox"
-      aria-label="切换主题"
+      aria-label="Switch Theme"
       variant="ghost"
       size={'icon'}
       onClick={() => {

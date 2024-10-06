@@ -1,4 +1,4 @@
-'use server';
+import { cache } from 'react';
 
 import { type Prisma } from '@prisma/client';
 import { isUndefined } from 'lodash-es';
@@ -115,6 +115,7 @@ export const getBlogs = async (params: GetBlogsDTO) => {
 };
 
 export const getPublishedBlogs = async (locale: string) => {
+  'use server';
   const blogs = await prisma.blog.findMany({
     where: {
       published: true,
@@ -324,7 +325,10 @@ export const updateBlog = async (params: UpdateBlogDTO) => {
   });
 };
 
-export const getPinnedBlogs = async (locale: string) => {
+// 将 getPinnedBlogs 函数包装在 cache 中
+export const getPinnedBlogs = cache(async (locale: string) => {
+  'use server';
+
   const blogs = await prisma.blog.findMany({
     where: {
       published: true,
@@ -333,23 +337,36 @@ export const getPinnedBlogs = async (locale: string) => {
     orderBy: {
       createdAt: 'desc',
     },
-    include: {
-      tags: true,
+    select: {
+      id: true,
+      titleEN: true,
+      titleZH: true,
+      descriptionEN: true,
+      descriptionZH: true,
+      slug: true,
+      cover: true,
+      createdAt: true,
+      tags: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
-    take: 5, // 限制返回的数量
+    take: 5,
   });
 
   const localizedBlogs = blogs.map((blog) => ({
     ...blog,
     title: locale === 'zh' ? blog.titleZH : blog.titleEN,
     description: locale === 'zh' ? blog.descriptionZH : blog.descriptionEN,
-    body: locale === 'zh' ? blog.bodyZH : blog.bodyEN,
   }));
 
-  const m = await batchGetBlogUV(blogs.map((el) => el.id));
+  const blogIds = blogs.map((el) => el.id);
+  const m = await batchGetBlogUV(blogIds);
 
   return {
     blogs: localizedBlogs,
     uvMap: m ? Object.fromEntries(m) : undefined,
   };
-};
+});

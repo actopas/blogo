@@ -1,10 +1,3 @@
-/*
- * @Describle:
- * @Author: actopas <fishmooger@gmail.com>
- * @Date: 2024-09-16 22:14:30
- * @LastEditors: actopas
- * @LastEditTime: 2024-09-16 22:17:49
- */
 import { unstable_setRequestLocale } from 'next-intl/server';
 
 import { ScrollIndicator } from '@/components/scroll-indicator';
@@ -20,8 +13,12 @@ export default async function Page({
 }) {
   unstable_setRequestLocale(locale);
 
-  const { projects } = await getPinnedProjects(locale);
-  const { blogs, uvMap } = await getPinnedBlogs(locale);
+  const [projectsData, blogsData] = await Promise.all([
+    getPinnedProjects(locale),
+    getPinnedBlogs(locale),
+  ]);
+  const { projects } = projectsData;
+  const { blogs, uvMap } = blogsData;
   return (
     <div>
       <div className="h-[calc(100vh-64px)] grid place-content-center relative">

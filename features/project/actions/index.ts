@@ -1,4 +1,4 @@
-'use server';
+import { cache } from 'react';
 
 import { type Prisma } from '@prisma/client';
 import { isUndefined } from 'lodash-es';
@@ -324,7 +324,9 @@ export const updateProject = async (params: UpdateProjectDTO) => {
   });
 };
 
-export const getPinnedProjects = async (locale: string) => {
+// 将 getPinnedProjects 函数包装在 cache 中
+export const getPinnedProjects = cache(async (locale: string) => {
+  'use server';
   const projects = await prisma.project.findMany({
     where: {
       published: true,
@@ -333,10 +335,23 @@ export const getPinnedProjects = async (locale: string) => {
     orderBy: {
       createdAt: 'desc',
     },
-    include: {
-      tags: true,
+    select: {
+      id: true,
+      titleEN: true,
+      titleZH: true,
+      descriptionEN: true,
+      descriptionZH: true,
+      slug: true,
+      cover: true,
+      createdAt: true,
+      tags: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
-    // take: 5
+    take: 5, // 限制返回的数量
   });
 
   return {
@@ -347,4 +362,4 @@ export const getPinnedProjects = async (locale: string) => {
         locale === 'zh' ? project.descriptionZH : project.descriptionEN,
     })),
   };
-};
+});

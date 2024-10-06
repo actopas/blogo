@@ -43,8 +43,8 @@ export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
         <Image
           src={blog.cover || ''}
           alt={locale === 'en' ? blog.titleEN : blog.titleZH}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
         />
       </div>
       <div className="p-6 flex flex-col gap-2">

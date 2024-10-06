@@ -10,7 +10,7 @@ import { ClientOnlyToaster } from '@/components/client-only-toaster';
 import { Console } from '@/components/console';
 import { Fingerprint } from '@/components/fingerprint';
 
-import { NICKNAME, SLOGAN, WEBSITE } from '@/constants';
+import { DESCRIPTION, NICKNAME, WEBSITE } from '@/constants';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
@@ -18,30 +18,32 @@ export const metadata: Metadata = {
     template: `%s - ${WEBSITE}`,
     default: `${WEBSITE}`,
   },
-  description: `${SLOGAN}`,
+  description: `${DESCRIPTION}`,
   keywords: NICKNAME,
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html suppressHydrationWarning lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className="scroll-smooth dark"
+      style={{ colorScheme: 'dark' }}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="icon" href="/images/favicon-dark.ico" type="image/x-icon" />
       </head>
       <body className="debug-screens scroll-smooth overflow-x-clip">
-        <TooltipProvider>
-          <NextThemeProvider attribute="class">
-            <WagmiProvider>
+        <NextThemeProvider attribute="class" defaultTheme="dark">
+          <WagmiProvider>
+            <TooltipProvider>
               {children}
-
               <ClientOnlyToaster />
-
               <Console />
-
               <Fingerprint />
-            </WagmiProvider>
-          </NextThemeProvider>
-        </TooltipProvider>
+            </TooltipProvider>
+          </WagmiProvider>
+        </NextThemeProvider>
       </body>
     </html>
   );

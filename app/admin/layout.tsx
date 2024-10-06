@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { NextThemeProvider } from '@/providers';
-
 import { AdminLayout as AdminLayoutComponent } from '@/features/admin';
 
 export default function AdminLayout({
@@ -9,9 +7,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <NextThemeProvider>
-      <AdminLayoutComponent>{children}</AdminLayoutComponent>
-    </NextThemeProvider>
-  );
+  return <AdminLayoutComponent>{children}</AdminLayoutComponent>;
 }

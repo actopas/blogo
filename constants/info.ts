@@ -9,3 +9,6 @@ export const GITHUB_PAGE = 'https://github.com/actopas';
 
 /** 网站名称 */
 export const WEBSITE = `${NICKNAME}`;
+
+/** 网站描述 */
+export const DESCRIPTION = `A Blog For ${NICKNAME}`;

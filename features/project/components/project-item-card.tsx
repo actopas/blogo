@@ -56,8 +56,9 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
                 className="icon-link"
                 href={`${PATHS.SITE_PROJECT}/${project.slug}`}
                 onClick={(e) => e.stopPropagation()}
+                aria-label={`Check ${title}`}
               >
-                <IconPhLink className="w-6 h-6 ml-2" />
+                <IconPhLink className="w-6 h-6 ml-2" aria-hidden="true" />
               </a>
               <a
                 className="icon-link"
@@ -65,8 +66,9 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleEyeIconClick}
+                aria-label={`Preview ${title}`}
               >
-                <IconPhEye className="w-6 h-6 ml-2" />
+                <IconPhEye className="w-6 h-6 ml-2" aria-hidden="true" />
               </a>
             </p>
           </div>
