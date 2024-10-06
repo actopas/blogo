@@ -108,7 +108,6 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Poppins', 'PingFang', ...fontFamily.sans],
         mono: [...fontFamily.mono],
         nerko: ['NerkoOne', 'sans-serif'],
         bungeeShade: ['BungeeShade', 'sans-serif'],
