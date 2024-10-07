@@ -14,7 +14,7 @@ export const LoadingAnimation: React.FC = () => {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm dark:bg-background/40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background backdrop-blur-sm dark:bg-background">
       <div className="relative w-16 h-16">
         <div className="absolute w-full h-full border-4 border-neutral-200 dark:border-neutral-700 rounded-full"></div>
         <div className="absolute w-full h-full border-4 border-t-primary dark:border-t-primary rounded-full animate-spin"></div>
