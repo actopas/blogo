@@ -35,17 +35,25 @@ export const HeroSection = () => {
   };
 
   useEffect(() => {
-    document.fonts.ready
-      .then(() => {
-        setIsLoading(false);
-        setContentLoaded(true);
-      })
-      .catch((error) => {
-        console.error('字体加载失败:', error);
-        setIsLoading(false);
-        setContentLoaded(true);
-      });
+    const timer = setTimeout(() => {
+      document.fonts.ready
+        .then(() => {
+          setIsLoading(false);
+          setContentLoaded(true);
+        })
+        .catch((error) => {
+          console.error('字体加载失败:', error);
+          setIsLoading(false);
+          setContentLoaded(true);
+        });
+    }, 1000); // 给加载动画一个最小显示时间
+
+    return () => clearTimeout(timer);
   }, [setIsLoading]);
+
+  if (!contentLoaded) {
+    return null; // 或者返回一个占位符
+  }
 
   return (
     <div
@@ -65,6 +73,9 @@ export const HeroSection = () => {
         </p>
         <p
           className={`${bungeeShade.className} text-4xl md:text-7xl tracking-widest text-primary`}
+          style={{
+            animationDelay: `${getDelay()}ms`,
+          }}
         >
           {NICKNAME}
         </p>
