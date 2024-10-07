@@ -108,6 +108,7 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
+        sans: ['Poppins', 'PingFang', ...fontFamily.sans],
         mono: [...fontFamily.mono],
         danfo: ['Danfo', 'sans-serif'],
         'rubik-puddles': ['var(--font-rubik-puddles)'],
