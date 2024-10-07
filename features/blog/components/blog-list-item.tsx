@@ -58,16 +58,10 @@ export const BlogListItem = ({ blog, uvMap }: BlogListItemProps) => {
             {locale === 'en' ? blog.titleEN : blog.titleZH}
           </TooltipContent>
         </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {locale === 'en' ? blog.descriptionEN : blog.descriptionZH}
-            </p>
-          </TooltipTrigger>
-          <TooltipContent>
-            {locale === 'en' ? blog.descriptionEN : blog.descriptionZH}
-          </TooltipContent>
-        </Tooltip>
+
+        <p className="text-sm text-muted-foreground line-clamp-2">
+          {locale === 'en' ? blog.descriptionEN : blog.descriptionZH}
+        </p>
 
         <div className="text-sm text-muted-foreground flex items-center space-x-2">
           <span>{blog.author ? blog.author : NICKNAME}</span>
