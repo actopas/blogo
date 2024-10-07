@@ -109,19 +109,7 @@ export default {
       },
       fontFamily: {
         mono: [...fontFamily.mono],
-        nerko: ['NerkoOne', 'sans-serif'],
-        bungeeShade: ['BungeeShade', 'sans-serif'],
-        rubikGlitch: ['RubikGlitch', 'sans-serif'],
-        bebasNeue: ['BebasNeue', 'sans-serif'],
-        josefinSans: ['JosefinSans', 'sans-serif'],
-        rubikVinyl: ['RubikVinyl', 'sans-serif'],
-        spaceMono: ['SpaceMono', 'sans-serif'],
-        rubikPuddles: ['RubikPuddles', 'sans-serif'],
-        rowdies: ['Rowdies', 'sans-serif'],
-        aclonica: ['Aclonica', 'sans-serif'],
-        ibm: ['IBM', 'sans-serif'],
         danfo: ['Danfo', 'sans-serif'],
-        fingerPaint: ['FingerPaint', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
@@ -166,6 +154,13 @@ export default {
             transform: 'translateY(0)',
           },
         },
+        loader: {
+          '90%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(180deg)' },
+        },
+        'loader-finish': {
+          '100%': { transform: 'scale(0)', opacity: '0' },
+        },
       },
       clipPath: {
         'custom-arc': 'ellipse(100% 50% at 50% 100%)',
@@ -175,11 +170,12 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'move-up-down': 'move-up-down 3s infinite',
-
+        'spin-slow': 'spin 3s linear infinite',
         // 光标闪烁动画
         'cursor-blink': 'cursor-blink 0.6s step-end infinite alternate',
         'intro-scroll': 'intro-scroll 3s ease infinite',
         'move-up': 'move-up 2s ease infinite alternate',
+        spin: 'spin 1s linear infinite',
       },
       textShadow: {
         'light-glow':

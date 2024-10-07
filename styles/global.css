@@ -67,103 +67,10 @@
       'calt' 1;
   }
 }
-@font-face {
-  font-family: 'NerkoOne';
-  src: url('/fonts/NerkoOne-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'BungeeShade';
-  src: url('/fonts/BungeeShade-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'RubikGlitch';
-  src: url('/fonts/RubikGlitch-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'BebasNeue';
-  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'JosefinSans';
-  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'RubikVinyl';
-  src: url('/fonts/RubikVinyl-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SpaceMono';
-  src: url('/fonts/SpaceMono-Bold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Rock3D';
-  src: url('/fonts/Rock3D-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'RubikMaze';
-  src: url('/fonts/RubikMaze-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'RubikPuddles';
-  src: url('/fonts/RubikPuddles-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Rowdies';
-  src: url('/fonts/Rowdies-Light.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Aclonica';
-  src: url('/fonts/Aclonica-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'IBM';
-  src: url('/fonts/IBMPlexMono-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Danfo';
   src: url('/fonts/Danfo-Regular-VariableFont_ELSH.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'FingerPaint';
-  src: url('/fonts/FingerPaint-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

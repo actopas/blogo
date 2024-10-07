@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { Bungee_Shade } from 'next/font/google';
+
 import { useScroll } from 'ahooks';
 
 import { NICKNAME, PATHS, WEBSITE } from '@/constants';
@@ -11,6 +13,13 @@ import { IconLogoDark, IconLogoLight } from '../icons';
 import { NextLink } from '../next-link';
 import { SwitchLang } from '../switch-lang';
 import { SwitchTheme } from '../switch-theme';
+
+// 配置 Bungee Shade 字体
+const bungeeShade = Bungee_Shade({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-bungee-shade', // 定义一个CSS变量
+});
 
 export const Navbar = () => {
   const scroll = useScroll(() => document);
@@ -32,7 +41,9 @@ export const Navbar = () => {
             <IconLogoDark className="dark:hidden ml-2 mr-1" />
             <IconLogoLight className="hidden dark:inline-block ml-2 mr-1" />
           </>
-          <div className="sm:flex hidden items-center ml-2 font-bungeeShade text-primary text-base">
+          <div
+            className={`sm:flex hidden items-center ml-2 ${bungeeShade.className} text-primary text-base`}
+          >
             {WEBSITE}
           </div>
         </NextLink>
