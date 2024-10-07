@@ -110,6 +110,7 @@ export default {
       fontFamily: {
         mono: [...fontFamily.mono],
         danfo: ['Danfo', 'sans-serif'],
+        'rubik-puddles': ['var(--font-rubik-puddles)'],
       },
       keyframes: {
         'accordion-down': {

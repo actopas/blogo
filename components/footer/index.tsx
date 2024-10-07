@@ -5,6 +5,8 @@
  * @LastEditors: actopas
  * @LastEditTime: 2024-09-16 22:18:10
  */
+import { Rubik_Puddles } from 'next/font/google';
+
 import { IconBar } from '@/components/icon-bar';
 
 import { getPV, getUV } from '@/features/statistics';
@@ -14,13 +16,23 @@ import { formatNum } from '@/utils';
 import { BackToTop } from '../back-to-top';
 import { buttonVariants } from '../ui/button';
 
+// 配置 Rubik Puddles 字体
+const rubikPuddles = Rubik_Puddles({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-rubik-puddles',
+});
+
 export const Footer = async () => {
   const pv = await getPV();
   const uv = await getUV();
+
   return (
-    <footer className="w-full flex flex-col py-8 max-w-screen-xl mx-auto text-muted-foreground">
+    <footer
+      className={`w-full flex flex-col py-8 max-w-screen-xl mx-auto text-muted-foreground ${rubikPuddles.variable}`}
+    >
       <BackToTop />
-      <div className="text-center text-2xl font-rubikPuddles font-semibold">
+      <div className="text-center text-2xl font-rubik-puddles font-semibold">
         Contact Me
       </div>
       <IconBar />
