@@ -21,7 +21,7 @@
   },
   "About": {
     "who_i_am": "Who I am",
-    "who_i_am_description": "An independent full-stack developer since 2020, built serval apps from 0 to 1. Focus on feature development, user experience, and creating maintainable, easily iterated solutions. Fast, Reliable, Efficient.",
+    "who_i_am_description": "As an independent full-stack developer since 2020 with a Bachelor's degree in Computer Science, I have built several applications from the ground up. My focus is on delivering high-quality features, optimizing user experience, and ensuring that solutions are maintainable and scalable for future iterations. I pride myself on being fast, reliable, and efficient. I am committed to producing clean, sustainable code that drives user satisfaction and business success.",
     "tech_stack_skills": "Tech Stack & Skills",
     "research_idea_design": "Research & Idea & Design",
     "frontend": "Front-end",
@@ -32,7 +32,7 @@
     "version_control": "Version Control",
     "services_devops": "Services & DevOps",
     "others": "Others",
-    "others_description": "Living a life of creating something is where my passion at. I thrive on working on interesting projects and contributing to meaningful repositories. If you're looking for someone to bring your idea to life, feel free to contact me below, and we can schedule a time to chat."
+    "others_description": "Creating and building are where my passion truly lies. I thrive on tackling interesting projects and contributing to meaningful repositories. If you're looking for someone to bring your vision to life, don’t hesitate to reach out. Let’s connect and schedule a time to chat."
   },
   "Project": {
     "title": "Projects",
