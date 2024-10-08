@@ -5,22 +5,26 @@ import { type Metadata } from 'next';
 import { isNil } from 'lodash-es';
 
 import { WEBSITE } from '@/constants';
-import { getPlublishedBlogBySlug } from '@/features/blog';
+import { getPublishedBlogBySlug } from '@/features/blog';
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; locale: string };
 }): Promise<Metadata> {
-  const { blog } = await getPlublishedBlogBySlug(params.slug);
+  const { blog } = await getPublishedBlogBySlug(params.slug);
 
   if (isNil(blog)) {
     return {};
   }
 
+  const title = params.locale === 'zh' ? blog.titleZH : blog.titleEN;
+  const description =
+    params.locale === 'zh' ? blog.descriptionZH : blog.descriptionEN;
+
   return {
-    title: `${blog.title} - ${WEBSITE}`,
-    description: blog.description,
+    title: `${title} - ${WEBSITE}`,
+    description: description,
     keywords: blog.tags.map((el) => el.name).join(','),
   };
 }

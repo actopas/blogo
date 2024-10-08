@@ -162,7 +162,7 @@ export const getBlogByID = async (id: string) => {
   return { blog };
 };
 
-export const getPlublishedBlogBySlug = async (slug: string) => {
+export const getPublishedBlogBySlug = async (slug: string) => {
   const blog = await prisma.blog.findUnique({
     where: { slug, published: true },
     include: {
