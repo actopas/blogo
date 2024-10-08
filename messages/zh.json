@@ -58,6 +58,7 @@
     "viewed": "浏览 {count} 次"
   },
   "ProjectDetail": {
+    "preview": "预览",
     "posted": "发布于 {time}"
   }
 }

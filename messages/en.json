@@ -58,6 +58,7 @@
     "viewed": "{count} Viewed"
   },
   "ProjectDetail": {
+    "preview": "Preview",
     "posted": "Posted {time}"
   }
 }
