@@ -18,7 +18,7 @@ export const ProjectListItem = ({
   index,
 }: ProjectListItemProps) => {
   return (
-    <div className="w-9/10 flex items-center justify-between max-w-custom">
+    <div className="w-full flex items-center justify-between max-w-custom">
       {/* 时间线容器 */}
       <div className="hidden md:flex flex-col items-center mr-8">
         {/* 上方的点集 */}

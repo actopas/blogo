@@ -32,7 +32,7 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center w-full min-h-3/5 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 md:pb-12">
+    <div className="flex flex-col items-center w-full min-h-3/5 max-w-4xl mx-auto px-6 lg:px-8 pb-4 md:pb-12">
       <div className="w-auto md:w-full leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform flex justify-center md:justify-start">
         Articles
       </div>

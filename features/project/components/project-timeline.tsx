@@ -28,23 +28,22 @@ export const ProjectTimeline = ({ projects }: ProjectListProps) => {
   }
 
   return (
-    <div className="w-full min-h-3/5 flex flex-col items-center justify-center">
-      <div className="leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform">
+    <div className="w-full min-h-3/5 flex flex-col items-center justify-center ">
+      <div className="leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform mb-8">
         Projects
       </div>
-      {projects.map((project, index) => (
-        <ProjectListItem
-          project={project}
-          projectLength={projects.length}
-          index={index}
-          key={index}
-        />
-      ))}
-      <div className=" flex justify-end">
-        <ViewMoreLink
-          className="md:relative md:left-40 static"
-          href={PATHS.SITE_PROJECT}
-        />
+      <div className="w-full max-w-custom px-6 md:px-0">
+        {projects.map((project, index) => (
+          <ProjectListItem
+            project={project}
+            projectLength={projects.length}
+            index={index}
+            key={index}
+          />
+        ))}
+        <div className="flex justify-center md:justify-end md:mt-4">
+          <ViewMoreLink href={PATHS.SITE_PROJECT} />
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
-import { IconPhEye, IconPhLink } from '@/components/icons';
+import { motion } from 'framer-motion';
+
+import { Badge } from '@/components/ui/badge';
+
+import { IconPhLink } from '@/components/icons';
 
 import { PATHS } from '@/constants';
+import { cn } from '@/lib/utils';
 
 import { type Project } from '../types';
 
@@ -16,6 +21,7 @@ type ProjectListItemProps = {
 export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('ProjectCard');
 
   const title = locale === 'zh' ? project.titleZH : project.titleEN;
   const description =
@@ -31,50 +37,58 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
     window.open(project.previewUrl || '', '_blank');
   };
 
-  const titleWords = title.split(' ');
-  const firstWord = titleWords[0];
-  const restWords = titleWords.slice(1).join(' ');
-
   return (
-    <div
-      className="box flex flex-col rounded-lg shadow-lg max-w-xl"
+    <motion.div
+      className="flex flex-col rounded-lg overflow-hidden max-w-xl bg-card border border-border shadow-lg dark:shadow-primary/5 mb-8 md:mb-0"
       onClick={handleToProject}
+      whileHover={{ scale: 1.03 }}
+      transition={{ type: 'spring', stiffness: 300 }}
     >
-      <figure className="effect-zoe">
+      <div className="relative w-full aspect-[16/8] overflow-hidden">
+        {' '}
+        {/* 使用固定宽高比 */}
         <img
           src={project.cover}
           alt={title}
-          className="w-128 h-96 object-cover transition-all duration-300"
+          className="w-full h-full object-cover object-center"
         />
-        <figcaption>
-          <div className="flex justify-between w-full">
-            <h2>
-              {firstWord} <span>{restWords}</span>
-            </h2>
-            <p className="icon-links">
-              <a
-                className="icon-link"
-                href={`${PATHS.SITE_PROJECT}/${project.slug}`}
-                onClick={(e) => e.stopPropagation()}
-                aria-label={`Check ${title}`}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 p-6 text-white">
+          <h2 className="text-2xl font-bold mb-2">{title}</h2>
+          <p className="text-base opacity-90 line-clamp-2">
+            {description}
+          </p>{' '}
+          {/* 限制描述为两行 */}
+        </div>
+      </div>
+      <div className="p-6 flex-grow">
+        <div className="flex flex-wrap justify-between items-center gap-4">
+          <div className="flex flex-wrap gap-2">
+            {project.tags?.map((tag) => (
+              <Badge
+                key={tag.id}
+                variant="secondary"
+                className="text-sm px-3 py-1"
               >
-                <IconPhLink className="w-6 h-6 ml-2" aria-hidden="true" />
-              </a>
-              <a
-                className="icon-link"
-                href={project.previewUrl || ''}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleEyeIconClick}
-                aria-label={`Preview ${title}`}
-              >
-                <IconPhEye className="w-6 h-6 ml-2" aria-hidden="true" />
-              </a>
-            </p>
+                {tag.name}
+              </Badge>
+            ))}
           </div>
-          <p className="description">{description}</p>
-        </figcaption>
-      </figure>
-    </div>
+          {project.previewUrl && (
+            <motion.a
+              className={cn('icon-link', 'text-primary hover:text-primary/80')}
+              href={project.previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleEyeIconClick}
+              whileHover={{ scale: 1.1 }}
+              aria-label={t('previewProject', { title })}
+            >
+              <IconPhLink className="w-8 h-8" />
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
