@@ -3,7 +3,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { PageHeader } from '@/components/page-header';
 
 import { PATHS } from '@/constants';
-import { BlogListItem, getPublishedBlogs } from '@/features/blog';
+import { BlogListContent, getPublishedBlogs } from '@/features/blog';
 
 export const revalidate = 60;
 
@@ -25,9 +25,7 @@ export default async function Page({
         ]}
         className="mb-9"
       />
-      {blogs.map((blog) => (
-        <BlogListItem key={blog.id} blog={blog} />
-      ))}
+      <BlogListContent blogs={blogs} />
     </div>
   );
 }

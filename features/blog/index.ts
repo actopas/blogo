@@ -9,4 +9,5 @@ export * from './api/create-blog';
 
 export * from './components/blog-list';
 export * from './components/blog-list-item';
+export * from './components/blog-list-content';
 export * from './pages/blog-detail-page';

@@ -10,7 +10,7 @@ import { ViewMoreLink } from '@/components/view-more';
 
 import { PATHS } from '@/constants';
 
-import { BlogListItem } from './blog-list-item';
+import { BlogListContent } from './blog-list-content';
 
 import { type Blog } from '../types';
 
@@ -36,19 +36,7 @@ export const BlogList = ({ blogs, uvMap }: BlogListProps) => {
       <div className="w-auto md:w-full leading-48 md:leading-72 text-4xl md:text-6xl font-danfo font-bold transform flex justify-center md:justify-start">
         Articles
       </div>
-      <div className="w-full flex flex-col space-y-4">
-        {blogs.map((blog, idx) => (
-          <div
-            key={blog.id}
-            className="animate-fade-up animate-ease-in-out w-full pb-4 md:pb-12"
-            style={{
-              animationDelay: `${(idx + 1) * 200}ms`,
-            }}
-          >
-            <BlogListItem blog={blog} uvMap={uvMap} />
-          </div>
-        ))}
-      </div>
+      <BlogListContent blogs={blogs} uvMap={uvMap} />
       <ViewMoreLink href={PATHS.SITE_BLOG} />
     </div>
   );
