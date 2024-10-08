@@ -340,6 +340,7 @@ export const getPinnedProjects = async (locale: string) => {
       descriptionZH: true,
       slug: true,
       cover: true,
+      previewUrl: true,
       createdAt: true,
       tags: {
         select: {
@@ -348,7 +349,6 @@ export const getPinnedProjects = async (locale: string) => {
         },
       },
     },
-    take: 5, // 限制返回的数量
   });
 
   return {

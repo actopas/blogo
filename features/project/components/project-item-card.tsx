@@ -41,8 +41,14 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
     <motion.div
       className="flex flex-col rounded-lg overflow-hidden max-w-xl bg-card border border-border shadow-lg dark:shadow-primary/5 mb-8 md:mb-0"
       onClick={handleToProject}
-      whileHover={{ scale: 1.03 }}
-      transition={{ type: 'spring', stiffness: 300 }}
+      initial={{ scale: 0.9, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+      whileHover={{
+        scale: 1.05,
+        transition: { type: 'spring', stiffness: 400, damping: 10 },
+      }}
     >
       <div className="relative w-full aspect-[16/8] overflow-hidden">
         {' '}
