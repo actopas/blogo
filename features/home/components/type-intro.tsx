@@ -25,7 +25,6 @@ export const TypeIntro = () => {
     <div className={`${style} md:leading-14 text-xl md:text-4xl`}>
       <TypeAnimation
         sequence={[
-          1500,
           () =>
             setStyle(
               `${josefinSans.className} tracking-custom05 md:tracking-custom25`,
