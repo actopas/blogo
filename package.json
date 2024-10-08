@@ -69,6 +69,7 @@
     "dotenv": "^16.3.1",
     "encoding": "^0.1.13",
     "ethers": "^6.12.1",
+    "framer-motion": "^11.11.1",
     "hast-util-from-html-isomorphic": "^2.0.0",
     "image-type": "^5.2.0",
     "ioredis": "^5.4.1",
