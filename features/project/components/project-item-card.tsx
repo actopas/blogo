@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 import { motion } from 'framer-motion';
@@ -21,7 +21,6 @@ type ProjectListItemProps = {
 export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
   const router = useRouter();
   const locale = useLocale();
-  const t = useTranslations('ProjectCard');
 
   const title = locale === 'zh' ? project.titleZH : project.titleEN;
   const description =
@@ -88,7 +87,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
               rel="noopener noreferrer"
               onClick={handleEyeIconClick}
               whileHover={{ scale: 1.1 }}
-              aria-label={t('previewProject', { title })}
+              aria-label={title}
             >
               <IconPhLink className="w-8 h-8" />
             </motion.a>
