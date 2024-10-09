@@ -38,7 +38,7 @@ export const ProjectItemCard = ({ project }: ProjectListItemProps) => {
 
   return (
     <motion.div
-      className="flex flex-col rounded-lg overflow-hidden max-w-xl bg-card border border-border shadow-lg dark:shadow-primary/5 mb-8 md:mb-0"
+      className="flex flex-col rounded-lg overflow-hidden max-w-xl bg-card border border-border shadow-lg dark:shadow-primary/5 mb-8 md:mb-0 cursor-pointer"
       onClick={handleToProject}
       initial={{ scale: 0.9, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
