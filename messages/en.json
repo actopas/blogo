@@ -1,0 +1,64 @@
+{
+  "Index": {
+    "title": "Welcome to our website",
+    "description": "This is a sample description"
+  },
+  "Navigation": {
+    "home": "Home",
+    "blog": "Blog",
+    "project": "Project",
+    "about": "About Me",
+    "sitemap": "Sitemap"
+  },
+  "Common": {
+    "welcome_message": "Welcome to our website",
+    "description": "This is a sample description",
+    "contact_us": "Contact us",
+    "language_switcher": "Change Language"
+  },
+  "LanguageSwitcher": {
+    "switch_language": "Switch Language"
+  },
+  "About": {
+    "who_i_am": "Who I am",
+    "who_i_am_description": "As an independent full-stack developer since 2020 with a Bachelor's degree in Computer Science, I have built several applications from the ground up. My focus is on delivering high-quality features, optimizing user experience, and ensuring that solutions are maintainable and scalable for future iterations. I pride myself on being fast, reliable, and efficient. I am committed to producing clean, sustainable code that drives user satisfaction and business success.",
+    "tech_stack_skills": "Tech Stack & Skills",
+    "research_idea_design": "Research & Idea & Design",
+    "frontend": "Front-end",
+    "backend": "Back-end",
+    "desktop_mobile": "Desktop & Mobile",
+    "blockchain": "Blockchain",
+    "testing_quality": "Testing & Quality",
+    "version_control": "Version Control",
+    "services_devops": "Services & DevOps",
+    "others": "Others",
+    "others_description": "Creating and building are where my passion truly lies. I thrive on tackling interesting projects and contributing to meaningful repositories. If you're looking for someone to bring your vision to life, don’t hesitate to reach out. Let’s connect and schedule a time to chat."
+  },
+  "Project": {
+    "title": "Projects",
+    "description": "A showcase of my projects"
+  },
+  "AdminNavigation": {
+    "home": "Dashboard",
+    "statistic": "Statistics",
+    "blog": "Blog Management",
+    "createBlog": "Create Blog",
+    "editBlog": "Edit Blog",
+    "project": "Project Management",
+    "createProject": "Create Project",
+    "editProject": "Edit Project",
+    "tag": "Tag Management",
+    "note": "Note Management"
+  },
+  "Auth": {
+    "signin": "Sign In"
+  },
+  "BlogDetail": {
+    "posted": "Posted {time}",
+    "viewed": "{count} Viewed"
+  },
+  "ProjectDetail": {
+    "preview": "Preview",
+    "posted": "Posted {time}"
+  }
+}

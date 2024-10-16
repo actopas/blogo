@@ -1,0 +1,17 @@
+{
+  "name": "actopas",
+  "short_name": "actopas",
+  "icons": [
+    {
+      "src": "/images/favicon-dark.ico",
+      "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,121 @@
+.box {
+  position: relative;
+  max-width: 1000px;
+  list-style: none;
+  text-align: center;
+}
+
+.box figure {
+  position: relative;
+  overflow: hidden;
+  max-height: 360px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.box figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.box figure .image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.box figure img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.box figure:hover img {
+  transform: scale(1.05);
+}
+
+.box figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5em;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.box figure:hover figcaption {
+  transform: translateY(0);
+}
+
+.box figure h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.box figure .icon-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box figure .icon-links a {
+  color: #fff;
+  margin-left: 1em;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.box figure .icon-links a:hover {
+  opacity: 1;
+}
+
+.box figure .description {
+  font-size: 0.9em;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.box figure:hover .description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 50em) {
+  .box figure {
+    margin: 10px auto;
+    width: 100%;
+  }
+}
+
+.icon-link {
+  color: #ffffff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.icon-link:hover {
+  color: #ffd700; /* Hover color, gold is used as an example here */
+}
+
+/* If you want different hover colors for different icons, you can set them like this: */
+.icon-link:hover .icon-ph-link {
+  color: #4a90e2; /* Link icon hover color */
+}
+
+.icon-link:hover .icon-ph-eye {
+  color: #50c878; /* Preview icon hover color */
+}
